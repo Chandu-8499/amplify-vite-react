@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Route, Routes, Navigate, useNavigate } from 'react-router-dom';
-import { Auth } from 'aws-amplify'; 
+import { Auth } from '@aws-amplify/auth'; 
+import { useState, useEffect } from 'react';
 import AdminDashboard from './AdminDashboard';
 import UserDashboard from './UserDashboard';
 import Login from './pages/Login';
