@@ -1,15 +1,75 @@
 import { type ClientSchema, a, defineData } from "@aws-amplify/backend";
 
-/*== STEP 1 ===============================================================
-The section below creates a Todo database table with a "content" field. Try
-adding a new "isDone" field as a boolean. The authorization rule below
-specifies that any user authenticated via an API key can "create", "read",
-"update", and "delete" any "Todo" records.
-=========================================================================*/
 const schema = a.schema({
   Todo: a
     .model({
       content: a.string(),
+      isDone: a.boolean(),  // New field added to Todo
+    }).authorization(allow => [allow.owner()]),
+
+  Product: a
+    .model({
+      id: a.id(),
+      name: a.string(),
+      description: a.string(), // Optional field
+      price: a.float(),
+      image: a.string(), // Optional field
+      createdAt: a.timestamp(), 
+      updatedAt: a.timestamp(),
+    }).authorization(allow => [allow.owner()]),
+
+  // Order now links to users via userId and has an array of OrderProduct (many-to-many relationship)
+  Order: a
+    .model({
+      id: a.id(),
+      userId: a.string(), // One-to-Many: A user can have multiple orders
+      status: a.enum(['PENDING', 'IN_CART', 'PLACED', 'IN_TRANSIT', 'DELIVERED', 'RETURNED', 'REPLACED']),
+      createdAt: a.timestamp(),
+      updatedAt: a.timestamp(),
+    }).authorization(allow => [allow.owner()]),
+
+  // New OrderProduct model for many-to-many relationship between Order and Product
+  OrderProduct: a
+    .model({
+      orderId: a.string(), // Links to Order
+      productId: a.string(), // Links to Product
+      quantity: a.integer(),
+      price: a.float(),
+    }).authorization(allow => [allow.owner()]),
+
+  User: a
+    .model({
+      id: a.id(),
+      email: a.string(),
+      password: a.string(), // Consider hashing passwords in production
+      name: a.string(), // Optional field
+      createdAt: a.timestamp(),
+      updatedAt: a.timestamp(),
+    }).authorization(allow => [allow.owner()]),
+
+  // Wishlist now has a many-to-many relationship with Product
+  Wishlist: a
+    .model({
+      id: a.id(),
+      userId: a.string(), // One-to-Many: A user can have multiple wishlists
+      createdAt: a.timestamp(),
+      updatedAt: a.timestamp(),
+    }).authorization(allow => [allow.owner()]),
+
+  // New WishlistProduct model for many-to-many relationship between Wishlist and Product
+  WishlistProduct: a
+    .model({
+      wishlistId: a.string(), // Links to Wishlist
+      productId: a.string(), // Links to Product
+      addedAt: a.timestamp(),
+    }).authorization(allow => [allow.owner()]),
+
+  Revenue: a
+    .model({
+      id: a.id(),
+      amount: a.float(),
+      createdAt: a.timestamp(),
+      updatedAt: a.timestamp(),
     }).authorization(allow => [allow.owner()]),
 });
 
@@ -19,38 +79,8 @@ export const data = defineData({
   schema,
   authorizationModes: {
     defaultAuthorizationMode: 'userPool',
-    // API Key is used for a.allow.public() rules
     apiKeyAuthorizationMode: {
       expiresInDays: 30,
     },
   },
 });
-
-/*== STEP 2 ===============================================================
-Go to your frontend source code. From your client-side code, generate a
-Data client to make CRUDL requests to your table. (THIS SNIPPET WILL ONLY
-WORK IN THE FRONTEND CODE FILE.)
-
-Using JavaScript or Next.js React Server Components, Middleware, Server 
-Actions or Pages Router? Review how to generate Data clients for those use
-cases: https://docs.amplify.aws/gen2/build-a-backend/data/connect-to-API/
-=========================================================================*/
-
-/*
-"use client"
-import { generateClient } from "aws-amplify/data";
-import type { Schema } from "@/amplify/data/resource";
-
-const client = generateClient<Schema>() // use this Data client for CRUDL requests
-*/
-
-/*== STEP 3 ===============================================================
-Fetch records from the database and use them in your frontend component.
-(THIS SNIPPET WILL ONLY WORK IN THE FRONTEND CODE FILE.)
-=========================================================================*/
-
-/* For example, in a React component, you can use this snippet in your
-  function's RETURN statement */
-// const { data: todos } = await client.models.Todo.list()
-
-// return <ul>{todos.map(todo => <li key={todo.id}>{todo.content}</li>)}</ul>
