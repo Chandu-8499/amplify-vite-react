@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import { Grid, Button, Form, Image } from 'semantic-ui-react';
-import { Storage } from 'aws-amplify';
-import { generateClient } from "aws-amplify/data";
-import awsConfig from './aws-exports';
-import type { Schema } from "@/amplify/data/resource";
+import  Storage  from '@aws-amplify/storage'; // Corrected import for Storage
+import { generateClient } from 'aws-amplify/data';
+// import awsConfig from './aws-exports';
+import type { Schema } from '../amplify/data/resource';
 
 // Define the Product type based on your schema
 interface Product {
@@ -33,12 +33,20 @@ const client = generateClient<Schema>();
 const AdminDashboard: React.FC = () => {
   const queryClient = useQueryClient();
 
-  const [newProduct, setNewProduct] = useState<NewProduct>({ name: '', description: '', price: 0, image: null });
+  const [newProduct, setNewProduct] = useState<NewProduct>({
+    name: '',
+    description: '',
+    price: 0,
+    image: null,
+  });
 
   // Fetch Products using useQuery
-  const { data: products, isLoading: isLoadingProducts } = useQuery(['products'], async () => {
-    const response = await client.models.Product.list();
-    return response.data.items; // Assuming response.data.items contains the products
+  const { data: products, isLoading: isLoadingProducts } = useQuery({
+    queryKey: ['products'], // Pass queryKey in an object
+    queryFn: async () => {
+      const response = await client.models.Product.list();
+      return response.data?.items ?? []; // Handle possible undefined data
+    },
   });
 
   // Mutation to create a new product
@@ -58,13 +66,13 @@ const AdminDashboard: React.FC = () => {
       price: product.price,
       image: imageUrl ? { url: imageUrl } : null, // Attach the image URL if available
     });
-    
+
     return response.data;
   }, {
     onSuccess: () => {
       // Invalidate and refetch the product list after a successful mutation
-      queryClient.invalidateQueries(['products']);
-    }
+      queryClient.invalidateQueries({ queryKey: ['products'] }); // Correct invalidateQueries syntax
+    },
   });
 
   const handleImageChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -123,7 +131,7 @@ const AdminDashboard: React.FC = () => {
           <p>Loading...</p>
         ) : (
           <ul>
-            {products?.map((product: Product) => (
+            {products.map((product: Product) => (
               <li key={product.id}>
                 {product.image && <Image src={product.image.url} size="small" />}
                 <span>{product.name} - ${product.price.toFixed(2)}</span>
