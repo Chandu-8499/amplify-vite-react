@@ -1,12 +1,7 @@
 import { type ClientSchema, a, defineData } from "@aws-amplify/backend";
 
 const schema = a.schema({
-  Todo: a
-    .model({
-      content: a.string(),
-      isDone: a.boolean(),  // New field added to Todo
-    }).authorization(allow => [allow.owner()]),
-
+  
   Product: a
     .model({
       id: a.id(),

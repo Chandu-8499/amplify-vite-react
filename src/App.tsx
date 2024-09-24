@@ -6,8 +6,8 @@ import UserDashboard from './UserDashboard';
 import Login from './pages/Login';
 import Signup from './pages/Signup';
 import ProductList from './ProductList';
-import Cart from './Cart';
-import Checkout from './Checkout';
+// import Cart from './Cart';
+// import Checkout from './Checkout';
 // import jwtDecode from 'jwt-decode';
 // import CognitoUser from 'amazon-cognito-identity-js';
 
@@ -20,8 +20,8 @@ function App() {
         {/* <Route path="/dashboard" element={<ProtectedRoute />} /> */}
         <Route path="/admin" element={<AdminDashboard />} />
         <Route path="/products" element={<ProductList />} />
-        <Route path="/cart" element={<Cart />} />
-        <Route path="/checkout" element={<Checkout />} />
+        {/* <Route path="/cart" element={<Cart />} />
+        <Route path="/checkout" element={<Checkout />} /> */}
         <Route path="/user" element={<UserDashboard />} />
         <Route path="*" element={<Navigate to="/login" />} />
       </Routes>

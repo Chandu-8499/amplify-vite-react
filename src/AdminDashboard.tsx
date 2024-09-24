@@ -6,18 +6,24 @@ import { generateClient } from "aws-amplify/data";
 import awsConfig from './aws-exports';
 import type { Schema } from "@/amplify/data/resource";
 
+// Define the Product type based on your schema
 interface Product {
   id: string;
   name: string;
-  description: string;
-  image: {
-    url: string;
+  description?: string; // Optional
+  price: number;
+  image?: {
+    url: string; // Assuming we are storing image URLs
   };
+  createdAt: string;
+  updatedAt: string;
 }
 
+// Define the input structure for a new product
 interface NewProduct {
   name: string;
-  description: string;
+  description?: string; // Optional
+  price: number;
   image: File | null;
 }
 
@@ -27,12 +33,12 @@ const client = generateClient<Schema>();
 const AdminDashboard: React.FC = () => {
   const queryClient = useQueryClient();
 
-  const [newProduct, setNewProduct] = useState<NewProduct>({ name: '', description: '', image: null });
+  const [newProduct, setNewProduct] = useState<NewProduct>({ name: '', description: '', price: 0, image: null });
 
   // Fetch Products using useQuery
   const { data: products, isLoading: isLoadingProducts } = useQuery(['products'], async () => {
     const response = await client.models.Product.list();
-    return response.data.items; // Assuming response.data.items has the products
+    return response.data.items; // Assuming response.data.items contains the products
   });
 
   // Mutation to create a new product
@@ -49,7 +55,8 @@ const AdminDashboard: React.FC = () => {
     const response = await client.models.Product.create({
       name: product.name,
       description: product.description,
-      image: imageUrl ? { url: imageUrl } : null,
+      price: product.price,
+      image: imageUrl ? { url: imageUrl } : null, // Attach the image URL if available
     });
     
     return response.data;
@@ -69,7 +76,7 @@ const AdminDashboard: React.FC = () => {
   const handleCreateProduct = () => {
     // Trigger mutation to create product
     createProductMutation.mutate(newProduct);
-    setNewProduct({ name: '', description: '', image: null });
+    setNewProduct({ name: '', description: '', price: 0, image: null });
   };
 
   return (
@@ -93,6 +100,14 @@ const AdminDashboard: React.FC = () => {
             />
           </Form.Field>
           <Form.Field>
+            <label>Product Price</label>
+            <input
+              type="number"
+              value={newProduct.price}
+              onChange={(e) => setNewProduct({ ...newProduct, price: parseFloat(e.target.value) })}
+            />
+          </Form.Field>
+          <Form.Field>
             <label>Product Image</label>
             <input type="file" onChange={handleImageChange} />
           </Form.Field>
@@ -110,8 +125,8 @@ const AdminDashboard: React.FC = () => {
           <ul>
             {products?.map((product: Product) => (
               <li key={product.id}>
-                <Image src={product.image.url} size="small" />
-                <span>{product.name}</span>
+                {product.image && <Image src={product.image.url} size="small" />}
+                <span>{product.name} - ${product.price.toFixed(2)}</span>
               </li>
             ))}
           </ul>
