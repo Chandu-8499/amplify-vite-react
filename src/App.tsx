@@ -5,7 +5,7 @@ import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-d
 import UserDashboard from './UserDashboard';
 import Login from './pages/Login';
 import Signup from './pages/Signup';
-import ProductList from './ProductList';
+// import ProductList from './ProductList';
 // import Cart from './Cart';
 // import Checkout from './Checkout';
 // import jwtDecode from 'jwt-decode';
@@ -19,7 +19,7 @@ function App() {
         <Route path="/signup" element={<Signup />} />
         {/* <Route path="/dashboard" element={<ProtectedRoute />} /> */}
         {/* <Route path="/admin" element={<AdminDashboard />} /> */}
-        <Route path="/products" element={<ProductList />} />
+        {/* <Route path="/products" element={<ProductList />} /> */}
         {/* <Route path="/cart" element={<Cart />} />
         <Route path="/checkout" element={<Checkout />} /> */}
         <Route path="/user" element={<UserDashboard />} />

@@ -3,6 +3,18 @@ import { type ClientSchema, a, defineData } from "@aws-amplify/backend";
 const schema = a.schema({
   
 
+
+  ToDo: a
+    .model({
+      id: a.id(),
+      name: a.string(),
+      description: a.string(), // Optional field
+      price: a.float(),
+      image: a.string(), // Optional field
+      createdAt: a.timestamp(), 
+      updatedAt: a.timestamp(),
+    }).authorization(allow => [allow.owner()]),
+
   Product: a
     .model({
       id: a.id(),
