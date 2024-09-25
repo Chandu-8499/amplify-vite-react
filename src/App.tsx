@@ -1,10 +1,11 @@
 import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom';
 // import  Auth from '@aws-amplify/auth'; 
 // import { useState } from 'react';
-// import AdminDashboard from './AdminDashboard';
+import AdminDashboard from './AdminDashboard';
 import UserDashboard from './UserDashboard';
 import Login from './pages/Login';
 import Signup from './pages/Signup';
+import ProductPage from './pages/Productpage';
 // import ProductList from './ProductList';
 // import Cart from './Cart';
 // import Checkout from './Checkout';
@@ -18,10 +19,11 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
         {/* <Route path="/dashboard" element={<ProtectedRoute />} /> */}
-        {/* <Route path="/admin" element={<AdminDashboard />} /> */}
+        <Route path="/admin" element={<AdminDashboard />} />
         {/* <Route path="/products" element={<ProductList />} /> */}
         {/* <Route path="/cart" element={<Cart />} />
         <Route path="/checkout" element={<Checkout />} /> */}
+        <Route path="/productpage" element={<ProductPage />} />
         <Route path="/user" element={<UserDashboard />} />
         <Route path="*" element={<Navigate to="/login" />} />
       </Routes>
