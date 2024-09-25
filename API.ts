@@ -47,25 +47,6 @@ export type Product = {
   updatedAt?: number | null,
 };
 
-export type Revenue = {
-  __typename: "Revenue",
-  amount?: number | null,
-  createdAt?: number | null,
-  id: string,
-  owner?: string | null,
-  updatedAt?: number | null,
-};
-
-export type Todo = {
-  __typename: "Todo",
-  content?: string | null,
-  createdAt: string,
-  id: string,
-  isDone?: boolean | null,
-  owner?: string | null,
-  updatedAt: string,
-};
-
 export type User = {
   __typename: "User",
   createdAt?: number | null,
@@ -75,26 +56,6 @@ export type User = {
   owner?: string | null,
   password?: string | null,
   updatedAt?: number | null,
-};
-
-export type Wishlist = {
-  __typename: "Wishlist",
-  createdAt?: number | null,
-  id: string,
-  owner?: string | null,
-  updatedAt?: number | null,
-  userId?: string | null,
-};
-
-export type WishlistProduct = {
-  __typename: "WishlistProduct",
-  addedAt?: number | null,
-  createdAt: string,
-  id: string,
-  owner?: string | null,
-  productId?: string | null,
-  updatedAt: string,
-  wishlistId?: string | null,
 };
 
 export type ModelOrderProductFilterInput = {
@@ -246,48 +207,6 @@ export type ModelProductConnection = {
   nextToken?: string | null,
 };
 
-export type ModelRevenueFilterInput = {
-  amount?: ModelFloatInput | null,
-  and?: Array< ModelRevenueFilterInput | null > | null,
-  createdAt?: ModelIntInput | null,
-  id?: ModelIDInput | null,
-  not?: ModelRevenueFilterInput | null,
-  or?: Array< ModelRevenueFilterInput | null > | null,
-  owner?: ModelStringInput | null,
-  updatedAt?: ModelIntInput | null,
-};
-
-export type ModelRevenueConnection = {
-  __typename: "ModelRevenueConnection",
-  items:  Array<Revenue | null >,
-  nextToken?: string | null,
-};
-
-export type ModelTodoFilterInput = {
-  and?: Array< ModelTodoFilterInput | null > | null,
-  content?: ModelStringInput | null,
-  createdAt?: ModelStringInput | null,
-  id?: ModelIDInput | null,
-  isDone?: ModelBooleanInput | null,
-  not?: ModelTodoFilterInput | null,
-  or?: Array< ModelTodoFilterInput | null > | null,
-  owner?: ModelStringInput | null,
-  updatedAt?: ModelStringInput | null,
-};
-
-export type ModelBooleanInput = {
-  attributeExists?: boolean | null,
-  attributeType?: ModelAttributeTypes | null,
-  eq?: boolean | null,
-  ne?: boolean | null,
-};
-
-export type ModelTodoConnection = {
-  __typename: "ModelTodoConnection",
-  items:  Array<Todo | null >,
-  nextToken?: string | null,
-};
-
 export type ModelUserFilterInput = {
   and?: Array< ModelUserFilterInput | null > | null,
   createdAt?: ModelIntInput | null,
@@ -304,42 +223,6 @@ export type ModelUserFilterInput = {
 export type ModelUserConnection = {
   __typename: "ModelUserConnection",
   items:  Array<User | null >,
-  nextToken?: string | null,
-};
-
-export type ModelWishlistProductFilterInput = {
-  addedAt?: ModelIntInput | null,
-  and?: Array< ModelWishlistProductFilterInput | null > | null,
-  createdAt?: ModelStringInput | null,
-  id?: ModelIDInput | null,
-  not?: ModelWishlistProductFilterInput | null,
-  or?: Array< ModelWishlistProductFilterInput | null > | null,
-  owner?: ModelStringInput | null,
-  productId?: ModelStringInput | null,
-  updatedAt?: ModelStringInput | null,
-  wishlistId?: ModelStringInput | null,
-};
-
-export type ModelWishlistProductConnection = {
-  __typename: "ModelWishlistProductConnection",
-  items:  Array<WishlistProduct | null >,
-  nextToken?: string | null,
-};
-
-export type ModelWishlistFilterInput = {
-  and?: Array< ModelWishlistFilterInput | null > | null,
-  createdAt?: ModelIntInput | null,
-  id?: ModelIDInput | null,
-  not?: ModelWishlistFilterInput | null,
-  or?: Array< ModelWishlistFilterInput | null > | null,
-  owner?: ModelStringInput | null,
-  updatedAt?: ModelIntInput | null,
-  userId?: ModelStringInput | null,
-};
-
-export type ModelWishlistConnection = {
-  __typename: "ModelWishlistConnection",
-  items:  Array<Wishlist | null >,
   nextToken?: string | null,
 };
 
@@ -406,40 +289,6 @@ export type CreateProductInput = {
   updatedAt?: number | null,
 };
 
-export type ModelRevenueConditionInput = {
-  amount?: ModelFloatInput | null,
-  and?: Array< ModelRevenueConditionInput | null > | null,
-  createdAt?: ModelIntInput | null,
-  not?: ModelRevenueConditionInput | null,
-  or?: Array< ModelRevenueConditionInput | null > | null,
-  owner?: ModelStringInput | null,
-  updatedAt?: ModelIntInput | null,
-};
-
-export type CreateRevenueInput = {
-  amount?: number | null,
-  createdAt?: number | null,
-  id?: string | null,
-  updatedAt?: number | null,
-};
-
-export type ModelTodoConditionInput = {
-  and?: Array< ModelTodoConditionInput | null > | null,
-  content?: ModelStringInput | null,
-  createdAt?: ModelStringInput | null,
-  isDone?: ModelBooleanInput | null,
-  not?: ModelTodoConditionInput | null,
-  or?: Array< ModelTodoConditionInput | null > | null,
-  owner?: ModelStringInput | null,
-  updatedAt?: ModelStringInput | null,
-};
-
-export type CreateTodoInput = {
-  content?: string | null,
-  id?: string | null,
-  isDone?: boolean | null,
-};
-
 export type ModelUserConditionInput = {
   and?: Array< ModelUserConditionInput | null > | null,
   createdAt?: ModelIntInput | null,
@@ -461,42 +310,6 @@ export type CreateUserInput = {
   updatedAt?: number | null,
 };
 
-export type ModelWishlistConditionInput = {
-  and?: Array< ModelWishlistConditionInput | null > | null,
-  createdAt?: ModelIntInput | null,
-  not?: ModelWishlistConditionInput | null,
-  or?: Array< ModelWishlistConditionInput | null > | null,
-  owner?: ModelStringInput | null,
-  updatedAt?: ModelIntInput | null,
-  userId?: ModelStringInput | null,
-};
-
-export type CreateWishlistInput = {
-  createdAt?: number | null,
-  id?: string | null,
-  updatedAt?: number | null,
-  userId?: string | null,
-};
-
-export type ModelWishlistProductConditionInput = {
-  addedAt?: ModelIntInput | null,
-  and?: Array< ModelWishlistProductConditionInput | null > | null,
-  createdAt?: ModelStringInput | null,
-  not?: ModelWishlistProductConditionInput | null,
-  or?: Array< ModelWishlistProductConditionInput | null > | null,
-  owner?: ModelStringInput | null,
-  productId?: ModelStringInput | null,
-  updatedAt?: ModelStringInput | null,
-  wishlistId?: ModelStringInput | null,
-};
-
-export type CreateWishlistProductInput = {
-  addedAt?: number | null,
-  id?: string | null,
-  productId?: string | null,
-  wishlistId?: string | null,
-};
-
 export type DeleteOrderInput = {
   id: string,
 };
@@ -509,23 +322,7 @@ export type DeleteProductInput = {
   id: string,
 };
 
-export type DeleteRevenueInput = {
-  id: string,
-};
-
-export type DeleteTodoInput = {
-  id: string,
-};
-
 export type DeleteUserInput = {
-  id: string,
-};
-
-export type DeleteWishlistInput = {
-  id: string,
-};
-
-export type DeleteWishlistProductInput = {
   id: string,
 };
 
@@ -555,19 +352,6 @@ export type UpdateProductInput = {
   updatedAt?: number | null,
 };
 
-export type UpdateRevenueInput = {
-  amount?: number | null,
-  createdAt?: number | null,
-  id: string,
-  updatedAt?: number | null,
-};
-
-export type UpdateTodoInput = {
-  content?: string | null,
-  id: string,
-  isDone?: boolean | null,
-};
-
 export type UpdateUserInput = {
   createdAt?: number | null,
   email?: string | null,
@@ -575,20 +359,6 @@ export type UpdateUserInput = {
   name?: string | null,
   password?: string | null,
   updatedAt?: number | null,
-};
-
-export type UpdateWishlistInput = {
-  createdAt?: number | null,
-  id: string,
-  updatedAt?: number | null,
-  userId?: string | null,
-};
-
-export type UpdateWishlistProductInput = {
-  addedAt?: number | null,
-  id: string,
-  productId?: string | null,
-  wishlistId?: string | null,
 };
 
 export type ModelSubscriptionOrderFilterInput = {
@@ -682,32 +452,6 @@ export type ModelSubscriptionProductFilterInput = {
   updatedAt?: ModelSubscriptionIntInput | null,
 };
 
-export type ModelSubscriptionRevenueFilterInput = {
-  amount?: ModelSubscriptionFloatInput | null,
-  and?: Array< ModelSubscriptionRevenueFilterInput | null > | null,
-  createdAt?: ModelSubscriptionIntInput | null,
-  id?: ModelSubscriptionIDInput | null,
-  or?: Array< ModelSubscriptionRevenueFilterInput | null > | null,
-  owner?: ModelStringInput | null,
-  updatedAt?: ModelSubscriptionIntInput | null,
-};
-
-export type ModelSubscriptionTodoFilterInput = {
-  and?: Array< ModelSubscriptionTodoFilterInput | null > | null,
-  content?: ModelSubscriptionStringInput | null,
-  createdAt?: ModelSubscriptionStringInput | null,
-  id?: ModelSubscriptionIDInput | null,
-  isDone?: ModelSubscriptionBooleanInput | null,
-  or?: Array< ModelSubscriptionTodoFilterInput | null > | null,
-  owner?: ModelStringInput | null,
-  updatedAt?: ModelSubscriptionStringInput | null,
-};
-
-export type ModelSubscriptionBooleanInput = {
-  eq?: boolean | null,
-  ne?: boolean | null,
-};
-
 export type ModelSubscriptionUserFilterInput = {
   and?: Array< ModelSubscriptionUserFilterInput | null > | null,
   createdAt?: ModelSubscriptionIntInput | null,
@@ -718,28 +462,6 @@ export type ModelSubscriptionUserFilterInput = {
   owner?: ModelStringInput | null,
   password?: ModelSubscriptionStringInput | null,
   updatedAt?: ModelSubscriptionIntInput | null,
-};
-
-export type ModelSubscriptionWishlistFilterInput = {
-  and?: Array< ModelSubscriptionWishlistFilterInput | null > | null,
-  createdAt?: ModelSubscriptionIntInput | null,
-  id?: ModelSubscriptionIDInput | null,
-  or?: Array< ModelSubscriptionWishlistFilterInput | null > | null,
-  owner?: ModelStringInput | null,
-  updatedAt?: ModelSubscriptionIntInput | null,
-  userId?: ModelSubscriptionStringInput | null,
-};
-
-export type ModelSubscriptionWishlistProductFilterInput = {
-  addedAt?: ModelSubscriptionIntInput | null,
-  and?: Array< ModelSubscriptionWishlistProductFilterInput | null > | null,
-  createdAt?: ModelSubscriptionStringInput | null,
-  id?: ModelSubscriptionIDInput | null,
-  or?: Array< ModelSubscriptionWishlistProductFilterInput | null > | null,
-  owner?: ModelStringInput | null,
-  productId?: ModelSubscriptionStringInput | null,
-  updatedAt?: ModelSubscriptionStringInput | null,
-  wishlistId?: ModelSubscriptionStringInput | null,
 };
 
 export type GetOrderQueryVariables = {
@@ -794,37 +516,6 @@ export type GetProductQuery = {
   } | null,
 };
 
-export type GetRevenueQueryVariables = {
-  id: string,
-};
-
-export type GetRevenueQuery = {
-  getRevenue?:  {
-    __typename: "Revenue",
-    amount?: number | null,
-    createdAt?: number | null,
-    id: string,
-    owner?: string | null,
-    updatedAt?: number | null,
-  } | null,
-};
-
-export type GetTodoQueryVariables = {
-  id: string,
-};
-
-export type GetTodoQuery = {
-  getTodo?:  {
-    __typename: "Todo",
-    content?: string | null,
-    createdAt: string,
-    id: string,
-    isDone?: boolean | null,
-    owner?: string | null,
-    updatedAt: string,
-  } | null,
-};
-
 export type GetUserQueryVariables = {
   id: string,
 };
@@ -839,38 +530,6 @@ export type GetUserQuery = {
     owner?: string | null,
     password?: string | null,
     updatedAt?: number | null,
-  } | null,
-};
-
-export type GetWishlistQueryVariables = {
-  id: string,
-};
-
-export type GetWishlistQuery = {
-  getWishlist?:  {
-    __typename: "Wishlist",
-    createdAt?: number | null,
-    id: string,
-    owner?: string | null,
-    updatedAt?: number | null,
-    userId?: string | null,
-  } | null,
-};
-
-export type GetWishlistProductQueryVariables = {
-  id: string,
-};
-
-export type GetWishlistProductQuery = {
-  getWishlistProduct?:  {
-    __typename: "WishlistProduct",
-    addedAt?: number | null,
-    createdAt: string,
-    id: string,
-    owner?: string | null,
-    productId?: string | null,
-    updatedAt: string,
-    wishlistId?: string | null,
   } | null,
 };
 
@@ -948,51 +607,6 @@ export type ListProductsQuery = {
   } | null,
 };
 
-export type ListRevenuesQueryVariables = {
-  filter?: ModelRevenueFilterInput | null,
-  id?: string | null,
-  limit?: number | null,
-  nextToken?: string | null,
-  sortDirection?: ModelSortDirection | null,
-};
-
-export type ListRevenuesQuery = {
-  listRevenues?:  {
-    __typename: "ModelRevenueConnection",
-    items:  Array< {
-      __typename: "Revenue",
-      amount?: number | null,
-      createdAt?: number | null,
-      id: string,
-      owner?: string | null,
-      updatedAt?: number | null,
-    } | null >,
-    nextToken?: string | null,
-  } | null,
-};
-
-export type ListTodosQueryVariables = {
-  filter?: ModelTodoFilterInput | null,
-  limit?: number | null,
-  nextToken?: string | null,
-};
-
-export type ListTodosQuery = {
-  listTodos?:  {
-    __typename: "ModelTodoConnection",
-    items:  Array< {
-      __typename: "Todo",
-      content?: string | null,
-      createdAt: string,
-      id: string,
-      isDone?: boolean | null,
-      owner?: string | null,
-      updatedAt: string,
-    } | null >,
-    nextToken?: string | null,
-  } | null,
-};
-
 export type ListUsersQueryVariables = {
   filter?: ModelUserFilterInput | null,
   id?: string | null,
@@ -1013,52 +627,6 @@ export type ListUsersQuery = {
       owner?: string | null,
       password?: string | null,
       updatedAt?: number | null,
-    } | null >,
-    nextToken?: string | null,
-  } | null,
-};
-
-export type ListWishlistProductsQueryVariables = {
-  filter?: ModelWishlistProductFilterInput | null,
-  limit?: number | null,
-  nextToken?: string | null,
-};
-
-export type ListWishlistProductsQuery = {
-  listWishlistProducts?:  {
-    __typename: "ModelWishlistProductConnection",
-    items:  Array< {
-      __typename: "WishlistProduct",
-      addedAt?: number | null,
-      createdAt: string,
-      id: string,
-      owner?: string | null,
-      productId?: string | null,
-      updatedAt: string,
-      wishlistId?: string | null,
-    } | null >,
-    nextToken?: string | null,
-  } | null,
-};
-
-export type ListWishlistsQueryVariables = {
-  filter?: ModelWishlistFilterInput | null,
-  id?: string | null,
-  limit?: number | null,
-  nextToken?: string | null,
-  sortDirection?: ModelSortDirection | null,
-};
-
-export type ListWishlistsQuery = {
-  listWishlists?:  {
-    __typename: "ModelWishlistConnection",
-    items:  Array< {
-      __typename: "Wishlist",
-      createdAt?: number | null,
-      id: string,
-      owner?: string | null,
-      updatedAt?: number | null,
-      userId?: string | null,
     } | null >,
     nextToken?: string | null,
   } | null,
@@ -1119,39 +687,6 @@ export type CreateProductMutation = {
   } | null,
 };
 
-export type CreateRevenueMutationVariables = {
-  condition?: ModelRevenueConditionInput | null,
-  input: CreateRevenueInput,
-};
-
-export type CreateRevenueMutation = {
-  createRevenue?:  {
-    __typename: "Revenue",
-    amount?: number | null,
-    createdAt?: number | null,
-    id: string,
-    owner?: string | null,
-    updatedAt?: number | null,
-  } | null,
-};
-
-export type CreateTodoMutationVariables = {
-  condition?: ModelTodoConditionInput | null,
-  input: CreateTodoInput,
-};
-
-export type CreateTodoMutation = {
-  createTodo?:  {
-    __typename: "Todo",
-    content?: string | null,
-    createdAt: string,
-    id: string,
-    isDone?: boolean | null,
-    owner?: string | null,
-    updatedAt: string,
-  } | null,
-};
-
 export type CreateUserMutationVariables = {
   condition?: ModelUserConditionInput | null,
   input: CreateUserInput,
@@ -1167,40 +702,6 @@ export type CreateUserMutation = {
     owner?: string | null,
     password?: string | null,
     updatedAt?: number | null,
-  } | null,
-};
-
-export type CreateWishlistMutationVariables = {
-  condition?: ModelWishlistConditionInput | null,
-  input: CreateWishlistInput,
-};
-
-export type CreateWishlistMutation = {
-  createWishlist?:  {
-    __typename: "Wishlist",
-    createdAt?: number | null,
-    id: string,
-    owner?: string | null,
-    updatedAt?: number | null,
-    userId?: string | null,
-  } | null,
-};
-
-export type CreateWishlistProductMutationVariables = {
-  condition?: ModelWishlistProductConditionInput | null,
-  input: CreateWishlistProductInput,
-};
-
-export type CreateWishlistProductMutation = {
-  createWishlistProduct?:  {
-    __typename: "WishlistProduct",
-    addedAt?: number | null,
-    createdAt: string,
-    id: string,
-    owner?: string | null,
-    productId?: string | null,
-    updatedAt: string,
-    wishlistId?: string | null,
   } | null,
 };
 
@@ -1259,39 +760,6 @@ export type DeleteProductMutation = {
   } | null,
 };
 
-export type DeleteRevenueMutationVariables = {
-  condition?: ModelRevenueConditionInput | null,
-  input: DeleteRevenueInput,
-};
-
-export type DeleteRevenueMutation = {
-  deleteRevenue?:  {
-    __typename: "Revenue",
-    amount?: number | null,
-    createdAt?: number | null,
-    id: string,
-    owner?: string | null,
-    updatedAt?: number | null,
-  } | null,
-};
-
-export type DeleteTodoMutationVariables = {
-  condition?: ModelTodoConditionInput | null,
-  input: DeleteTodoInput,
-};
-
-export type DeleteTodoMutation = {
-  deleteTodo?:  {
-    __typename: "Todo",
-    content?: string | null,
-    createdAt: string,
-    id: string,
-    isDone?: boolean | null,
-    owner?: string | null,
-    updatedAt: string,
-  } | null,
-};
-
 export type DeleteUserMutationVariables = {
   condition?: ModelUserConditionInput | null,
   input: DeleteUserInput,
@@ -1307,40 +775,6 @@ export type DeleteUserMutation = {
     owner?: string | null,
     password?: string | null,
     updatedAt?: number | null,
-  } | null,
-};
-
-export type DeleteWishlistMutationVariables = {
-  condition?: ModelWishlistConditionInput | null,
-  input: DeleteWishlistInput,
-};
-
-export type DeleteWishlistMutation = {
-  deleteWishlist?:  {
-    __typename: "Wishlist",
-    createdAt?: number | null,
-    id: string,
-    owner?: string | null,
-    updatedAt?: number | null,
-    userId?: string | null,
-  } | null,
-};
-
-export type DeleteWishlistProductMutationVariables = {
-  condition?: ModelWishlistProductConditionInput | null,
-  input: DeleteWishlistProductInput,
-};
-
-export type DeleteWishlistProductMutation = {
-  deleteWishlistProduct?:  {
-    __typename: "WishlistProduct",
-    addedAt?: number | null,
-    createdAt: string,
-    id: string,
-    owner?: string | null,
-    productId?: string | null,
-    updatedAt: string,
-    wishlistId?: string | null,
   } | null,
 };
 
@@ -1399,39 +833,6 @@ export type UpdateProductMutation = {
   } | null,
 };
 
-export type UpdateRevenueMutationVariables = {
-  condition?: ModelRevenueConditionInput | null,
-  input: UpdateRevenueInput,
-};
-
-export type UpdateRevenueMutation = {
-  updateRevenue?:  {
-    __typename: "Revenue",
-    amount?: number | null,
-    createdAt?: number | null,
-    id: string,
-    owner?: string | null,
-    updatedAt?: number | null,
-  } | null,
-};
-
-export type UpdateTodoMutationVariables = {
-  condition?: ModelTodoConditionInput | null,
-  input: UpdateTodoInput,
-};
-
-export type UpdateTodoMutation = {
-  updateTodo?:  {
-    __typename: "Todo",
-    content?: string | null,
-    createdAt: string,
-    id: string,
-    isDone?: boolean | null,
-    owner?: string | null,
-    updatedAt: string,
-  } | null,
-};
-
 export type UpdateUserMutationVariables = {
   condition?: ModelUserConditionInput | null,
   input: UpdateUserInput,
@@ -1447,40 +848,6 @@ export type UpdateUserMutation = {
     owner?: string | null,
     password?: string | null,
     updatedAt?: number | null,
-  } | null,
-};
-
-export type UpdateWishlistMutationVariables = {
-  condition?: ModelWishlistConditionInput | null,
-  input: UpdateWishlistInput,
-};
-
-export type UpdateWishlistMutation = {
-  updateWishlist?:  {
-    __typename: "Wishlist",
-    createdAt?: number | null,
-    id: string,
-    owner?: string | null,
-    updatedAt?: number | null,
-    userId?: string | null,
-  } | null,
-};
-
-export type UpdateWishlistProductMutationVariables = {
-  condition?: ModelWishlistProductConditionInput | null,
-  input: UpdateWishlistProductInput,
-};
-
-export type UpdateWishlistProductMutation = {
-  updateWishlistProduct?:  {
-    __typename: "WishlistProduct",
-    addedAt?: number | null,
-    createdAt: string,
-    id: string,
-    owner?: string | null,
-    productId?: string | null,
-    updatedAt: string,
-    wishlistId?: string | null,
   } | null,
 };
 
@@ -1539,39 +906,6 @@ export type OnCreateProductSubscription = {
   } | null,
 };
 
-export type OnCreateRevenueSubscriptionVariables = {
-  filter?: ModelSubscriptionRevenueFilterInput | null,
-  owner?: string | null,
-};
-
-export type OnCreateRevenueSubscription = {
-  onCreateRevenue?:  {
-    __typename: "Revenue",
-    amount?: number | null,
-    createdAt?: number | null,
-    id: string,
-    owner?: string | null,
-    updatedAt?: number | null,
-  } | null,
-};
-
-export type OnCreateTodoSubscriptionVariables = {
-  filter?: ModelSubscriptionTodoFilterInput | null,
-  owner?: string | null,
-};
-
-export type OnCreateTodoSubscription = {
-  onCreateTodo?:  {
-    __typename: "Todo",
-    content?: string | null,
-    createdAt: string,
-    id: string,
-    isDone?: boolean | null,
-    owner?: string | null,
-    updatedAt: string,
-  } | null,
-};
-
 export type OnCreateUserSubscriptionVariables = {
   filter?: ModelSubscriptionUserFilterInput | null,
   owner?: string | null,
@@ -1587,40 +921,6 @@ export type OnCreateUserSubscription = {
     owner?: string | null,
     password?: string | null,
     updatedAt?: number | null,
-  } | null,
-};
-
-export type OnCreateWishlistSubscriptionVariables = {
-  filter?: ModelSubscriptionWishlistFilterInput | null,
-  owner?: string | null,
-};
-
-export type OnCreateWishlistSubscription = {
-  onCreateWishlist?:  {
-    __typename: "Wishlist",
-    createdAt?: number | null,
-    id: string,
-    owner?: string | null,
-    updatedAt?: number | null,
-    userId?: string | null,
-  } | null,
-};
-
-export type OnCreateWishlistProductSubscriptionVariables = {
-  filter?: ModelSubscriptionWishlistProductFilterInput | null,
-  owner?: string | null,
-};
-
-export type OnCreateWishlistProductSubscription = {
-  onCreateWishlistProduct?:  {
-    __typename: "WishlistProduct",
-    addedAt?: number | null,
-    createdAt: string,
-    id: string,
-    owner?: string | null,
-    productId?: string | null,
-    updatedAt: string,
-    wishlistId?: string | null,
   } | null,
 };
 
@@ -1679,39 +979,6 @@ export type OnDeleteProductSubscription = {
   } | null,
 };
 
-export type OnDeleteRevenueSubscriptionVariables = {
-  filter?: ModelSubscriptionRevenueFilterInput | null,
-  owner?: string | null,
-};
-
-export type OnDeleteRevenueSubscription = {
-  onDeleteRevenue?:  {
-    __typename: "Revenue",
-    amount?: number | null,
-    createdAt?: number | null,
-    id: string,
-    owner?: string | null,
-    updatedAt?: number | null,
-  } | null,
-};
-
-export type OnDeleteTodoSubscriptionVariables = {
-  filter?: ModelSubscriptionTodoFilterInput | null,
-  owner?: string | null,
-};
-
-export type OnDeleteTodoSubscription = {
-  onDeleteTodo?:  {
-    __typename: "Todo",
-    content?: string | null,
-    createdAt: string,
-    id: string,
-    isDone?: boolean | null,
-    owner?: string | null,
-    updatedAt: string,
-  } | null,
-};
-
 export type OnDeleteUserSubscriptionVariables = {
   filter?: ModelSubscriptionUserFilterInput | null,
   owner?: string | null,
@@ -1727,40 +994,6 @@ export type OnDeleteUserSubscription = {
     owner?: string | null,
     password?: string | null,
     updatedAt?: number | null,
-  } | null,
-};
-
-export type OnDeleteWishlistSubscriptionVariables = {
-  filter?: ModelSubscriptionWishlistFilterInput | null,
-  owner?: string | null,
-};
-
-export type OnDeleteWishlistSubscription = {
-  onDeleteWishlist?:  {
-    __typename: "Wishlist",
-    createdAt?: number | null,
-    id: string,
-    owner?: string | null,
-    updatedAt?: number | null,
-    userId?: string | null,
-  } | null,
-};
-
-export type OnDeleteWishlistProductSubscriptionVariables = {
-  filter?: ModelSubscriptionWishlistProductFilterInput | null,
-  owner?: string | null,
-};
-
-export type OnDeleteWishlistProductSubscription = {
-  onDeleteWishlistProduct?:  {
-    __typename: "WishlistProduct",
-    addedAt?: number | null,
-    createdAt: string,
-    id: string,
-    owner?: string | null,
-    productId?: string | null,
-    updatedAt: string,
-    wishlistId?: string | null,
   } | null,
 };
 
@@ -1819,39 +1052,6 @@ export type OnUpdateProductSubscription = {
   } | null,
 };
 
-export type OnUpdateRevenueSubscriptionVariables = {
-  filter?: ModelSubscriptionRevenueFilterInput | null,
-  owner?: string | null,
-};
-
-export type OnUpdateRevenueSubscription = {
-  onUpdateRevenue?:  {
-    __typename: "Revenue",
-    amount?: number | null,
-    createdAt?: number | null,
-    id: string,
-    owner?: string | null,
-    updatedAt?: number | null,
-  } | null,
-};
-
-export type OnUpdateTodoSubscriptionVariables = {
-  filter?: ModelSubscriptionTodoFilterInput | null,
-  owner?: string | null,
-};
-
-export type OnUpdateTodoSubscription = {
-  onUpdateTodo?:  {
-    __typename: "Todo",
-    content?: string | null,
-    createdAt: string,
-    id: string,
-    isDone?: boolean | null,
-    owner?: string | null,
-    updatedAt: string,
-  } | null,
-};
-
 export type OnUpdateUserSubscriptionVariables = {
   filter?: ModelSubscriptionUserFilterInput | null,
   owner?: string | null,
@@ -1867,39 +1067,5 @@ export type OnUpdateUserSubscription = {
     owner?: string | null,
     password?: string | null,
     updatedAt?: number | null,
-  } | null,
-};
-
-export type OnUpdateWishlistSubscriptionVariables = {
-  filter?: ModelSubscriptionWishlistFilterInput | null,
-  owner?: string | null,
-};
-
-export type OnUpdateWishlistSubscription = {
-  onUpdateWishlist?:  {
-    __typename: "Wishlist",
-    createdAt?: number | null,
-    id: string,
-    owner?: string | null,
-    updatedAt?: number | null,
-    userId?: string | null,
-  } | null,
-};
-
-export type OnUpdateWishlistProductSubscriptionVariables = {
-  filter?: ModelSubscriptionWishlistProductFilterInput | null,
-  owner?: string | null,
-};
-
-export type OnUpdateWishlistProductSubscription = {
-  onUpdateWishlistProduct?:  {
-    __typename: "WishlistProduct",
-    addedAt?: number | null,
-    createdAt: string,
-    id: string,
-    owner?: string | null,
-    productId?: string | null,
-    updatedAt: string,
-    wishlistId?: string | null,
   } | null,
 };

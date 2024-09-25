@@ -2,6 +2,7 @@ import { type ClientSchema, a, defineData } from "@aws-amplify/backend";
 
 const schema = a.schema({
   
+
   Product: a
     .model({
       id: a.id(),
@@ -43,29 +44,29 @@ const schema = a.schema({
     }).authorization(allow => [allow.owner()]),
 
   // Wishlist now has a many-to-many relationship with Product
-  Wishlist: a
-    .model({
-      id: a.id(),
-      userId: a.string(), // One-to-Many: A user can have multiple wishlists
-      createdAt: a.timestamp(),
-      updatedAt: a.timestamp(),
-    }).authorization(allow => [allow.owner()]),
+  // Wishlist: a
+  //   .model({
+  //     id: a.id(),
+  //     userId: a.string(), // One-to-Many: A user can have multiple wishlists
+  //     createdAt: a.timestamp(),
+  //     updatedAt: a.timestamp(),
+  //   }).authorization(allow => [allow.owner()]),
 
-  // New WishlistProduct model for many-to-many relationship between Wishlist and Product
-  WishlistProduct: a
-    .model({
-      wishlistId: a.string(), // Links to Wishlist
-      productId: a.string(), // Links to Product
-      addedAt: a.timestamp(),
-    }).authorization(allow => [allow.owner()]),
+  // // New WishlistProduct model for many-to-many relationship between Wishlist and Product
+  // WishlistProduct: a
+  //   .model({
+  //     wishlistId: a.string(), // Links to Wishlist
+  //     productId: a.string(), // Links to Product
+  //     addedAt: a.timestamp(),
+  //   }).authorization(allow => [allow.owner()]),
 
-  Revenue: a
-    .model({
-      id: a.id(),
-      amount: a.float(),
-      createdAt: a.timestamp(),
-      updatedAt: a.timestamp(),
-    }).authorization(allow => [allow.owner()]),
+  // Revenue: a
+  //   .model({
+  //     id: a.id(),
+  //     amount: a.float(),
+  //     createdAt: a.timestamp(),
+  //     updatedAt: a.timestamp(),
+  //   }).authorization(allow => [allow.owner()]),
 });
 
 export type Schema = ClientSchema<typeof schema>;

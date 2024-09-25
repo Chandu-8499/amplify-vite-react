@@ -66,41 +66,6 @@ export const createProduct = /* GraphQL */ `mutation CreateProduct(
   APITypes.CreateProductMutationVariables,
   APITypes.CreateProductMutation
 >;
-export const createRevenue = /* GraphQL */ `mutation CreateRevenue(
-  $condition: ModelRevenueConditionInput
-  $input: CreateRevenueInput!
-) {
-  createRevenue(condition: $condition, input: $input) {
-    amount
-    createdAt
-    id
-    owner
-    updatedAt
-    __typename
-  }
-}
-` as GeneratedMutation<
-  APITypes.CreateRevenueMutationVariables,
-  APITypes.CreateRevenueMutation
->;
-export const createTodo = /* GraphQL */ `mutation CreateTodo(
-  $condition: ModelTodoConditionInput
-  $input: CreateTodoInput!
-) {
-  createTodo(condition: $condition, input: $input) {
-    content
-    createdAt
-    id
-    isDone
-    owner
-    updatedAt
-    __typename
-  }
-}
-` as GeneratedMutation<
-  APITypes.CreateTodoMutationVariables,
-  APITypes.CreateTodoMutation
->;
 export const createUser = /* GraphQL */ `mutation CreateUser(
   $condition: ModelUserConditionInput
   $input: CreateUserInput!
@@ -119,42 +84,6 @@ export const createUser = /* GraphQL */ `mutation CreateUser(
 ` as GeneratedMutation<
   APITypes.CreateUserMutationVariables,
   APITypes.CreateUserMutation
->;
-export const createWishlist = /* GraphQL */ `mutation CreateWishlist(
-  $condition: ModelWishlistConditionInput
-  $input: CreateWishlistInput!
-) {
-  createWishlist(condition: $condition, input: $input) {
-    createdAt
-    id
-    owner
-    updatedAt
-    userId
-    __typename
-  }
-}
-` as GeneratedMutation<
-  APITypes.CreateWishlistMutationVariables,
-  APITypes.CreateWishlistMutation
->;
-export const createWishlistProduct = /* GraphQL */ `mutation CreateWishlistProduct(
-  $condition: ModelWishlistProductConditionInput
-  $input: CreateWishlistProductInput!
-) {
-  createWishlistProduct(condition: $condition, input: $input) {
-    addedAt
-    createdAt
-    id
-    owner
-    productId
-    updatedAt
-    wishlistId
-    __typename
-  }
-}
-` as GeneratedMutation<
-  APITypes.CreateWishlistProductMutationVariables,
-  APITypes.CreateWishlistProductMutation
 >;
 export const deleteOrder = /* GraphQL */ `mutation DeleteOrder(
   $condition: ModelOrderConditionInput
@@ -214,41 +143,6 @@ export const deleteProduct = /* GraphQL */ `mutation DeleteProduct(
   APITypes.DeleteProductMutationVariables,
   APITypes.DeleteProductMutation
 >;
-export const deleteRevenue = /* GraphQL */ `mutation DeleteRevenue(
-  $condition: ModelRevenueConditionInput
-  $input: DeleteRevenueInput!
-) {
-  deleteRevenue(condition: $condition, input: $input) {
-    amount
-    createdAt
-    id
-    owner
-    updatedAt
-    __typename
-  }
-}
-` as GeneratedMutation<
-  APITypes.DeleteRevenueMutationVariables,
-  APITypes.DeleteRevenueMutation
->;
-export const deleteTodo = /* GraphQL */ `mutation DeleteTodo(
-  $condition: ModelTodoConditionInput
-  $input: DeleteTodoInput!
-) {
-  deleteTodo(condition: $condition, input: $input) {
-    content
-    createdAt
-    id
-    isDone
-    owner
-    updatedAt
-    __typename
-  }
-}
-` as GeneratedMutation<
-  APITypes.DeleteTodoMutationVariables,
-  APITypes.DeleteTodoMutation
->;
 export const deleteUser = /* GraphQL */ `mutation DeleteUser(
   $condition: ModelUserConditionInput
   $input: DeleteUserInput!
@@ -267,42 +161,6 @@ export const deleteUser = /* GraphQL */ `mutation DeleteUser(
 ` as GeneratedMutation<
   APITypes.DeleteUserMutationVariables,
   APITypes.DeleteUserMutation
->;
-export const deleteWishlist = /* GraphQL */ `mutation DeleteWishlist(
-  $condition: ModelWishlistConditionInput
-  $input: DeleteWishlistInput!
-) {
-  deleteWishlist(condition: $condition, input: $input) {
-    createdAt
-    id
-    owner
-    updatedAt
-    userId
-    __typename
-  }
-}
-` as GeneratedMutation<
-  APITypes.DeleteWishlistMutationVariables,
-  APITypes.DeleteWishlistMutation
->;
-export const deleteWishlistProduct = /* GraphQL */ `mutation DeleteWishlistProduct(
-  $condition: ModelWishlistProductConditionInput
-  $input: DeleteWishlistProductInput!
-) {
-  deleteWishlistProduct(condition: $condition, input: $input) {
-    addedAt
-    createdAt
-    id
-    owner
-    productId
-    updatedAt
-    wishlistId
-    __typename
-  }
-}
-` as GeneratedMutation<
-  APITypes.DeleteWishlistProductMutationVariables,
-  APITypes.DeleteWishlistProductMutation
 >;
 export const updateOrder = /* GraphQL */ `mutation UpdateOrder(
   $condition: ModelOrderConditionInput
@@ -362,41 +220,6 @@ export const updateProduct = /* GraphQL */ `mutation UpdateProduct(
   APITypes.UpdateProductMutationVariables,
   APITypes.UpdateProductMutation
 >;
-export const updateRevenue = /* GraphQL */ `mutation UpdateRevenue(
-  $condition: ModelRevenueConditionInput
-  $input: UpdateRevenueInput!
-) {
-  updateRevenue(condition: $condition, input: $input) {
-    amount
-    createdAt
-    id
-    owner
-    updatedAt
-    __typename
-  }
-}
-` as GeneratedMutation<
-  APITypes.UpdateRevenueMutationVariables,
-  APITypes.UpdateRevenueMutation
->;
-export const updateTodo = /* GraphQL */ `mutation UpdateTodo(
-  $condition: ModelTodoConditionInput
-  $input: UpdateTodoInput!
-) {
-  updateTodo(condition: $condition, input: $input) {
-    content
-    createdAt
-    id
-    isDone
-    owner
-    updatedAt
-    __typename
-  }
-}
-` as GeneratedMutation<
-  APITypes.UpdateTodoMutationVariables,
-  APITypes.UpdateTodoMutation
->;
 export const updateUser = /* GraphQL */ `mutation UpdateUser(
   $condition: ModelUserConditionInput
   $input: UpdateUserInput!
@@ -415,40 +238,4 @@ export const updateUser = /* GraphQL */ `mutation UpdateUser(
 ` as GeneratedMutation<
   APITypes.UpdateUserMutationVariables,
   APITypes.UpdateUserMutation
->;
-export const updateWishlist = /* GraphQL */ `mutation UpdateWishlist(
-  $condition: ModelWishlistConditionInput
-  $input: UpdateWishlistInput!
-) {
-  updateWishlist(condition: $condition, input: $input) {
-    createdAt
-    id
-    owner
-    updatedAt
-    userId
-    __typename
-  }
-}
-` as GeneratedMutation<
-  APITypes.UpdateWishlistMutationVariables,
-  APITypes.UpdateWishlistMutation
->;
-export const updateWishlistProduct = /* GraphQL */ `mutation UpdateWishlistProduct(
-  $condition: ModelWishlistProductConditionInput
-  $input: UpdateWishlistProductInput!
-) {
-  updateWishlistProduct(condition: $condition, input: $input) {
-    addedAt
-    createdAt
-    id
-    owner
-    productId
-    updatedAt
-    wishlistId
-    __typename
-  }
-}
-` as GeneratedMutation<
-  APITypes.UpdateWishlistProductMutationVariables,
-  APITypes.UpdateWishlistProductMutation
 >;
