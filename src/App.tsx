@@ -6,6 +6,9 @@ import UserDashboard from './UserDashboard';
 import Login from './pages/Login';
 import Signup from './pages/Signup';
 import ProductPage from './pages/Productpage';
+import ProductListing from './components/ProductListing';
+import ProductDetail from './components/ProductDetail';
+
 // import ProductList from './ProductList';
 // import Cart from './Cart';
 // import Checkout from './Checkout';
@@ -16,6 +19,8 @@ function App() {
   return (
     <Router>
       <Routes>
+      <Route path="/"  element={<ProductListing />} />
+      <Route path="/products/:id" element={<ProductDetail />} />
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
         {/* <Route path="/dashboard" element={<ProtectedRoute />} /> */}
