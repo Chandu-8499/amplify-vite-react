@@ -16,7 +16,7 @@ const ProductPage: React.FC = () => {
   const [updateProduct] = useMutation(UPDATE_PRODUCT);
   const [deleteProduct] = useMutation(DELETE_PRODUCT);
 
-  // Track the product form state for creating/updating
+  // Form state for creating or editing a product
   const [productForm, setProductForm] = useState<Omit<Product, 'id'>>({
     name: '',
     description: '',
@@ -24,35 +24,37 @@ const ProductPage: React.FC = () => {
     stock: 0,
   });
 
+  // State to track whether the form is in "edit" mode and which product is being edited
   const [isEditMode, setIsEditMode] = useState(false);
   const [editingProductId, setEditingProductId] = useState<string | null>(null);
 
+  // Show loading or error states if necessary
   if (loading) return <p>Loading products...</p>;
   if (error) return <p>Error: {error.message}</p>;
 
-  // Handle creating a new product
+  // Create a new product
   const handleCreateProduct = async () => {
     await createProduct({
       variables: { input: productForm },
       refetchQueries: [{ query: GET_PRODUCTS }],
     });
-    setProductForm({ name: '', description: '', price: 0, stock: 0 });
+    setProductForm({ name: '', description: '', price: 0, stock: 0 }); // Reset form
   };
 
-  // Handle updating an existing product
+  // Update an existing product
   const handleUpdateProduct = async () => {
     if (editingProductId) {
       await updateProduct({
         variables: { input: { id: editingProductId, ...productForm } },
         refetchQueries: [{ query: GET_PRODUCTS }],
       });
-      setProductForm({ name: '', description: '', price: 0, stock: 0 });
-      setIsEditMode(false);
+      setProductForm({ name: '', description: '', price: 0, stock: 0 }); // Reset form
+      setIsEditMode(false); // Exit edit mode
       setEditingProductId(null);
     }
   };
 
-  // Prepare form to edit an existing product
+  // Prepare form for editing an existing product
   const handleEditClick = (product: Product) => {
     setProductForm({
       name: product.name,
@@ -60,11 +62,11 @@ const ProductPage: React.FC = () => {
       price: product.price,
       stock: product.stock,
     });
-    setIsEditMode(true);
-    setEditingProductId(product.id);
+    setIsEditMode(true); // Switch to edit mode
+    setEditingProductId(product.id); // Set the product to be edited
   };
 
-  // Handle deleting a product
+  // Delete a product
   const handleDeleteProduct = async (id: string) => {
     await deleteProduct({
       variables: { id },
@@ -76,7 +78,7 @@ const ProductPage: React.FC = () => {
     <div>
       <h1>Product Page</h1>
 
-      {/* Product form */}
+      {/* Product form for creating or editing */}
       <form
         onSubmit={(e) => {
           e.preventDefault();
@@ -115,10 +117,13 @@ const ProductPage: React.FC = () => {
           onChange={(e) => setProductForm({ ...productForm, stock: Number(e.target.value) })}
           required
         />
-        <button type="submit">{isEditMode ? 'Update Product' : 'Add Product'}</button>
+        <button type="submit">
+          {isEditMode ? 'Update Product' : 'Add Product'}
+        </button>
       </form>
 
-      {/* Product list */}
+      {/* List of existing products */}
+      <h2>Existing Products</h2>
       <ul>
         {data.listProducts.items.map((product: Product) => (
           <li key={product.id}>

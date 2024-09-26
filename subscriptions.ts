@@ -58,6 +58,7 @@ export const onCreateProduct = /* GraphQL */ `subscription OnCreateProduct(
     name
     owner
     price
+    stock
     updatedAt
     __typename
   }
@@ -65,6 +66,26 @@ export const onCreateProduct = /* GraphQL */ `subscription OnCreateProduct(
 ` as GeneratedSubscription<
   APITypes.OnCreateProductSubscriptionVariables,
   APITypes.OnCreateProductSubscription
+>;
+export const onCreateToDo = /* GraphQL */ `subscription OnCreateToDo(
+  $filter: ModelSubscriptionToDoFilterInput
+  $owner: String
+) {
+  onCreateToDo(filter: $filter, owner: $owner) {
+    createdAt
+    description
+    id
+    image
+    name
+    owner
+    price
+    updatedAt
+    __typename
+  }
+}
+` as GeneratedSubscription<
+  APITypes.OnCreateToDoSubscriptionVariables,
+  APITypes.OnCreateToDoSubscription
 >;
 export const onCreateUser = /* GraphQL */ `subscription OnCreateUser(
   $filter: ModelSubscriptionUserFilterInput
@@ -135,6 +156,7 @@ export const onDeleteProduct = /* GraphQL */ `subscription OnDeleteProduct(
     name
     owner
     price
+    stock
     updatedAt
     __typename
   }
@@ -142,6 +164,26 @@ export const onDeleteProduct = /* GraphQL */ `subscription OnDeleteProduct(
 ` as GeneratedSubscription<
   APITypes.OnDeleteProductSubscriptionVariables,
   APITypes.OnDeleteProductSubscription
+>;
+export const onDeleteToDo = /* GraphQL */ `subscription OnDeleteToDo(
+  $filter: ModelSubscriptionToDoFilterInput
+  $owner: String
+) {
+  onDeleteToDo(filter: $filter, owner: $owner) {
+    createdAt
+    description
+    id
+    image
+    name
+    owner
+    price
+    updatedAt
+    __typename
+  }
+}
+` as GeneratedSubscription<
+  APITypes.OnDeleteToDoSubscriptionVariables,
+  APITypes.OnDeleteToDoSubscription
 >;
 export const onDeleteUser = /* GraphQL */ `subscription OnDeleteUser(
   $filter: ModelSubscriptionUserFilterInput
@@ -212,6 +254,7 @@ export const onUpdateProduct = /* GraphQL */ `subscription OnUpdateProduct(
     name
     owner
     price
+    stock
     updatedAt
     __typename
   }
@@ -219,6 +262,26 @@ export const onUpdateProduct = /* GraphQL */ `subscription OnUpdateProduct(
 ` as GeneratedSubscription<
   APITypes.OnUpdateProductSubscriptionVariables,
   APITypes.OnUpdateProductSubscription
+>;
+export const onUpdateToDo = /* GraphQL */ `subscription OnUpdateToDo(
+  $filter: ModelSubscriptionToDoFilterInput
+  $owner: String
+) {
+  onUpdateToDo(filter: $filter, owner: $owner) {
+    createdAt
+    description
+    id
+    image
+    name
+    owner
+    price
+    updatedAt
+    __typename
+  }
+}
+` as GeneratedSubscription<
+  APITypes.OnUpdateToDoSubscriptionVariables,
+  APITypes.OnUpdateToDoSubscription
 >;
 export const onUpdateUser = /* GraphQL */ `subscription OnUpdateUser(
   $filter: ModelSubscriptionUserFilterInput

@@ -46,6 +46,7 @@ export const getProduct = /* GraphQL */ `query GetProduct($id: ID!) {
     name
     owner
     price
+    stock
     updatedAt
     __typename
   }
@@ -54,6 +55,20 @@ export const getProduct = /* GraphQL */ `query GetProduct($id: ID!) {
   APITypes.GetProductQueryVariables,
   APITypes.GetProductQuery
 >;
+export const getToDo = /* GraphQL */ `query GetToDo($id: ID!) {
+  getToDo(id: $id) {
+    createdAt
+    description
+    id
+    image
+    name
+    owner
+    price
+    updatedAt
+    __typename
+  }
+}
+` as GeneratedQuery<APITypes.GetToDoQueryVariables, APITypes.GetToDoQuery>;
 export const getUser = /* GraphQL */ `query GetUser($id: ID!) {
   getUser(id: $id) {
     createdAt
@@ -145,6 +160,7 @@ export const listProducts = /* GraphQL */ `query ListProducts(
       name
       owner
       price
+      stock
       updatedAt
       __typename
     }
@@ -156,6 +172,36 @@ export const listProducts = /* GraphQL */ `query ListProducts(
   APITypes.ListProductsQueryVariables,
   APITypes.ListProductsQuery
 >;
+export const listToDos = /* GraphQL */ `query ListToDos(
+  $filter: ModelToDoFilterInput
+  $id: ID
+  $limit: Int
+  $nextToken: String
+  $sortDirection: ModelSortDirection
+) {
+  listToDos(
+    filter: $filter
+    id: $id
+    limit: $limit
+    nextToken: $nextToken
+    sortDirection: $sortDirection
+  ) {
+    items {
+      createdAt
+      description
+      id
+      image
+      name
+      owner
+      price
+      updatedAt
+      __typename
+    }
+    nextToken
+    __typename
+  }
+}
+` as GeneratedQuery<APITypes.ListToDosQueryVariables, APITypes.ListToDosQuery>;
 export const listUsers = /* GraphQL */ `query ListUsers(
   $filter: ModelUserFilterInput
   $id: ID

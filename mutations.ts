@@ -58,6 +58,7 @@ export const createProduct = /* GraphQL */ `mutation CreateProduct(
     name
     owner
     price
+    stock
     updatedAt
     __typename
   }
@@ -65,6 +66,26 @@ export const createProduct = /* GraphQL */ `mutation CreateProduct(
 ` as GeneratedMutation<
   APITypes.CreateProductMutationVariables,
   APITypes.CreateProductMutation
+>;
+export const createToDo = /* GraphQL */ `mutation CreateToDo(
+  $condition: ModelToDoConditionInput
+  $input: CreateToDoInput!
+) {
+  createToDo(condition: $condition, input: $input) {
+    createdAt
+    description
+    id
+    image
+    name
+    owner
+    price
+    updatedAt
+    __typename
+  }
+}
+` as GeneratedMutation<
+  APITypes.CreateToDoMutationVariables,
+  APITypes.CreateToDoMutation
 >;
 export const createUser = /* GraphQL */ `mutation CreateUser(
   $condition: ModelUserConditionInput
@@ -135,6 +156,7 @@ export const deleteProduct = /* GraphQL */ `mutation DeleteProduct(
     name
     owner
     price
+    stock
     updatedAt
     __typename
   }
@@ -142,6 +164,26 @@ export const deleteProduct = /* GraphQL */ `mutation DeleteProduct(
 ` as GeneratedMutation<
   APITypes.DeleteProductMutationVariables,
   APITypes.DeleteProductMutation
+>;
+export const deleteToDo = /* GraphQL */ `mutation DeleteToDo(
+  $condition: ModelToDoConditionInput
+  $input: DeleteToDoInput!
+) {
+  deleteToDo(condition: $condition, input: $input) {
+    createdAt
+    description
+    id
+    image
+    name
+    owner
+    price
+    updatedAt
+    __typename
+  }
+}
+` as GeneratedMutation<
+  APITypes.DeleteToDoMutationVariables,
+  APITypes.DeleteToDoMutation
 >;
 export const deleteUser = /* GraphQL */ `mutation DeleteUser(
   $condition: ModelUserConditionInput
@@ -212,6 +254,7 @@ export const updateProduct = /* GraphQL */ `mutation UpdateProduct(
     name
     owner
     price
+    stock
     updatedAt
     __typename
   }
@@ -219,6 +262,26 @@ export const updateProduct = /* GraphQL */ `mutation UpdateProduct(
 ` as GeneratedMutation<
   APITypes.UpdateProductMutationVariables,
   APITypes.UpdateProductMutation
+>;
+export const updateToDo = /* GraphQL */ `mutation UpdateToDo(
+  $condition: ModelToDoConditionInput
+  $input: UpdateToDoInput!
+) {
+  updateToDo(condition: $condition, input: $input) {
+    createdAt
+    description
+    id
+    image
+    name
+    owner
+    price
+    updatedAt
+    __typename
+  }
+}
+` as GeneratedMutation<
+  APITypes.UpdateToDoMutationVariables,
+  APITypes.UpdateToDoMutation
 >;
 export const updateUser = /* GraphQL */ `mutation UpdateUser(
   $condition: ModelUserConditionInput

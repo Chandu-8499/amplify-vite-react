@@ -24,6 +24,7 @@ const schema = a.schema({
       image: a.string(), // Optional field
       createdAt: a.timestamp(), 
       updatedAt: a.timestamp(),
+      stock: a.float(),
     }).authorization(allow => [allow.owner()]),
 
   // Order now links to users via userId and has an array of OrderProduct (many-to-many relationship)
