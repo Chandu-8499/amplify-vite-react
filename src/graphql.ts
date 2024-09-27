@@ -49,3 +49,52 @@ export const DELETE_PRODUCT = gql`
     }
   }
 `;
+
+// Fragments (Optional, helps avoid repetition in queries/mutations)
+export const PRODUCT_FIELDS = gql`
+  fragment ProductFields on Product {
+    id
+    name
+    description
+    price
+    stock
+  }
+`;
+
+// Refactor to use fragments in queries/mutations
+export const CREATE_PRODUCT_WITH_FRAGMENT = gql`
+  mutation CreateProduct($input: CreateProductInput!) {
+    createProduct(input: $input) {
+      ...ProductFields
+    }
+  }
+  ${PRODUCT_FIELDS}
+`;
+
+export const GET_PRODUCTS_WITH_FRAGMENT = gql`
+  query GetProducts {
+    listProducts {
+      items {
+        ...ProductFields
+      }
+    }
+  }
+  ${PRODUCT_FIELDS}
+`;
+
+export const UPDATE_PRODUCT_WITH_FRAGMENT = gql`
+  mutation UpdateProduct($input: UpdateProductInput!) {
+    updateProduct(input: $input) {
+      ...ProductFields
+    }
+  }
+  ${PRODUCT_FIELDS}
+`;
+
+export const DELETE_PRODUCT_WITH_FRAGMENT = gql`
+  mutation DeleteProduct($id: ID!) {
+    deleteProduct(id: $id) {
+      id
+    }
+  }
+`;
