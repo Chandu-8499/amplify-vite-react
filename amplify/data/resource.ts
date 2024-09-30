@@ -1,9 +1,6 @@
 import { type ClientSchema, a, defineData } from "@aws-amplify/backend";
 
 const schema = a.schema({
-  
-
-
   ToDo: a
     .model({
       id: a.id(),
@@ -27,17 +24,15 @@ const schema = a.schema({
       stock: a.float(),
     }).authorization(allow => [allow.publicApiKey()]),
 
-  // Order now links to users via userId and has an array of OrderProduct (many-to-many relationship)
   Order: a
     .model({
       id: a.id(),
-      userId: a.string(), // One-to-Many: A user can have multiple orders
+      userId: a.string(), // Links to User
       status: a.enum(['PENDING', 'IN_CART', 'PLACED', 'IN_TRANSIT', 'DELIVERED', 'RETURNED', 'REPLACED']),
       createdAt: a.timestamp(),
       updatedAt: a.timestamp(),
     }).authorization(allow => [allow.publicApiKey()]),
 
-  // New OrderProduct model for many-to-many relationship between Order and Product
   OrderProduct: a
     .model({
       orderId: a.string(), // Links to Order
@@ -50,36 +45,27 @@ const schema = a.schema({
     .model({
       id: a.id(),
       email: a.string(),
-      password: a.string(), // Consider hashing passwords in production
+      password: a.string(), // Consider hashing passwords
       name: a.string(), // Optional field
       createdAt: a.timestamp(),
       updatedAt: a.timestamp(),
     }).authorization(allow => [allow.publicApiKey()]),
 
-  // Wishlist now has a many-to-many relationship with Product
-  // Wishlist: a
-  //   .model({
-  //     id: a.id(),
-  //     userId: a.string(), // One-to-Many: A user can have multiple wishlists
-  //     createdAt: a.timestamp(),
-  //     updatedAt: a.timestamp(),
-  //   }).authorization(allow => [allow.owner()]),
+  Cart: a
+    .model({
+      id: a.id(),
+      userId: a.string(), // Links to User
+      createdAt: a.timestamp(),
+      updatedAt: a.timestamp(),
+    }).authorization(allow => [allow.publicApiKey()]),
 
-  // // New WishlistProduct model for many-to-many relationship between Wishlist and Product
-  // WishlistProduct: a
-  //   .model({
-  //     wishlistId: a.string(), // Links to Wishlist
-  //     productId: a.string(), // Links to Product
-  //     addedAt: a.timestamp(),
-  //   }).authorization(allow => [allow.owner()]),
+  CartItem: a
+    .model({
+      cartId: a.string(), // Links to Cart
+      productId: a.string(), // Links to Product
+      quantity: a.integer(),
+    }).authorization(allow => [allow.publicApiKey()]),
 
-  // Revenue: a
-  //   .model({
-  //     id: a.id(),
-  //     amount: a.float(),
-  //     createdAt: a.timestamp(),
-  //     updatedAt: a.timestamp(),
-  //   }).authorization(allow => [allow.owner()]),
 });
 
 export type Schema = ClientSchema<typeof schema>;
