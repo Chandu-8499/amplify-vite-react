@@ -98,3 +98,71 @@ export const DELETE_PRODUCT_WITH_FRAGMENT = gql`
     }
   }
 `;
+
+// Query to get the user's cart
+export const GET_CART = gql`
+  query GetCart($userId: ID!) {
+    getCart(userId: $userId) {
+      id
+      userId
+      items {
+        productId
+        name
+        quantity
+        price
+      }
+      total
+    }
+  }
+`;
+
+// Mutation to add an item to the cart
+export const ADD_CART_ITEM = gql`
+  mutation AddCartItem($input: AddCartItemInput!) {
+    addCartItem(input: $input) {
+      id
+      userId
+      items {
+        productId
+        name
+        quantity
+        price
+      }
+      total
+    }
+  }
+`;
+
+// Mutation to update item quantity in the cart
+export const UPDATE_CART_ITEM = gql`
+  mutation UpdateCartItem($input: UpdateCartItemInput!) {
+    updateCartItem(input: $input) {
+      id
+      userId
+      items {
+        productId
+        name
+        quantity
+        price
+      }
+      total
+    }
+  }
+`;
+
+// Mutation to remove an item from the cart
+export const REMOVE_CART_ITEM = gql`
+  mutation RemoveCartItem($userId: ID!, $productId: ID!) {
+    removeCartItem(userId: $userId, productId: $productId) {
+      id
+      userId
+      items {
+        productId
+        name
+        quantity
+        price
+      }
+      total
+    }
+  }
+`;

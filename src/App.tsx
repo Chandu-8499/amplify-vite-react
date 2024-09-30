@@ -8,9 +8,9 @@ import Signup from './pages/Signup';
 import ProductPage from './pages/Productpage';
 import ProductListing from './components/ProductListing';
 import ProductDetail from './components/ProductDetail';
+import ShoppingCart from './pages/ShoppingCart';
 
-// import ProductList from './ProductList';
-// import Cart from './Cart';
+
 // import Checkout from './Checkout';
 // import jwtDecode from 'jwt-decode';
 // import CognitoUser from 'amazon-cognito-identity-js';
@@ -20,12 +20,13 @@ function App() {
     <Router>
       <Routes>
       <Route path="/"  element={<ProductListing />} />
+      <Route path="/cart" element={<ShoppingCart />} />
       <Route path="/products/:id" element={<ProductDetail />} />
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
         {/* <Route path="/dashboard" element={<ProtectedRoute />} /> */}
         <Route path="/admin" element={<AdminDashboard />} />
-        {/* <Route path="/products" element={<ProductList />} /> */}
+      
         {/* <Route path="/cart" element={<Cart />} />
         <Route path="/checkout" element={<Checkout />} /> */}
         <Route path="/productpage" element={<ProductPage />} />

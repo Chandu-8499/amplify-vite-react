@@ -13,7 +13,7 @@ const schema = a.schema({
       image: a.string(), // Optional field
       createdAt: a.timestamp(), 
       updatedAt: a.timestamp(),
-    }).authorization(allow => [allow.owner()]),
+    }).authorization(allow => [allow.publicApiKey()]),
 
   Product: a
     .model({
@@ -25,7 +25,7 @@ const schema = a.schema({
       createdAt: a.timestamp(), 
       updatedAt: a.timestamp(),
       stock: a.float(),
-    }).authorization(allow => [allow.owner()]),
+    }).authorization(allow => [allow.publicApiKey()]),
 
   // Order now links to users via userId and has an array of OrderProduct (many-to-many relationship)
   Order: a
@@ -35,7 +35,7 @@ const schema = a.schema({
       status: a.enum(['PENDING', 'IN_CART', 'PLACED', 'IN_TRANSIT', 'DELIVERED', 'RETURNED', 'REPLACED']),
       createdAt: a.timestamp(),
       updatedAt: a.timestamp(),
-    }).authorization(allow => [allow.owner()]),
+    }).authorization(allow => [allow.publicApiKey()]),
 
   // New OrderProduct model for many-to-many relationship between Order and Product
   OrderProduct: a
@@ -44,7 +44,7 @@ const schema = a.schema({
       productId: a.string(), // Links to Product
       quantity: a.integer(),
       price: a.float(),
-    }).authorization(allow => [allow.owner()]),
+    }).authorization(allow => [allow.publicApiKey()]),
 
   User: a
     .model({
@@ -54,7 +54,7 @@ const schema = a.schema({
       name: a.string(), // Optional field
       createdAt: a.timestamp(),
       updatedAt: a.timestamp(),
-    }).authorization(allow => [allow.owner()]),
+    }).authorization(allow => [allow.publicApiKey()]),
 
   // Wishlist now has a many-to-many relationship with Product
   // Wishlist: a

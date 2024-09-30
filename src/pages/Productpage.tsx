@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useQuery, useMutation } from '@apollo/client';
-import { GET_PRODUCTS, CREATE_PRODUCT, UPDATE_PRODUCT, DELETE_PRODUCT } from '../graphql';
+import { GET_PRODUCTS, CREATE_PRODUCT, UPDATE_PRODUCT, DELETE_PRODUCT } from '../graphql'; // Ensure ADD_TO_CART is imported
+import { ADD_TO_CART } from '../graphql/cart';
 
 interface Product {
   id: string;
@@ -15,8 +16,8 @@ const ProductPage: React.FC = () => {
   const [createProduct] = useMutation(CREATE_PRODUCT);
   const [updateProduct] = useMutation(UPDATE_PRODUCT);
   const [deleteProduct] = useMutation(DELETE_PRODUCT);
+  const [addToCart] = useMutation(ADD_TO_CART); // Mutation for adding product to cart
 
-  // Form state for creating or editing a product
   const [productForm, setProductForm] = useState<Omit<Product, 'id'>>({
     name: '',
     description: '',
@@ -24,11 +25,9 @@ const ProductPage: React.FC = () => {
     stock: 0,
   });
 
-  // State to track whether the form is in "edit" mode and which product is being edited
   const [isEditMode, setIsEditMode] = useState(false);
   const [editingProductId, setEditingProductId] = useState<string | null>(null);
 
-  // Show loading or error states if necessary
   if (loading) return <p>Loading products...</p>;
   if (error) return <p>Error: {error.message}</p>;
 
@@ -62,8 +61,8 @@ const ProductPage: React.FC = () => {
       price: product.price,
       stock: product.stock,
     });
-    setIsEditMode(true); // Switch to edit mode
-    setEditingProductId(product.id); // Set the product to be edited
+    setIsEditMode(true);
+    setEditingProductId(product.id);
   };
 
   // Delete a product
@@ -72,6 +71,18 @@ const ProductPage: React.FC = () => {
       variables: { id },
       refetchQueries: [{ query: GET_PRODUCTS }],
     });
+  };
+
+  // Add a product to the cart
+  const handleAddToCart = async (productId: string) => {
+    try {
+      await addToCart({
+        variables: { orderId: 'currentOrderId', productId, quantity: 1 }, // Adjust the orderId as needed
+        refetchQueries: [{ query: GET_PRODUCTS }],
+      });
+    } catch (err) {
+      console.error('Error adding to cart:', err);
+    }
   };
 
   return (
@@ -133,6 +144,7 @@ const ProductPage: React.FC = () => {
             <p>Stock: {product.stock}</p>
             <button onClick={() => handleEditClick(product)}>Edit</button>
             <button onClick={() => handleDeleteProduct(product.id)}>Delete</button>
+            <button onClick={() => handleAddToCart(product.id)}>Add to Cart</button>
           </li>
         ))}
       </ul>

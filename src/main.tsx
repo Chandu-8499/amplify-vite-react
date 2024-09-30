@@ -2,7 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import App from "./App";
 import "./index.css";
-
+import { Authenticator } from "@aws-amplify/ui-react";
 import {client} from './apolloClient';
 import { ApolloProvider } from '@apollo/client';
 
@@ -19,7 +19,9 @@ import { ApolloProvider } from '@apollo/client';
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
     <ApolloProvider client={client}>
-    <App />
+      <Authenticator.Provider>
+      <App />
+      </Authenticator.Provider>
   </ApolloProvider>
   </React.StrictMode>
 );
