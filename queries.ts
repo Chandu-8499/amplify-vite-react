@@ -12,7 +12,6 @@ export const getOrder = /* GraphQL */ `query GetOrder($id: ID!) {
   getOrder(id: $id) {
     createdAt
     id
-    owner
     status
     updatedAt
     userId
@@ -25,7 +24,6 @@ export const getOrderProduct = /* GraphQL */ `query GetOrderProduct($id: ID!) {
     createdAt
     id
     orderId
-    owner
     price
     productId
     quantity
@@ -44,7 +42,6 @@ export const getProduct = /* GraphQL */ `query GetProduct($id: ID!) {
     id
     image
     name
-    owner
     price
     stock
     updatedAt
@@ -62,7 +59,6 @@ export const getToDo = /* GraphQL */ `query GetToDo($id: ID!) {
     id
     image
     name
-    owner
     price
     updatedAt
     __typename
@@ -75,7 +71,6 @@ export const getUser = /* GraphQL */ `query GetUser($id: ID!) {
     email
     id
     name
-    owner
     password
     updatedAt
     __typename
@@ -92,7 +87,6 @@ export const listOrderProducts = /* GraphQL */ `query ListOrderProducts(
       createdAt
       id
       orderId
-      owner
       price
       productId
       quantity
@@ -124,7 +118,6 @@ export const listOrders = /* GraphQL */ `query ListOrders(
     items {
       createdAt
       id
-      owner
       status
       updatedAt
       userId
@@ -158,7 +151,6 @@ export const listProducts = /* GraphQL */ `query ListProducts(
       id
       image
       name
-      owner
       price
       stock
       updatedAt
@@ -192,7 +184,6 @@ export const listToDos = /* GraphQL */ `query ListToDos(
       id
       image
       name
-      owner
       price
       updatedAt
       __typename
@@ -221,7 +212,6 @@ export const listUsers = /* GraphQL */ `query ListUsers(
       email
       id
       name
-      owner
       password
       updatedAt
       __typename

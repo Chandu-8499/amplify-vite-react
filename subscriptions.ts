@@ -8,14 +8,10 @@ type GeneratedSubscription<InputType, OutputType> = string & {
   __generatedSubscriptionOutput: OutputType;
 };
 
-export const onCreateOrder = /* GraphQL */ `subscription OnCreateOrder(
-  $filter: ModelSubscriptionOrderFilterInput
-  $owner: String
-) {
-  onCreateOrder(filter: $filter, owner: $owner) {
+export const onCreateOrder = /* GraphQL */ `subscription OnCreateOrder($filter: ModelSubscriptionOrderFilterInput) {
+  onCreateOrder(filter: $filter) {
     createdAt
     id
-    owner
     status
     updatedAt
     userId
@@ -28,13 +24,11 @@ export const onCreateOrder = /* GraphQL */ `subscription OnCreateOrder(
 >;
 export const onCreateOrderProduct = /* GraphQL */ `subscription OnCreateOrderProduct(
   $filter: ModelSubscriptionOrderProductFilterInput
-  $owner: String
 ) {
-  onCreateOrderProduct(filter: $filter, owner: $owner) {
+  onCreateOrderProduct(filter: $filter) {
     createdAt
     id
     orderId
-    owner
     price
     productId
     quantity
@@ -46,17 +40,13 @@ export const onCreateOrderProduct = /* GraphQL */ `subscription OnCreateOrderPro
   APITypes.OnCreateOrderProductSubscriptionVariables,
   APITypes.OnCreateOrderProductSubscription
 >;
-export const onCreateProduct = /* GraphQL */ `subscription OnCreateProduct(
-  $filter: ModelSubscriptionProductFilterInput
-  $owner: String
-) {
-  onCreateProduct(filter: $filter, owner: $owner) {
+export const onCreateProduct = /* GraphQL */ `subscription OnCreateProduct($filter: ModelSubscriptionProductFilterInput) {
+  onCreateProduct(filter: $filter) {
     createdAt
     description
     id
     image
     name
-    owner
     price
     stock
     updatedAt
@@ -67,17 +57,13 @@ export const onCreateProduct = /* GraphQL */ `subscription OnCreateProduct(
   APITypes.OnCreateProductSubscriptionVariables,
   APITypes.OnCreateProductSubscription
 >;
-export const onCreateToDo = /* GraphQL */ `subscription OnCreateToDo(
-  $filter: ModelSubscriptionToDoFilterInput
-  $owner: String
-) {
-  onCreateToDo(filter: $filter, owner: $owner) {
+export const onCreateToDo = /* GraphQL */ `subscription OnCreateToDo($filter: ModelSubscriptionToDoFilterInput) {
+  onCreateToDo(filter: $filter) {
     createdAt
     description
     id
     image
     name
-    owner
     price
     updatedAt
     __typename
@@ -87,16 +73,12 @@ export const onCreateToDo = /* GraphQL */ `subscription OnCreateToDo(
   APITypes.OnCreateToDoSubscriptionVariables,
   APITypes.OnCreateToDoSubscription
 >;
-export const onCreateUser = /* GraphQL */ `subscription OnCreateUser(
-  $filter: ModelSubscriptionUserFilterInput
-  $owner: String
-) {
-  onCreateUser(filter: $filter, owner: $owner) {
+export const onCreateUser = /* GraphQL */ `subscription OnCreateUser($filter: ModelSubscriptionUserFilterInput) {
+  onCreateUser(filter: $filter) {
     createdAt
     email
     id
     name
-    owner
     password
     updatedAt
     __typename
@@ -106,14 +88,10 @@ export const onCreateUser = /* GraphQL */ `subscription OnCreateUser(
   APITypes.OnCreateUserSubscriptionVariables,
   APITypes.OnCreateUserSubscription
 >;
-export const onDeleteOrder = /* GraphQL */ `subscription OnDeleteOrder(
-  $filter: ModelSubscriptionOrderFilterInput
-  $owner: String
-) {
-  onDeleteOrder(filter: $filter, owner: $owner) {
+export const onDeleteOrder = /* GraphQL */ `subscription OnDeleteOrder($filter: ModelSubscriptionOrderFilterInput) {
+  onDeleteOrder(filter: $filter) {
     createdAt
     id
-    owner
     status
     updatedAt
     userId
@@ -126,13 +104,11 @@ export const onDeleteOrder = /* GraphQL */ `subscription OnDeleteOrder(
 >;
 export const onDeleteOrderProduct = /* GraphQL */ `subscription OnDeleteOrderProduct(
   $filter: ModelSubscriptionOrderProductFilterInput
-  $owner: String
 ) {
-  onDeleteOrderProduct(filter: $filter, owner: $owner) {
+  onDeleteOrderProduct(filter: $filter) {
     createdAt
     id
     orderId
-    owner
     price
     productId
     quantity
@@ -144,17 +120,13 @@ export const onDeleteOrderProduct = /* GraphQL */ `subscription OnDeleteOrderPro
   APITypes.OnDeleteOrderProductSubscriptionVariables,
   APITypes.OnDeleteOrderProductSubscription
 >;
-export const onDeleteProduct = /* GraphQL */ `subscription OnDeleteProduct(
-  $filter: ModelSubscriptionProductFilterInput
-  $owner: String
-) {
-  onDeleteProduct(filter: $filter, owner: $owner) {
+export const onDeleteProduct = /* GraphQL */ `subscription OnDeleteProduct($filter: ModelSubscriptionProductFilterInput) {
+  onDeleteProduct(filter: $filter) {
     createdAt
     description
     id
     image
     name
-    owner
     price
     stock
     updatedAt
@@ -165,17 +137,13 @@ export const onDeleteProduct = /* GraphQL */ `subscription OnDeleteProduct(
   APITypes.OnDeleteProductSubscriptionVariables,
   APITypes.OnDeleteProductSubscription
 >;
-export const onDeleteToDo = /* GraphQL */ `subscription OnDeleteToDo(
-  $filter: ModelSubscriptionToDoFilterInput
-  $owner: String
-) {
-  onDeleteToDo(filter: $filter, owner: $owner) {
+export const onDeleteToDo = /* GraphQL */ `subscription OnDeleteToDo($filter: ModelSubscriptionToDoFilterInput) {
+  onDeleteToDo(filter: $filter) {
     createdAt
     description
     id
     image
     name
-    owner
     price
     updatedAt
     __typename
@@ -185,16 +153,12 @@ export const onDeleteToDo = /* GraphQL */ `subscription OnDeleteToDo(
   APITypes.OnDeleteToDoSubscriptionVariables,
   APITypes.OnDeleteToDoSubscription
 >;
-export const onDeleteUser = /* GraphQL */ `subscription OnDeleteUser(
-  $filter: ModelSubscriptionUserFilterInput
-  $owner: String
-) {
-  onDeleteUser(filter: $filter, owner: $owner) {
+export const onDeleteUser = /* GraphQL */ `subscription OnDeleteUser($filter: ModelSubscriptionUserFilterInput) {
+  onDeleteUser(filter: $filter) {
     createdAt
     email
     id
     name
-    owner
     password
     updatedAt
     __typename
@@ -204,14 +168,10 @@ export const onDeleteUser = /* GraphQL */ `subscription OnDeleteUser(
   APITypes.OnDeleteUserSubscriptionVariables,
   APITypes.OnDeleteUserSubscription
 >;
-export const onUpdateOrder = /* GraphQL */ `subscription OnUpdateOrder(
-  $filter: ModelSubscriptionOrderFilterInput
-  $owner: String
-) {
-  onUpdateOrder(filter: $filter, owner: $owner) {
+export const onUpdateOrder = /* GraphQL */ `subscription OnUpdateOrder($filter: ModelSubscriptionOrderFilterInput) {
+  onUpdateOrder(filter: $filter) {
     createdAt
     id
-    owner
     status
     updatedAt
     userId
@@ -224,13 +184,11 @@ export const onUpdateOrder = /* GraphQL */ `subscription OnUpdateOrder(
 >;
 export const onUpdateOrderProduct = /* GraphQL */ `subscription OnUpdateOrderProduct(
   $filter: ModelSubscriptionOrderProductFilterInput
-  $owner: String
 ) {
-  onUpdateOrderProduct(filter: $filter, owner: $owner) {
+  onUpdateOrderProduct(filter: $filter) {
     createdAt
     id
     orderId
-    owner
     price
     productId
     quantity
@@ -242,17 +200,13 @@ export const onUpdateOrderProduct = /* GraphQL */ `subscription OnUpdateOrderPro
   APITypes.OnUpdateOrderProductSubscriptionVariables,
   APITypes.OnUpdateOrderProductSubscription
 >;
-export const onUpdateProduct = /* GraphQL */ `subscription OnUpdateProduct(
-  $filter: ModelSubscriptionProductFilterInput
-  $owner: String
-) {
-  onUpdateProduct(filter: $filter, owner: $owner) {
+export const onUpdateProduct = /* GraphQL */ `subscription OnUpdateProduct($filter: ModelSubscriptionProductFilterInput) {
+  onUpdateProduct(filter: $filter) {
     createdAt
     description
     id
     image
     name
-    owner
     price
     stock
     updatedAt
@@ -263,17 +217,13 @@ export const onUpdateProduct = /* GraphQL */ `subscription OnUpdateProduct(
   APITypes.OnUpdateProductSubscriptionVariables,
   APITypes.OnUpdateProductSubscription
 >;
-export const onUpdateToDo = /* GraphQL */ `subscription OnUpdateToDo(
-  $filter: ModelSubscriptionToDoFilterInput
-  $owner: String
-) {
-  onUpdateToDo(filter: $filter, owner: $owner) {
+export const onUpdateToDo = /* GraphQL */ `subscription OnUpdateToDo($filter: ModelSubscriptionToDoFilterInput) {
+  onUpdateToDo(filter: $filter) {
     createdAt
     description
     id
     image
     name
-    owner
     price
     updatedAt
     __typename
@@ -283,16 +233,12 @@ export const onUpdateToDo = /* GraphQL */ `subscription OnUpdateToDo(
   APITypes.OnUpdateToDoSubscriptionVariables,
   APITypes.OnUpdateToDoSubscription
 >;
-export const onUpdateUser = /* GraphQL */ `subscription OnUpdateUser(
-  $filter: ModelSubscriptionUserFilterInput
-  $owner: String
-) {
-  onUpdateUser(filter: $filter, owner: $owner) {
+export const onUpdateUser = /* GraphQL */ `subscription OnUpdateUser($filter: ModelSubscriptionUserFilterInput) {
+  onUpdateUser(filter: $filter) {
     createdAt
     email
     id
     name
-    owner
     password
     updatedAt
     __typename

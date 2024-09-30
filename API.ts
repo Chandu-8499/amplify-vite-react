@@ -6,7 +6,6 @@ export type Order = {
   __typename: "Order",
   createdAt?: number | null,
   id: string,
-  owner?: string | null,
   status?: OrderStatus | null,
   updatedAt?: number | null,
   userId?: string | null,
@@ -28,7 +27,6 @@ export type OrderProduct = {
   createdAt: string,
   id: string,
   orderId?: string | null,
-  owner?: string | null,
   price?: number | null,
   productId?: string | null,
   quantity?: number | null,
@@ -42,7 +40,6 @@ export type Product = {
   id: string,
   image?: string | null,
   name?: string | null,
-  owner?: string | null,
   price?: number | null,
   stock?: number | null,
   updatedAt?: number | null,
@@ -55,7 +52,6 @@ export type ToDo = {
   id: string,
   image?: string | null,
   name?: string | null,
-  owner?: string | null,
   price?: number | null,
   updatedAt?: number | null,
 };
@@ -66,7 +62,6 @@ export type User = {
   email?: string | null,
   id: string,
   name?: string | null,
-  owner?: string | null,
   password?: string | null,
   updatedAt?: number | null,
 };
@@ -78,7 +73,6 @@ export type ModelOrderProductFilterInput = {
   not?: ModelOrderProductFilterInput | null,
   or?: Array< ModelOrderProductFilterInput | null > | null,
   orderId?: ModelStringInput | null,
-  owner?: ModelStringInput | null,
   price?: ModelFloatInput | null,
   productId?: ModelStringInput | null,
   quantity?: ModelIntInput | null,
@@ -177,7 +171,6 @@ export type ModelOrderFilterInput = {
   id?: ModelIDInput | null,
   not?: ModelOrderFilterInput | null,
   or?: Array< ModelOrderFilterInput | null > | null,
-  owner?: ModelStringInput | null,
   status?: ModelOrderStatusInput | null,
   updatedAt?: ModelIntInput | null,
   userId?: ModelStringInput | null,
@@ -209,7 +202,6 @@ export type ModelProductFilterInput = {
   name?: ModelStringInput | null,
   not?: ModelProductFilterInput | null,
   or?: Array< ModelProductFilterInput | null > | null,
-  owner?: ModelStringInput | null,
   price?: ModelFloatInput | null,
   stock?: ModelFloatInput | null,
   updatedAt?: ModelIntInput | null,
@@ -230,7 +222,6 @@ export type ModelToDoFilterInput = {
   name?: ModelStringInput | null,
   not?: ModelToDoFilterInput | null,
   or?: Array< ModelToDoFilterInput | null > | null,
-  owner?: ModelStringInput | null,
   price?: ModelFloatInput | null,
   updatedAt?: ModelIntInput | null,
 };
@@ -249,7 +240,6 @@ export type ModelUserFilterInput = {
   name?: ModelStringInput | null,
   not?: ModelUserFilterInput | null,
   or?: Array< ModelUserFilterInput | null > | null,
-  owner?: ModelStringInput | null,
   password?: ModelStringInput | null,
   updatedAt?: ModelIntInput | null,
 };
@@ -265,7 +255,6 @@ export type ModelOrderConditionInput = {
   createdAt?: ModelIntInput | null,
   not?: ModelOrderConditionInput | null,
   or?: Array< ModelOrderConditionInput | null > | null,
-  owner?: ModelStringInput | null,
   status?: ModelOrderStatusInput | null,
   updatedAt?: ModelIntInput | null,
   userId?: ModelStringInput | null,
@@ -285,7 +274,6 @@ export type ModelOrderProductConditionInput = {
   not?: ModelOrderProductConditionInput | null,
   or?: Array< ModelOrderProductConditionInput | null > | null,
   orderId?: ModelStringInput | null,
-  owner?: ModelStringInput | null,
   price?: ModelFloatInput | null,
   productId?: ModelStringInput | null,
   quantity?: ModelIntInput | null,
@@ -308,7 +296,6 @@ export type ModelProductConditionInput = {
   name?: ModelStringInput | null,
   not?: ModelProductConditionInput | null,
   or?: Array< ModelProductConditionInput | null > | null,
-  owner?: ModelStringInput | null,
   price?: ModelFloatInput | null,
   stock?: ModelFloatInput | null,
   updatedAt?: ModelIntInput | null,
@@ -333,7 +320,6 @@ export type ModelToDoConditionInput = {
   name?: ModelStringInput | null,
   not?: ModelToDoConditionInput | null,
   or?: Array< ModelToDoConditionInput | null > | null,
-  owner?: ModelStringInput | null,
   price?: ModelFloatInput | null,
   updatedAt?: ModelIntInput | null,
 };
@@ -355,7 +341,6 @@ export type ModelUserConditionInput = {
   name?: ModelStringInput | null,
   not?: ModelUserConditionInput | null,
   or?: Array< ModelUserConditionInput | null > | null,
-  owner?: ModelStringInput | null,
   password?: ModelStringInput | null,
   updatedAt?: ModelIntInput | null,
 };
@@ -440,7 +425,6 @@ export type ModelSubscriptionOrderFilterInput = {
   createdAt?: ModelSubscriptionIntInput | null,
   id?: ModelSubscriptionIDInput | null,
   or?: Array< ModelSubscriptionOrderFilterInput | null > | null,
-  owner?: ModelStringInput | null,
   status?: ModelSubscriptionStringInput | null,
   updatedAt?: ModelSubscriptionIntInput | null,
   userId?: ModelSubscriptionStringInput | null,
@@ -494,7 +478,6 @@ export type ModelSubscriptionOrderProductFilterInput = {
   id?: ModelSubscriptionIDInput | null,
   or?: Array< ModelSubscriptionOrderProductFilterInput | null > | null,
   orderId?: ModelSubscriptionStringInput | null,
-  owner?: ModelStringInput | null,
   price?: ModelSubscriptionFloatInput | null,
   productId?: ModelSubscriptionStringInput | null,
   quantity?: ModelSubscriptionIntInput | null,
@@ -521,7 +504,6 @@ export type ModelSubscriptionProductFilterInput = {
   image?: ModelSubscriptionStringInput | null,
   name?: ModelSubscriptionStringInput | null,
   or?: Array< ModelSubscriptionProductFilterInput | null > | null,
-  owner?: ModelStringInput | null,
   price?: ModelSubscriptionFloatInput | null,
   stock?: ModelSubscriptionFloatInput | null,
   updatedAt?: ModelSubscriptionIntInput | null,
@@ -535,7 +517,6 @@ export type ModelSubscriptionToDoFilterInput = {
   image?: ModelSubscriptionStringInput | null,
   name?: ModelSubscriptionStringInput | null,
   or?: Array< ModelSubscriptionToDoFilterInput | null > | null,
-  owner?: ModelStringInput | null,
   price?: ModelSubscriptionFloatInput | null,
   updatedAt?: ModelSubscriptionIntInput | null,
 };
@@ -547,7 +528,6 @@ export type ModelSubscriptionUserFilterInput = {
   id?: ModelSubscriptionIDInput | null,
   name?: ModelSubscriptionStringInput | null,
   or?: Array< ModelSubscriptionUserFilterInput | null > | null,
-  owner?: ModelStringInput | null,
   password?: ModelSubscriptionStringInput | null,
   updatedAt?: ModelSubscriptionIntInput | null,
 };
@@ -561,7 +541,6 @@ export type GetOrderQuery = {
     __typename: "Order",
     createdAt?: number | null,
     id: string,
-    owner?: string | null,
     status?: OrderStatus | null,
     updatedAt?: number | null,
     userId?: string | null,
@@ -578,7 +557,6 @@ export type GetOrderProductQuery = {
     createdAt: string,
     id: string,
     orderId?: string | null,
-    owner?: string | null,
     price?: number | null,
     productId?: string | null,
     quantity?: number | null,
@@ -598,7 +576,6 @@ export type GetProductQuery = {
     id: string,
     image?: string | null,
     name?: string | null,
-    owner?: string | null,
     price?: number | null,
     stock?: number | null,
     updatedAt?: number | null,
@@ -617,7 +594,6 @@ export type GetToDoQuery = {
     id: string,
     image?: string | null,
     name?: string | null,
-    owner?: string | null,
     price?: number | null,
     updatedAt?: number | null,
   } | null,
@@ -634,7 +610,6 @@ export type GetUserQuery = {
     email?: string | null,
     id: string,
     name?: string | null,
-    owner?: string | null,
     password?: string | null,
     updatedAt?: number | null,
   } | null,
@@ -654,7 +629,6 @@ export type ListOrderProductsQuery = {
       createdAt: string,
       id: string,
       orderId?: string | null,
-      owner?: string | null,
       price?: number | null,
       productId?: string | null,
       quantity?: number | null,
@@ -679,7 +653,6 @@ export type ListOrdersQuery = {
       __typename: "Order",
       createdAt?: number | null,
       id: string,
-      owner?: string | null,
       status?: OrderStatus | null,
       updatedAt?: number | null,
       userId?: string | null,
@@ -706,7 +679,6 @@ export type ListProductsQuery = {
       id: string,
       image?: string | null,
       name?: string | null,
-      owner?: string | null,
       price?: number | null,
       stock?: number | null,
       updatedAt?: number | null,
@@ -733,7 +705,6 @@ export type ListToDosQuery = {
       id: string,
       image?: string | null,
       name?: string | null,
-      owner?: string | null,
       price?: number | null,
       updatedAt?: number | null,
     } | null >,
@@ -758,7 +729,6 @@ export type ListUsersQuery = {
       email?: string | null,
       id: string,
       name?: string | null,
-      owner?: string | null,
       password?: string | null,
       updatedAt?: number | null,
     } | null >,
@@ -776,7 +746,6 @@ export type CreateOrderMutation = {
     __typename: "Order",
     createdAt?: number | null,
     id: string,
-    owner?: string | null,
     status?: OrderStatus | null,
     updatedAt?: number | null,
     userId?: string | null,
@@ -794,7 +763,6 @@ export type CreateOrderProductMutation = {
     createdAt: string,
     id: string,
     orderId?: string | null,
-    owner?: string | null,
     price?: number | null,
     productId?: string | null,
     quantity?: number | null,
@@ -815,7 +783,6 @@ export type CreateProductMutation = {
     id: string,
     image?: string | null,
     name?: string | null,
-    owner?: string | null,
     price?: number | null,
     stock?: number | null,
     updatedAt?: number | null,
@@ -835,7 +802,6 @@ export type CreateToDoMutation = {
     id: string,
     image?: string | null,
     name?: string | null,
-    owner?: string | null,
     price?: number | null,
     updatedAt?: number | null,
   } | null,
@@ -853,7 +819,6 @@ export type CreateUserMutation = {
     email?: string | null,
     id: string,
     name?: string | null,
-    owner?: string | null,
     password?: string | null,
     updatedAt?: number | null,
   } | null,
@@ -869,7 +834,6 @@ export type DeleteOrderMutation = {
     __typename: "Order",
     createdAt?: number | null,
     id: string,
-    owner?: string | null,
     status?: OrderStatus | null,
     updatedAt?: number | null,
     userId?: string | null,
@@ -887,7 +851,6 @@ export type DeleteOrderProductMutation = {
     createdAt: string,
     id: string,
     orderId?: string | null,
-    owner?: string | null,
     price?: number | null,
     productId?: string | null,
     quantity?: number | null,
@@ -908,7 +871,6 @@ export type DeleteProductMutation = {
     id: string,
     image?: string | null,
     name?: string | null,
-    owner?: string | null,
     price?: number | null,
     stock?: number | null,
     updatedAt?: number | null,
@@ -928,7 +890,6 @@ export type DeleteToDoMutation = {
     id: string,
     image?: string | null,
     name?: string | null,
-    owner?: string | null,
     price?: number | null,
     updatedAt?: number | null,
   } | null,
@@ -946,7 +907,6 @@ export type DeleteUserMutation = {
     email?: string | null,
     id: string,
     name?: string | null,
-    owner?: string | null,
     password?: string | null,
     updatedAt?: number | null,
   } | null,
@@ -962,7 +922,6 @@ export type UpdateOrderMutation = {
     __typename: "Order",
     createdAt?: number | null,
     id: string,
-    owner?: string | null,
     status?: OrderStatus | null,
     updatedAt?: number | null,
     userId?: string | null,
@@ -980,7 +939,6 @@ export type UpdateOrderProductMutation = {
     createdAt: string,
     id: string,
     orderId?: string | null,
-    owner?: string | null,
     price?: number | null,
     productId?: string | null,
     quantity?: number | null,
@@ -1001,7 +959,6 @@ export type UpdateProductMutation = {
     id: string,
     image?: string | null,
     name?: string | null,
-    owner?: string | null,
     price?: number | null,
     stock?: number | null,
     updatedAt?: number | null,
@@ -1021,7 +978,6 @@ export type UpdateToDoMutation = {
     id: string,
     image?: string | null,
     name?: string | null,
-    owner?: string | null,
     price?: number | null,
     updatedAt?: number | null,
   } | null,
@@ -1039,7 +995,6 @@ export type UpdateUserMutation = {
     email?: string | null,
     id: string,
     name?: string | null,
-    owner?: string | null,
     password?: string | null,
     updatedAt?: number | null,
   } | null,
@@ -1047,7 +1002,6 @@ export type UpdateUserMutation = {
 
 export type OnCreateOrderSubscriptionVariables = {
   filter?: ModelSubscriptionOrderFilterInput | null,
-  owner?: string | null,
 };
 
 export type OnCreateOrderSubscription = {
@@ -1055,7 +1009,6 @@ export type OnCreateOrderSubscription = {
     __typename: "Order",
     createdAt?: number | null,
     id: string,
-    owner?: string | null,
     status?: OrderStatus | null,
     updatedAt?: number | null,
     userId?: string | null,
@@ -1064,7 +1017,6 @@ export type OnCreateOrderSubscription = {
 
 export type OnCreateOrderProductSubscriptionVariables = {
   filter?: ModelSubscriptionOrderProductFilterInput | null,
-  owner?: string | null,
 };
 
 export type OnCreateOrderProductSubscription = {
@@ -1073,7 +1025,6 @@ export type OnCreateOrderProductSubscription = {
     createdAt: string,
     id: string,
     orderId?: string | null,
-    owner?: string | null,
     price?: number | null,
     productId?: string | null,
     quantity?: number | null,
@@ -1083,7 +1034,6 @@ export type OnCreateOrderProductSubscription = {
 
 export type OnCreateProductSubscriptionVariables = {
   filter?: ModelSubscriptionProductFilterInput | null,
-  owner?: string | null,
 };
 
 export type OnCreateProductSubscription = {
@@ -1094,7 +1044,6 @@ export type OnCreateProductSubscription = {
     id: string,
     image?: string | null,
     name?: string | null,
-    owner?: string | null,
     price?: number | null,
     stock?: number | null,
     updatedAt?: number | null,
@@ -1103,7 +1052,6 @@ export type OnCreateProductSubscription = {
 
 export type OnCreateToDoSubscriptionVariables = {
   filter?: ModelSubscriptionToDoFilterInput | null,
-  owner?: string | null,
 };
 
 export type OnCreateToDoSubscription = {
@@ -1114,7 +1062,6 @@ export type OnCreateToDoSubscription = {
     id: string,
     image?: string | null,
     name?: string | null,
-    owner?: string | null,
     price?: number | null,
     updatedAt?: number | null,
   } | null,
@@ -1122,7 +1069,6 @@ export type OnCreateToDoSubscription = {
 
 export type OnCreateUserSubscriptionVariables = {
   filter?: ModelSubscriptionUserFilterInput | null,
-  owner?: string | null,
 };
 
 export type OnCreateUserSubscription = {
@@ -1132,7 +1078,6 @@ export type OnCreateUserSubscription = {
     email?: string | null,
     id: string,
     name?: string | null,
-    owner?: string | null,
     password?: string | null,
     updatedAt?: number | null,
   } | null,
@@ -1140,7 +1085,6 @@ export type OnCreateUserSubscription = {
 
 export type OnDeleteOrderSubscriptionVariables = {
   filter?: ModelSubscriptionOrderFilterInput | null,
-  owner?: string | null,
 };
 
 export type OnDeleteOrderSubscription = {
@@ -1148,7 +1092,6 @@ export type OnDeleteOrderSubscription = {
     __typename: "Order",
     createdAt?: number | null,
     id: string,
-    owner?: string | null,
     status?: OrderStatus | null,
     updatedAt?: number | null,
     userId?: string | null,
@@ -1157,7 +1100,6 @@ export type OnDeleteOrderSubscription = {
 
 export type OnDeleteOrderProductSubscriptionVariables = {
   filter?: ModelSubscriptionOrderProductFilterInput | null,
-  owner?: string | null,
 };
 
 export type OnDeleteOrderProductSubscription = {
@@ -1166,7 +1108,6 @@ export type OnDeleteOrderProductSubscription = {
     createdAt: string,
     id: string,
     orderId?: string | null,
-    owner?: string | null,
     price?: number | null,
     productId?: string | null,
     quantity?: number | null,
@@ -1176,7 +1117,6 @@ export type OnDeleteOrderProductSubscription = {
 
 export type OnDeleteProductSubscriptionVariables = {
   filter?: ModelSubscriptionProductFilterInput | null,
-  owner?: string | null,
 };
 
 export type OnDeleteProductSubscription = {
@@ -1187,7 +1127,6 @@ export type OnDeleteProductSubscription = {
     id: string,
     image?: string | null,
     name?: string | null,
-    owner?: string | null,
     price?: number | null,
     stock?: number | null,
     updatedAt?: number | null,
@@ -1196,7 +1135,6 @@ export type OnDeleteProductSubscription = {
 
 export type OnDeleteToDoSubscriptionVariables = {
   filter?: ModelSubscriptionToDoFilterInput | null,
-  owner?: string | null,
 };
 
 export type OnDeleteToDoSubscription = {
@@ -1207,7 +1145,6 @@ export type OnDeleteToDoSubscription = {
     id: string,
     image?: string | null,
     name?: string | null,
-    owner?: string | null,
     price?: number | null,
     updatedAt?: number | null,
   } | null,
@@ -1215,7 +1152,6 @@ export type OnDeleteToDoSubscription = {
 
 export type OnDeleteUserSubscriptionVariables = {
   filter?: ModelSubscriptionUserFilterInput | null,
-  owner?: string | null,
 };
 
 export type OnDeleteUserSubscription = {
@@ -1225,7 +1161,6 @@ export type OnDeleteUserSubscription = {
     email?: string | null,
     id: string,
     name?: string | null,
-    owner?: string | null,
     password?: string | null,
     updatedAt?: number | null,
   } | null,
@@ -1233,7 +1168,6 @@ export type OnDeleteUserSubscription = {
 
 export type OnUpdateOrderSubscriptionVariables = {
   filter?: ModelSubscriptionOrderFilterInput | null,
-  owner?: string | null,
 };
 
 export type OnUpdateOrderSubscription = {
@@ -1241,7 +1175,6 @@ export type OnUpdateOrderSubscription = {
     __typename: "Order",
     createdAt?: number | null,
     id: string,
-    owner?: string | null,
     status?: OrderStatus | null,
     updatedAt?: number | null,
     userId?: string | null,
@@ -1250,7 +1183,6 @@ export type OnUpdateOrderSubscription = {
 
 export type OnUpdateOrderProductSubscriptionVariables = {
   filter?: ModelSubscriptionOrderProductFilterInput | null,
-  owner?: string | null,
 };
 
 export type OnUpdateOrderProductSubscription = {
@@ -1259,7 +1191,6 @@ export type OnUpdateOrderProductSubscription = {
     createdAt: string,
     id: string,
     orderId?: string | null,
-    owner?: string | null,
     price?: number | null,
     productId?: string | null,
     quantity?: number | null,
@@ -1269,7 +1200,6 @@ export type OnUpdateOrderProductSubscription = {
 
 export type OnUpdateProductSubscriptionVariables = {
   filter?: ModelSubscriptionProductFilterInput | null,
-  owner?: string | null,
 };
 
 export type OnUpdateProductSubscription = {
@@ -1280,7 +1210,6 @@ export type OnUpdateProductSubscription = {
     id: string,
     image?: string | null,
     name?: string | null,
-    owner?: string | null,
     price?: number | null,
     stock?: number | null,
     updatedAt?: number | null,
@@ -1289,7 +1218,6 @@ export type OnUpdateProductSubscription = {
 
 export type OnUpdateToDoSubscriptionVariables = {
   filter?: ModelSubscriptionToDoFilterInput | null,
-  owner?: string | null,
 };
 
 export type OnUpdateToDoSubscription = {
@@ -1300,7 +1228,6 @@ export type OnUpdateToDoSubscription = {
     id: string,
     image?: string | null,
     name?: string | null,
-    owner?: string | null,
     price?: number | null,
     updatedAt?: number | null,
   } | null,
@@ -1308,7 +1235,6 @@ export type OnUpdateToDoSubscription = {
 
 export type OnUpdateUserSubscriptionVariables = {
   filter?: ModelSubscriptionUserFilterInput | null,
-  owner?: string | null,
 };
 
 export type OnUpdateUserSubscription = {
@@ -1318,7 +1244,6 @@ export type OnUpdateUserSubscription = {
     email?: string | null,
     id: string,
     name?: string | null,
-    owner?: string | null,
     password?: string | null,
     updatedAt?: number | null,
   } | null,

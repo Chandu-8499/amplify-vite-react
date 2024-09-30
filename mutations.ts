@@ -15,7 +15,6 @@ export const createOrder = /* GraphQL */ `mutation CreateOrder(
   createOrder(condition: $condition, input: $input) {
     createdAt
     id
-    owner
     status
     updatedAt
     userId
@@ -34,7 +33,6 @@ export const createOrderProduct = /* GraphQL */ `mutation CreateOrderProduct(
     createdAt
     id
     orderId
-    owner
     price
     productId
     quantity
@@ -56,7 +54,6 @@ export const createProduct = /* GraphQL */ `mutation CreateProduct(
     id
     image
     name
-    owner
     price
     stock
     updatedAt
@@ -77,7 +74,6 @@ export const createToDo = /* GraphQL */ `mutation CreateToDo(
     id
     image
     name
-    owner
     price
     updatedAt
     __typename
@@ -96,7 +92,6 @@ export const createUser = /* GraphQL */ `mutation CreateUser(
     email
     id
     name
-    owner
     password
     updatedAt
     __typename
@@ -113,7 +108,6 @@ export const deleteOrder = /* GraphQL */ `mutation DeleteOrder(
   deleteOrder(condition: $condition, input: $input) {
     createdAt
     id
-    owner
     status
     updatedAt
     userId
@@ -132,7 +126,6 @@ export const deleteOrderProduct = /* GraphQL */ `mutation DeleteOrderProduct(
     createdAt
     id
     orderId
-    owner
     price
     productId
     quantity
@@ -154,7 +147,6 @@ export const deleteProduct = /* GraphQL */ `mutation DeleteProduct(
     id
     image
     name
-    owner
     price
     stock
     updatedAt
@@ -175,7 +167,6 @@ export const deleteToDo = /* GraphQL */ `mutation DeleteToDo(
     id
     image
     name
-    owner
     price
     updatedAt
     __typename
@@ -194,7 +185,6 @@ export const deleteUser = /* GraphQL */ `mutation DeleteUser(
     email
     id
     name
-    owner
     password
     updatedAt
     __typename
@@ -211,7 +201,6 @@ export const updateOrder = /* GraphQL */ `mutation UpdateOrder(
   updateOrder(condition: $condition, input: $input) {
     createdAt
     id
-    owner
     status
     updatedAt
     userId
@@ -230,7 +219,6 @@ export const updateOrderProduct = /* GraphQL */ `mutation UpdateOrderProduct(
     createdAt
     id
     orderId
-    owner
     price
     productId
     quantity
@@ -252,7 +240,6 @@ export const updateProduct = /* GraphQL */ `mutation UpdateProduct(
     id
     image
     name
-    owner
     price
     stock
     updatedAt
@@ -273,7 +260,6 @@ export const updateToDo = /* GraphQL */ `mutation UpdateToDo(
     id
     image
     name
-    owner
     price
     updatedAt
     __typename
@@ -292,7 +278,6 @@ export const updateUser = /* GraphQL */ `mutation UpdateUser(
     email
     id
     name
-    owner
     password
     updatedAt
     __typename
