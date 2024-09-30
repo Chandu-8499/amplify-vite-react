@@ -1,13 +1,16 @@
 import React, { useState } from 'react';
 import { useQuery, useMutation } from '@apollo/client';
-import { GET_PRODUCTS, CREATE_PRODUCT, UPDATE_PRODUCT, DELETE_PRODUCT } from '../graphql'; // Ensure ADD_TO_CART is imported
-import {ADD_TO_CART} from '../graphql/cart';
+import { GET_PRODUCTS, CREATE_PRODUCT, UPDATE_PRODUCT, DELETE_PRODUCT } from '../graphql';
+import { ADD_TO_CART } from '../graphql/cart';
+import { Storage } from 'aws-amplify/storage'; 
+
 interface Product {
   id: string;
   name: string;
   description: string;
   price: number;
   stock: number;
+  image?: string; // Optional field for image URL
 }
 
 const ProductPage: React.FC = () => {
@@ -17,57 +20,79 @@ const ProductPage: React.FC = () => {
   const [deleteProduct] = useMutation(DELETE_PRODUCT);
   const [addToCart] = useMutation(ADD_TO_CART); // Add mutation for adding product to cart
 
-  // Form state for creating or editing a product
   const [productForm, setProductForm] = useState<Omit<Product, 'id'>>({
     name: '',
     description: '',
     price: 0,
     stock: 0,
+    image: '', // New field for storing image URL
   });
 
-  // State to track whether the form is in "edit" mode and which product is being edited
+  const [imageFile, setImageFile] = useState<File | null>(null); // New state for image file
   const [isEditMode, setIsEditMode] = useState(false);
   const [editingProductId, setEditingProductId] = useState<string | null>(null);
 
-  // Show loading or error states if necessary
   if (loading) return <p>Loading products...</p>;
   if (error) return <p>Error: {error.message}</p>;
 
-  // Create a new product
-  const handleCreateProduct = async () => {
-    await createProduct({
-      variables: { input: productForm },
-      refetchQueries: [{ query: GET_PRODUCTS }],
-    });
-    setProductForm({ name: '', description: '', price: 0, stock: 0 }); // Reset form
-  };
-
-  // Update an existing product
-  const handleUpdateProduct = async () => {
-    if (editingProductId) {
-      await updateProduct({
-        variables: { input: { id: editingProductId, ...productForm } },
-        refetchQueries: [{ query: GET_PRODUCTS }],
+  // Handle image upload
+  const handleImageUpload = async (file: File) => {
+    try {
+      const result = await Storage.put(`products/${file.name}`, file, {
+        contentType: file.type, // Ensure the content type is correct
       });
-      setProductForm({ name: '', description: '', price: 0, stock: 0 }); // Reset form
-      setIsEditMode(false); // Exit edit mode
-      setEditingProductId(null);
+      const imageUrl = await Storage.get(result.key); // Get the image URL after uploading
+      return imageUrl;
+    } catch (err) {
+      console.error('Error uploading image:', err);
+      return '';
     }
   };
 
-  // Prepare form for editing an existing product
+  // Handle product creation with image upload
+  const handleCreateProduct = async () => {
+    let imageUrl = '';
+    if (imageFile) {
+      imageUrl = await handleImageUpload(imageFile);
+    }
+    await createProduct({
+      variables: { input: { ...productForm, image: imageUrl } },
+      refetchQueries: [{ query: GET_PRODUCTS }],
+    });
+    setProductForm({ name: '', description: '', price: 0, stock: 0, image: '' });
+    setImageFile(null); // Reset image file after submission
+  };
+
+  // Handle product update with image upload
+  const handleUpdateProduct = async () => {
+    let imageUrl = productForm.image; // Use existing image URL if not uploading a new one
+    if (imageFile) {
+      imageUrl = await handleImageUpload(imageFile);
+    }
+    if (editingProductId) {
+      await updateProduct({
+        variables: { input: { id: editingProductId, ...productForm, image: imageUrl } },
+        refetchQueries: [{ query: GET_PRODUCTS }],
+      });
+      setProductForm({ name: '', description: '', price: 0, stock: 0, image: '' });
+      setIsEditMode(false);
+      setEditingProductId(null);
+      setImageFile(null); // Reset image file
+    }
+  };
+
   const handleEditClick = (product: Product) => {
     setProductForm({
       name: product.name,
       description: product.description,
       price: product.price,
       stock: product.stock,
+      image: product.image || '', // Populate form with existing image URL if available
     });
-    setIsEditMode(true); // Switch to edit mode
-    setEditingProductId(product.id); // Set the product to be edited
+    setIsEditMode(true);
+    setEditingProductId(product.id);
   };
 
-  // Delete a product
   const handleDeleteProduct = async (id: string) => {
     await deleteProduct({
       variables: { id },
@@ -75,10 +100,9 @@ const ProductPage: React.FC = () => {
     });
   };
 
-  // Add a product to the cart
   const handleAddToCart = async (productId: string) => {
     await addToCart({
-      variables: { orderId: 'currentOrderId', productId, quantity: 1 }, // Adjust the orderId as needed
+      variables: { orderId: 'currentOrderId', productId, quantity: 1 },
       refetchQueries: [{ query: GET_PRODUCTS }],
     });
   };
@@ -87,7 +111,6 @@ const ProductPage: React.FC = () => {
     <div>
       <h1>Product Page</h1>
 
-      {/* Product form for creating or editing */}
       <form
         onSubmit={(e) => {
           e.preventDefault();
@@ -126,12 +149,20 @@ const ProductPage: React.FC = () => {
           onChange={(e) => setProductForm({ ...productForm, stock: Number(e.target.value) })}
           required
         />
+
+        {/* Image input for product image */}
+        <input
+          type="file"
+          accept="image/*"
+          onChange={(e) => {
+            if (e.target.files) setImageFile(e.target.files[0]);
+          }}
+        />
         <button type="submit">
           {isEditMode ? 'Update Product' : 'Add Product'}
         </button>
       </form>
 
-      {/* List of existing products */}
       <h2>Existing Products</h2>
       <ul>
         {data.listProducts.items.map((product: Product) => (
@@ -140,9 +171,10 @@ const ProductPage: React.FC = () => {
             <p>{product.description}</p>
             <p>Price: ${product.price}</p>
             <p>Stock: {product.stock}</p>
+            {product.image && <img src={product.image} alt={product.name} width="100" />} {/* Display product image */}
             <button onClick={() => handleEditClick(product)}>Edit</button>
             <button onClick={() => handleDeleteProduct(product.id)}>Delete</button>
-            <button onClick={() => handleAddToCart(product.id)}>Add to Cart</button> {/* Button to add product to cart */}
+            <button onClick={() => handleAddToCart(product.id)}>Add to Cart</button>
           </li>
         ))}
       </ul>

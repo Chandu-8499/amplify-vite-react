@@ -24,22 +24,6 @@ const schema = a.schema({
       stock: a.float(),
     }).authorization(allow => [allow.publicApiKey()]),
 
-  Order: a
-    .model({
-      id: a.id(),
-      userId: a.string(), // Links to User
-      status: a.enum(['PENDING', 'IN_CART', 'PLACED', 'IN_TRANSIT', 'DELIVERED', 'RETURNED', 'REPLACED']),
-      createdAt: a.timestamp(),
-      updatedAt: a.timestamp(),
-    }).authorization(allow => [allow.publicApiKey()]),
-
-  OrderProduct: a
-    .model({
-      orderId: a.string(), // Links to Order
-      productId: a.string(), // Links to Product
-      quantity: a.integer(),
-      price: a.float(),
-    }).authorization(allow => [allow.publicApiKey()]),
 
   User: a
     .model({
