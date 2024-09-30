@@ -10,14 +10,48 @@ import ProductListing from './components/ProductListing';
 import ProductDetail from './components/ProductDetail';
 import ShoppingCart from './pages/ShoppingCart';
 
+// import type { AppProps } from 'next/app';
+import { Authenticator } from '@aws-amplify/ui-react';
+import { Amplify } from 'aws-amplify';
+import outputs from '../amplify_outputs.json';
+import '@aws-amplify/ui-react/styles.css';
+
+Amplify.configure(outputs);
+
 
 // import Checkout from './Checkout';
 // import jwtDecode from 'jwt-decode';
 // import CognitoUser from 'amazon-cognito-identity-js';
 
-function App() {
+// function App() {
+//   return (
+//     <Router>
+//       <Routes>
+//       <Route path="/"  element={<ProductListing />} />
+//       <Route path="/cart" element={<ShoppingCart />} />
+//       <Route path="/products/:id" element={<ProductDetail />} />
+//         <Route path="/login" element={<Login />} />
+//         <Route path="/signup" element={<Signup />} />
+//         {/* <Route path="/dashboard" element={<ProtectedRoute />} /> */}
+//         <Route path="/admin" element={<AdminDashboard />} />
+      
+//         {/* <Route path="/cart" element={<Cart />} />
+//         <Route path="/checkout" element={<Checkout />} /> */}
+//         <Route path="/productpage" element={<ProductPage />} />
+//         <Route path="/user" element={<UserDashboard />} />
+//         <Route path="*" element={<Navigate to="/login" />} />
+//       </Routes>
+//     </Router>
+//   );
+// }
+
+// export default App;
+
+
+export default function App() {
   return (
-    <Router>
+    <Authenticator>
+       <Router>
       <Routes>
       <Route path="/"  element={<ProductListing />} />
       <Route path="/cart" element={<ShoppingCart />} />
@@ -34,11 +68,9 @@ function App() {
         <Route path="*" element={<Navigate to="/login" />} />
       </Routes>
     </Router>
+    </Authenticator>
   );
 }
-
-export default App;
-
 // const ProtectedRoute = async () => {
 //   const [userGroup, setUserGroup] = useState<string | null>(null);
 //   const navigate = useNavigate();
