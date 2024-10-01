@@ -39,14 +39,12 @@ const ProductPage: React.FC = () => {
   const handleImageUpload = async (file: File): Promise<string | undefined> => {
     try {
       const result = await uploadData({
-        path: `products/${file.name}`,
+        path: `product-pictures/${file.name}`,
         data: file,
       });
 
-      // Ensure the result contains the 'key' and use 'downloadData' to get the URL
       if (result && 'key' in result) {
         const downloadResult = await downloadData({ path: result.key as string });
-        // Ensure that the returned download data is a string (URL), otherwise handle undefined
         return typeof downloadResult === 'string' ? downloadResult : undefined;
       }
       return undefined;
@@ -176,7 +174,7 @@ const ProductPage: React.FC = () => {
             <p>{product.description}</p>
             <p>Price: ${product.price}</p>
             <p>Stock: {product.stock}</p>
-            {product.image && <img src={product.image} alt={product.name} width="100" />} 
+            {product.image && <img src={product.image} alt={product.name} width="100" />}
             <button onClick={() => handleEditClick(product)}>Edit</button>
             <button onClick={() => handleDeleteProduct(product.id)}>Delete</button>
             <button onClick={() => handleAddToCart(product.id)}>Add to Cart</button>
