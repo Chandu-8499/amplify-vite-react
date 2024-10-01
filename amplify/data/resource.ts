@@ -5,7 +5,7 @@ const schema = a.schema({
     .model({
       id: a.id(),
       name: a.string(),
-      description: a.string(), // Optional field
+      description: a.string(), 
       price: a.float(),
       createdAt: a.timestamp(), 
       updatedAt: a.timestamp(),
@@ -15,20 +15,18 @@ const schema = a.schema({
     .model({
       id: a.id(),
       name: a.string(),
-      description: a.string(), // Optional field
+      description: a.string(), 
       price: a.float(),
-      image: a.string(), // Optional field
+      image: a.string(), 
       createdAt: a.timestamp(), 
       updatedAt: a.timestamp(),
       stock: a.float(),
-      cartItems: a.hasMany('CartItem', 'productId'), // Linking to CartItem
+      cartItems: a.hasMany('CartItem', 'productId'), 
     }).authorization(allow => [allow.publicApiKey()]),
 
   User: a
     .model({
       id: a.id(),
-      email: a.string(),
-      password: a.string(), // Consider hashing passwords
       name: a.string(), // Optional field
       createdAt: a.timestamp(),
       updatedAt: a.timestamp(),
