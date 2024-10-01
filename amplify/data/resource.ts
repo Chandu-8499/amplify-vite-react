@@ -21,7 +21,7 @@ const schema = a.schema({
       createdAt: a.timestamp(),
       updatedAt: a.timestamp(),
       stock: a.float(),
-      cartItems: a.hasMany('CartItem', 'productId'), // Linking CartItem via productId
+      cartItems: a.hasMany('CartItem', 'productId'), // Reference to productId in CartItem
     }).authorization(allow => [allow.publicApiKey()]),
 
   User: a
@@ -30,22 +30,23 @@ const schema = a.schema({
       name: a.string(),
       createdAt: a.timestamp(),
       updatedAt: a.timestamp(),
-      carts: a.hasMany('Cart', 'userId'), // Linking Cart via userId
+      carts: a.hasMany('Cart', 'userId'), // Reference to userId in Cart
     }).authorization(allow => [allow.publicApiKey()]),
 
   Cart: a
     .model({
       id: a.id(),
-      userId: a.belongsTo('User', 'id'), // Links to User
+      userId: a.belongsTo('User', 'id'), // Reference to User
       createdAt: a.timestamp(),
       updatedAt: a.timestamp(),
-      cartItems: a.hasMany('CartItem', 'cartId'), // Linking CartItem via cartId
+      cartItems: a.hasMany('CartItem', 'cartId'), // Reference to cartId in CartItem
     }).authorization(allow => [allow.publicApiKey()]),
 
   CartItem: a
     .model({
-      cartId: a.belongsTo('Cart', 'id'), // Links to Cart
-      productId: a.belongsTo('Product', 'id'), // Links to Product
+      id: a.id(),
+      cartId: a.belongsTo('Cart', 'id'), // Belongs to Cart
+      productId: a.belongsTo('Product', 'id'), // Belongs to Product
       quantity: a.integer(),
     }).authorization(allow => [allow.publicApiKey()]),
 });
