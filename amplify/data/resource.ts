@@ -41,7 +41,7 @@ const schema = a.schema({
       // Each CartItem is linked to a Cart
       cartId: a.belongsTo('Cart', 'id'),
       // Each CartItem is linked to a Product
-      productId: a.belongsTo('Product', 'id'),
+      productId: a.belongsTo('Product', 'id'), // Ensure this links correctly
       quantity: a.integer(),
       createdAt: a.timestamp(),
       updatedAt: a.timestamp(),
