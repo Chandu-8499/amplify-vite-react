@@ -1,16 +1,6 @@
 import { type ClientSchema, a, defineData } from "@aws-amplify/backend";
 
 const schema = a.schema({
-  ToDo: a
-    .model({
-      id: a.id(),
-      name: a.string(),
-      description: a.string(),
-      price: a.float(),
-      createdAt: a.timestamp(),
-      updatedAt: a.timestamp(),
-    }).authorization(allow => [allow.publicApiKey()]),
-
   Product: a
     .model({
       id: a.id(),
@@ -20,8 +10,8 @@ const schema = a.schema({
       image: a.string(),
       createdAt: a.timestamp(),
       updatedAt: a.timestamp(),
-      stock: a.float(),
-      cartItems: a.hasMany('CartItem', 'productId'), // Reference to productId in CartItem
+      // Establishing a one-to-many relationship with CartItem
+      cartItems: a.hasMany('CartItem', 'productId'), 
     }).authorization(allow => [allow.publicApiKey()]),
 
   User: a
@@ -30,24 +20,31 @@ const schema = a.schema({
       name: a.string(),
       createdAt: a.timestamp(),
       updatedAt: a.timestamp(),
-      carts: a.hasMany('Cart', 'userId'), // Reference to userId in Cart
+      // Establishing a one-to-many relationship with Cart
+      carts: a.hasMany('Cart', 'userId'), 
     }).authorization(allow => [allow.publicApiKey()]),
 
   Cart: a
     .model({
       id: a.id(),
-      userId: a.belongsTo('User', 'id'), // Reference to User
+      // Each Cart is linked to a User
+      userId: a.belongsTo('User', 'id'),
       createdAt: a.timestamp(),
       updatedAt: a.timestamp(),
-      cartItems: a.hasMany('CartItem', 'cartId'), // Reference to cartId in CartItem
+      // Each Cart has many CartItems
+      cartItems: a.hasMany('CartItem', 'cartId'),
     }).authorization(allow => [allow.publicApiKey()]),
 
   CartItem: a
     .model({
       id: a.id(),
-      cartId: a.belongsTo('Cart', 'id'), // Belongs to Cart
-      productId: a.belongsTo('Product', 'id'), // Belongs to Product
+      // Each CartItem is linked to a Cart
+      cartId: a.belongsTo('Cart', 'id'),
+      // Each CartItem is linked to a Product
+      productId: a.belongsTo('Product', 'id'),
       quantity: a.integer(),
+      createdAt: a.timestamp(),
+      updatedAt: a.timestamp(),
     }).authorization(allow => [allow.publicApiKey()]),
 });
 
