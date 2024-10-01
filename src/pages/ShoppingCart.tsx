@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useQuery, useMutation } from '@apollo/client';
+import { useNavigate } from 'react-router-dom'; // Import navigation hook
 import { client } from '../apolloClient';
 import {
   UPDATE_CART,
@@ -17,18 +18,18 @@ interface CartItem {
 interface Product {
   id: string;
   name: string;
-  price: number; // Ensure this property is included
+  price: number;
 }
 
 const ShoppingCart: React.FC = () => {
   const orderId = 'currentOrderId'; // Replace with actual orderId
+  const navigate = useNavigate(); // Initialize the navigation hook
 
   // Fetch cart items
   const { loading, error, data } = useQuery(GET_CART_ITEMS, {
     variables: { orderId },
   });
 
-  // Local state to hold cart items with product details
   const [cartItems, setCartItems] = useState<(CartItem & { product?: Product })[]>([]);
 
   // Fetch product details for each cart item
@@ -55,14 +56,12 @@ const ShoppingCart: React.FC = () => {
     loadCartItems();
   }, [data]);
 
-  // Mutations
   const [updateCart] = useMutation(UPDATE_CART);
   const [removeFromCart] = useMutation(REMOVE_FROM_CART);
   const [checkout] = useMutation(CHECKOUT);
 
   const handleUpdateCart = async (productId: string, quantity: number) => {
     if (quantity <= 0) return;
-
     try {
       await updateCart({
         variables: { orderId, productId, quantity },
@@ -86,13 +85,14 @@ const ShoppingCart: React.FC = () => {
 
   const handleCheckout = async () => {
     try {
-      const response = await checkout({
-        variables: { orderId },
-      });
+      const response = await checkout({ variables: { orderId } });
 
       if (response.data.checkout.success) {
         alert('Checkout successful!');
         setCartItems([]); // Clear cart after successful checkout
+
+        // Navigate to the checkout page after successful checkout
+        navigate('/checkout');
       }
     } catch (err) {
       console.error('Error during checkout:', err);

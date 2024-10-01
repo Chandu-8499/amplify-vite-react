@@ -9,7 +9,7 @@ import ProductPage from './pages/Productpage';
 import ProductListing from './components/ProductListing';
 import ProductDetail from './components/ProductDetail';
 import ShoppingCart from './pages/ShoppingCart';
-
+import CheckoutPage from './components/CheckoutPage';
 // import type { AppProps } from 'next/app';
 import { Authenticator } from '@aws-amplify/ui-react';
 import { Amplify } from 'aws-amplify';
@@ -55,6 +55,7 @@ export default function App() {
       <Routes>
       <Route path="/"  element={<ProductListing />} />
       <Route path="/cart" element={<ShoppingCart />} />
+      <Route path="/checkout" element={<CheckoutPage />} />
       <Route path="/products/:id" element={<ProductDetail />} />
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
