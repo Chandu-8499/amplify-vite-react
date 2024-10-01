@@ -1,51 +1,58 @@
 import { type ClientSchema, a, defineData } from "@aws-amplify/backend";
 
 const schema = a.schema({
-  User: a
+  ToDo: a
     .model({
       id: a.id(),
       name: a.string(),
-      email: a.string(),
-      createdAt: a.timestamp(),
+      description: a.string(), // Optional field
+      price: a.float(),
+      image: a.string(), // Optional field
+      createdAt: a.timestamp(), 
       updatedAt: a.timestamp(),
-      // One-to-Many relationship with Cart
-      carts: a.hasMany('Cart', 'userId'), 
     }).authorization(allow => [allow.publicApiKey()]),
 
   Product: a
     .model({
       id: a.id(),
       name: a.string(),
-      description: a.string(),
+      description: a.string(), // Optional field
       price: a.float(),
-      image: a.string(),
+      image: a.string(), // Optional field
+      createdAt: a.timestamp(), 
+      updatedAt: a.timestamp(),
+      stock: a.float(),
+      cartItems: a.hasMany('CartItem', 'productId'), // Linking to CartItem
+    }).authorization(allow => [allow.publicApiKey()]),
+
+  User: a
+    .model({
+      id: a.id(),
+      email: a.string(),
+      password: a.string(), // Consider hashing passwords
+      name: a.string(), // Optional field
       createdAt: a.timestamp(),
       updatedAt: a.timestamp(),
-      // One-to-Many relationship with CartItem
-      cartItems: a.hasMany('CartItem', 'productId'), 
+      carts: a.hasMany('Cart', 'userId'), // Linking to the Cart
     }).authorization(allow => [allow.publicApiKey()]),
 
   Cart: a
     .model({
       id: a.id(),
-      // Foreign key linking Cart to User
-      userId: a.belongsTo('User', 'id'),
+      // userId: a.string(), // Links to User
+      userId: a.belongsTo('User', 'id'), // Links to User
       createdAt: a.timestamp(),
       updatedAt: a.timestamp(),
-      // One-to-Many relationship with CartItem
-      cartItems: a.hasMany('CartItem', 'cartId'),
+      cartItems: a.hasMany('CartItem', 'cartId'), // Linking to CartItem
     }).authorization(allow => [allow.publicApiKey()]),
 
   CartItem: a
     .model({
-      id: a.id(),
-      // Foreign key linking CartItem to Cart
-      cartId: a.belongsTo('Cart', 'id'),
-      // Foreign key linking CartItem to Product
-      productId: a.belongsTo('Product', 'id'),
+      // cartId: a.string(), // Links to Cart
+      // productId: a.string(), // Links to Product
+      cartId: a.belongsTo('Cart', 'id'), // Links to Cart
+      productId: a.belongsTo('Product', 'id'), // Links to Product
       quantity: a.integer(),
-      createdAt: a.timestamp(),
-      updatedAt: a.timestamp(),
     }).authorization(allow => [allow.publicApiKey()]),
 });
 
