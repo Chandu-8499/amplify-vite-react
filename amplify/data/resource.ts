@@ -10,7 +10,7 @@ const schema = a.schema({
       image: a.string(),
       createdAt: a.timestamp(),
       updatedAt: a.timestamp(),
-      // Establishing a one-to-many relationship with CartItem
+      // One-to-Many relationship with CartItem
       cartItems: a.hasMany('CartItem', 'productId'), 
     }).authorization(allow => [allow.publicApiKey()]),
 
@@ -18,30 +18,31 @@ const schema = a.schema({
     .model({
       id: a.id(),
       name: a.string(),
+      email: a.string(),
       createdAt: a.timestamp(),
       updatedAt: a.timestamp(),
-      // Establishing a one-to-many relationship with Cart
+      // One-to-Many relationship with Cart
       carts: a.hasMany('Cart', 'userId'), 
     }).authorization(allow => [allow.publicApiKey()]),
 
   Cart: a
     .model({
       id: a.id(),
-      // Each Cart is linked to a User
-      userId: a.belongsTo('User', 'id'),
+      // Foreign key linking Cart to User
+      userId: a.belongsTo('User', 'id'),  // Updated to use the correct foreign key
       createdAt: a.timestamp(),
       updatedAt: a.timestamp(),
-      // Each Cart has many CartItems
-      cartItems: a.hasMany('CartItem', 'cartId'),
+      // One-to-Many relationship with CartItem
+      cartItems: a.hasMany('CartItem', 'cartId'), 
     }).authorization(allow => [allow.publicApiKey()]),
 
   CartItem: a
     .model({
       id: a.id(),
-      // Each CartItem is linked to a Cart
-      cartId: a.belongsTo('Cart', 'id'),
-      // Each CartItem is linked to a Product
-      productId: a.belongsTo('Product', 'id'), // Ensure this links correctly to Product
+      // Foreign key linking CartItem to Cart
+      cartId: a.belongsTo('Cart', 'id'),  // Ensuring proper foreign key reference
+      // Foreign key linking CartItem to Product
+      productId: a.belongsTo('Product', 'id'),  // Ensuring proper foreign key reference
       quantity: a.integer(),
       createdAt: a.timestamp(),
       updatedAt: a.timestamp(),
