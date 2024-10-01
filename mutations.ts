@@ -8,32 +8,30 @@ type GeneratedMutation<InputType, OutputType> = string & {
   __generatedMutationOutput: OutputType;
 };
 
-export const createOrder = /* GraphQL */ `mutation CreateOrder(
-  $condition: ModelOrderConditionInput
-  $input: CreateOrderInput!
+export const createCart = /* GraphQL */ `mutation CreateCart(
+  $condition: ModelCartConditionInput
+  $input: CreateCartInput!
 ) {
-  createOrder(condition: $condition, input: $input) {
+  createCart(condition: $condition, input: $input) {
     createdAt
     id
-    status
     updatedAt
     userId
     __typename
   }
 }
 ` as GeneratedMutation<
-  APITypes.CreateOrderMutationVariables,
-  APITypes.CreateOrderMutation
+  APITypes.CreateCartMutationVariables,
+  APITypes.CreateCartMutation
 >;
-export const createOrderProduct = /* GraphQL */ `mutation CreateOrderProduct(
-  $condition: ModelOrderProductConditionInput
-  $input: CreateOrderProductInput!
+export const createCartItem = /* GraphQL */ `mutation CreateCartItem(
+  $condition: ModelCartItemConditionInput
+  $input: CreateCartItemInput!
 ) {
-  createOrderProduct(condition: $condition, input: $input) {
+  createCartItem(condition: $condition, input: $input) {
+    cartId
     createdAt
     id
-    orderId
-    price
     productId
     quantity
     updatedAt
@@ -41,8 +39,8 @@ export const createOrderProduct = /* GraphQL */ `mutation CreateOrderProduct(
   }
 }
 ` as GeneratedMutation<
-  APITypes.CreateOrderProductMutationVariables,
-  APITypes.CreateOrderProductMutation
+  APITypes.CreateCartItemMutationVariables,
+  APITypes.CreateCartItemMutation
 >;
 export const createProduct = /* GraphQL */ `mutation CreateProduct(
   $condition: ModelProductConditionInput
@@ -101,32 +99,30 @@ export const createUser = /* GraphQL */ `mutation CreateUser(
   APITypes.CreateUserMutationVariables,
   APITypes.CreateUserMutation
 >;
-export const deleteOrder = /* GraphQL */ `mutation DeleteOrder(
-  $condition: ModelOrderConditionInput
-  $input: DeleteOrderInput!
+export const deleteCart = /* GraphQL */ `mutation DeleteCart(
+  $condition: ModelCartConditionInput
+  $input: DeleteCartInput!
 ) {
-  deleteOrder(condition: $condition, input: $input) {
+  deleteCart(condition: $condition, input: $input) {
     createdAt
     id
-    status
     updatedAt
     userId
     __typename
   }
 }
 ` as GeneratedMutation<
-  APITypes.DeleteOrderMutationVariables,
-  APITypes.DeleteOrderMutation
+  APITypes.DeleteCartMutationVariables,
+  APITypes.DeleteCartMutation
 >;
-export const deleteOrderProduct = /* GraphQL */ `mutation DeleteOrderProduct(
-  $condition: ModelOrderProductConditionInput
-  $input: DeleteOrderProductInput!
+export const deleteCartItem = /* GraphQL */ `mutation DeleteCartItem(
+  $condition: ModelCartItemConditionInput
+  $input: DeleteCartItemInput!
 ) {
-  deleteOrderProduct(condition: $condition, input: $input) {
+  deleteCartItem(condition: $condition, input: $input) {
+    cartId
     createdAt
     id
-    orderId
-    price
     productId
     quantity
     updatedAt
@@ -134,8 +130,8 @@ export const deleteOrderProduct = /* GraphQL */ `mutation DeleteOrderProduct(
   }
 }
 ` as GeneratedMutation<
-  APITypes.DeleteOrderProductMutationVariables,
-  APITypes.DeleteOrderProductMutation
+  APITypes.DeleteCartItemMutationVariables,
+  APITypes.DeleteCartItemMutation
 >;
 export const deleteProduct = /* GraphQL */ `mutation DeleteProduct(
   $condition: ModelProductConditionInput
@@ -194,32 +190,30 @@ export const deleteUser = /* GraphQL */ `mutation DeleteUser(
   APITypes.DeleteUserMutationVariables,
   APITypes.DeleteUserMutation
 >;
-export const updateOrder = /* GraphQL */ `mutation UpdateOrder(
-  $condition: ModelOrderConditionInput
-  $input: UpdateOrderInput!
+export const updateCart = /* GraphQL */ `mutation UpdateCart(
+  $condition: ModelCartConditionInput
+  $input: UpdateCartInput!
 ) {
-  updateOrder(condition: $condition, input: $input) {
+  updateCart(condition: $condition, input: $input) {
     createdAt
     id
-    status
     updatedAt
     userId
     __typename
   }
 }
 ` as GeneratedMutation<
-  APITypes.UpdateOrderMutationVariables,
-  APITypes.UpdateOrderMutation
+  APITypes.UpdateCartMutationVariables,
+  APITypes.UpdateCartMutation
 >;
-export const updateOrderProduct = /* GraphQL */ `mutation UpdateOrderProduct(
-  $condition: ModelOrderProductConditionInput
-  $input: UpdateOrderProductInput!
+export const updateCartItem = /* GraphQL */ `mutation UpdateCartItem(
+  $condition: ModelCartItemConditionInput
+  $input: UpdateCartItemInput!
 ) {
-  updateOrderProduct(condition: $condition, input: $input) {
+  updateCartItem(condition: $condition, input: $input) {
+    cartId
     createdAt
     id
-    orderId
-    price
     productId
     quantity
     updatedAt
@@ -227,8 +221,8 @@ export const updateOrderProduct = /* GraphQL */ `mutation UpdateOrderProduct(
   }
 }
 ` as GeneratedMutation<
-  APITypes.UpdateOrderProductMutationVariables,
-  APITypes.UpdateOrderProductMutation
+  APITypes.UpdateCartItemMutationVariables,
+  APITypes.UpdateCartItemMutation
 >;
 export const updateProduct = /* GraphQL */ `mutation UpdateProduct(
   $condition: ModelProductConditionInput

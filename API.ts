@@ -2,32 +2,19 @@
 /* eslint-disable */
 //  This file was automatically generated and should not be edited.
 
-export type Order = {
-  __typename: "Order",
+export type Cart = {
+  __typename: "Cart",
   createdAt?: number | null,
   id: string,
-  status?: OrderStatus | null,
   updatedAt?: number | null,
   userId?: string | null,
 };
 
-export enum OrderStatus {
-  DELIVERED = "DELIVERED",
-  IN_CART = "IN_CART",
-  IN_TRANSIT = "IN_TRANSIT",
-  PENDING = "PENDING",
-  PLACED = "PLACED",
-  REPLACED = "REPLACED",
-  RETURNED = "RETURNED",
-}
-
-
-export type OrderProduct = {
-  __typename: "OrderProduct",
+export type CartItem = {
+  __typename: "CartItem",
+  cartId?: string | null,
   createdAt: string,
   id: string,
-  orderId?: string | null,
-  price?: number | null,
   productId?: string | null,
   quantity?: number | null,
   updatedAt: string,
@@ -66,14 +53,13 @@ export type User = {
   updatedAt?: number | null,
 };
 
-export type ModelOrderProductFilterInput = {
-  and?: Array< ModelOrderProductFilterInput | null > | null,
+export type ModelCartItemFilterInput = {
+  and?: Array< ModelCartItemFilterInput | null > | null,
+  cartId?: ModelStringInput | null,
   createdAt?: ModelStringInput | null,
   id?: ModelIDInput | null,
-  not?: ModelOrderProductFilterInput | null,
-  or?: Array< ModelOrderProductFilterInput | null > | null,
-  orderId?: ModelStringInput | null,
-  price?: ModelFloatInput | null,
+  not?: ModelCartItemFilterInput | null,
+  or?: Array< ModelCartItemFilterInput | null > | null,
   productId?: ModelStringInput | null,
   quantity?: ModelIntInput | null,
   updatedAt?: ModelStringInput | null,
@@ -135,18 +121,6 @@ export type ModelIDInput = {
   size?: ModelSizeInput | null,
 };
 
-export type ModelFloatInput = {
-  attributeExists?: boolean | null,
-  attributeType?: ModelAttributeTypes | null,
-  between?: Array< number | null > | null,
-  eq?: number | null,
-  ge?: number | null,
-  gt?: number | null,
-  le?: number | null,
-  lt?: number | null,
-  ne?: number | null,
-};
-
 export type ModelIntInput = {
   attributeExists?: boolean | null,
   attributeType?: ModelAttributeTypes | null,
@@ -159,26 +133,20 @@ export type ModelIntInput = {
   ne?: number | null,
 };
 
-export type ModelOrderProductConnection = {
-  __typename: "ModelOrderProductConnection",
-  items:  Array<OrderProduct | null >,
+export type ModelCartItemConnection = {
+  __typename: "ModelCartItemConnection",
+  items:  Array<CartItem | null >,
   nextToken?: string | null,
 };
 
-export type ModelOrderFilterInput = {
-  and?: Array< ModelOrderFilterInput | null > | null,
+export type ModelCartFilterInput = {
+  and?: Array< ModelCartFilterInput | null > | null,
   createdAt?: ModelIntInput | null,
   id?: ModelIDInput | null,
-  not?: ModelOrderFilterInput | null,
-  or?: Array< ModelOrderFilterInput | null > | null,
-  status?: ModelOrderStatusInput | null,
+  not?: ModelCartFilterInput | null,
+  or?: Array< ModelCartFilterInput | null > | null,
   updatedAt?: ModelIntInput | null,
   userId?: ModelStringInput | null,
-};
-
-export type ModelOrderStatusInput = {
-  eq?: OrderStatus | null,
-  ne?: OrderStatus | null,
 };
 
 export enum ModelSortDirection {
@@ -187,9 +155,9 @@ export enum ModelSortDirection {
 }
 
 
-export type ModelOrderConnection = {
-  __typename: "ModelOrderConnection",
-  items:  Array<Order | null >,
+export type ModelCartConnection = {
+  __typename: "ModelCartConnection",
+  items:  Array<Cart | null >,
   nextToken?: string | null,
 };
 
@@ -205,6 +173,18 @@ export type ModelProductFilterInput = {
   price?: ModelFloatInput | null,
   stock?: ModelFloatInput | null,
   updatedAt?: ModelIntInput | null,
+};
+
+export type ModelFloatInput = {
+  attributeExists?: boolean | null,
+  attributeType?: ModelAttributeTypes | null,
+  between?: Array< number | null > | null,
+  eq?: number | null,
+  ge?: number | null,
+  gt?: number | null,
+  le?: number | null,
+  lt?: number | null,
+  ne?: number | null,
 };
 
 export type ModelProductConnection = {
@@ -250,40 +230,36 @@ export type ModelUserConnection = {
   nextToken?: string | null,
 };
 
-export type ModelOrderConditionInput = {
-  and?: Array< ModelOrderConditionInput | null > | null,
+export type ModelCartConditionInput = {
+  and?: Array< ModelCartConditionInput | null > | null,
   createdAt?: ModelIntInput | null,
-  not?: ModelOrderConditionInput | null,
-  or?: Array< ModelOrderConditionInput | null > | null,
-  status?: ModelOrderStatusInput | null,
+  not?: ModelCartConditionInput | null,
+  or?: Array< ModelCartConditionInput | null > | null,
   updatedAt?: ModelIntInput | null,
   userId?: ModelStringInput | null,
 };
 
-export type CreateOrderInput = {
+export type CreateCartInput = {
   createdAt?: number | null,
   id?: string | null,
-  status?: OrderStatus | null,
   updatedAt?: number | null,
   userId?: string | null,
 };
 
-export type ModelOrderProductConditionInput = {
-  and?: Array< ModelOrderProductConditionInput | null > | null,
+export type ModelCartItemConditionInput = {
+  and?: Array< ModelCartItemConditionInput | null > | null,
+  cartId?: ModelStringInput | null,
   createdAt?: ModelStringInput | null,
-  not?: ModelOrderProductConditionInput | null,
-  or?: Array< ModelOrderProductConditionInput | null > | null,
-  orderId?: ModelStringInput | null,
-  price?: ModelFloatInput | null,
+  not?: ModelCartItemConditionInput | null,
+  or?: Array< ModelCartItemConditionInput | null > | null,
   productId?: ModelStringInput | null,
   quantity?: ModelIntInput | null,
   updatedAt?: ModelStringInput | null,
 };
 
-export type CreateOrderProductInput = {
+export type CreateCartItemInput = {
+  cartId?: string | null,
   id?: string | null,
-  orderId?: string | null,
-  price?: number | null,
   productId?: string | null,
   quantity?: number | null,
 };
@@ -354,11 +330,11 @@ export type CreateUserInput = {
   updatedAt?: number | null,
 };
 
-export type DeleteOrderInput = {
+export type DeleteCartInput = {
   id: string,
 };
 
-export type DeleteOrderProductInput = {
+export type DeleteCartItemInput = {
   id: string,
 };
 
@@ -374,18 +350,16 @@ export type DeleteUserInput = {
   id: string,
 };
 
-export type UpdateOrderInput = {
+export type UpdateCartInput = {
   createdAt?: number | null,
   id: string,
-  status?: OrderStatus | null,
   updatedAt?: number | null,
   userId?: string | null,
 };
 
-export type UpdateOrderProductInput = {
+export type UpdateCartItemInput = {
+  cartId?: string | null,
   id: string,
-  orderId?: string | null,
-  price?: number | null,
   productId?: string | null,
   quantity?: number | null,
 };
@@ -420,12 +394,11 @@ export type UpdateUserInput = {
   updatedAt?: number | null,
 };
 
-export type ModelSubscriptionOrderFilterInput = {
-  and?: Array< ModelSubscriptionOrderFilterInput | null > | null,
+export type ModelSubscriptionCartFilterInput = {
+  and?: Array< ModelSubscriptionCartFilterInput | null > | null,
   createdAt?: ModelSubscriptionIntInput | null,
   id?: ModelSubscriptionIDInput | null,
-  or?: Array< ModelSubscriptionOrderFilterInput | null > | null,
-  status?: ModelSubscriptionStringInput | null,
+  or?: Array< ModelSubscriptionCartFilterInput | null > | null,
   updatedAt?: ModelSubscriptionIntInput | null,
   userId?: ModelSubscriptionStringInput | null,
 };
@@ -472,28 +445,15 @@ export type ModelSubscriptionStringInput = {
   notIn?: Array< string | null > | null,
 };
 
-export type ModelSubscriptionOrderProductFilterInput = {
-  and?: Array< ModelSubscriptionOrderProductFilterInput | null > | null,
+export type ModelSubscriptionCartItemFilterInput = {
+  and?: Array< ModelSubscriptionCartItemFilterInput | null > | null,
+  cartId?: ModelSubscriptionStringInput | null,
   createdAt?: ModelSubscriptionStringInput | null,
   id?: ModelSubscriptionIDInput | null,
-  or?: Array< ModelSubscriptionOrderProductFilterInput | null > | null,
-  orderId?: ModelSubscriptionStringInput | null,
-  price?: ModelSubscriptionFloatInput | null,
+  or?: Array< ModelSubscriptionCartItemFilterInput | null > | null,
   productId?: ModelSubscriptionStringInput | null,
   quantity?: ModelSubscriptionIntInput | null,
   updatedAt?: ModelSubscriptionStringInput | null,
-};
-
-export type ModelSubscriptionFloatInput = {
-  between?: Array< number | null > | null,
-  eq?: number | null,
-  ge?: number | null,
-  gt?: number | null,
-  in?: Array< number | null > | null,
-  le?: number | null,
-  lt?: number | null,
-  ne?: number | null,
-  notIn?: Array< number | null > | null,
 };
 
 export type ModelSubscriptionProductFilterInput = {
@@ -507,6 +467,18 @@ export type ModelSubscriptionProductFilterInput = {
   price?: ModelSubscriptionFloatInput | null,
   stock?: ModelSubscriptionFloatInput | null,
   updatedAt?: ModelSubscriptionIntInput | null,
+};
+
+export type ModelSubscriptionFloatInput = {
+  between?: Array< number | null > | null,
+  eq?: number | null,
+  ge?: number | null,
+  gt?: number | null,
+  in?: Array< number | null > | null,
+  le?: number | null,
+  lt?: number | null,
+  ne?: number | null,
+  notIn?: Array< number | null > | null,
 };
 
 export type ModelSubscriptionToDoFilterInput = {
@@ -532,32 +504,30 @@ export type ModelSubscriptionUserFilterInput = {
   updatedAt?: ModelSubscriptionIntInput | null,
 };
 
-export type GetOrderQueryVariables = {
+export type GetCartQueryVariables = {
   id: string,
 };
 
-export type GetOrderQuery = {
-  getOrder?:  {
-    __typename: "Order",
+export type GetCartQuery = {
+  getCart?:  {
+    __typename: "Cart",
     createdAt?: number | null,
     id: string,
-    status?: OrderStatus | null,
     updatedAt?: number | null,
     userId?: string | null,
   } | null,
 };
 
-export type GetOrderProductQueryVariables = {
+export type GetCartItemQueryVariables = {
   id: string,
 };
 
-export type GetOrderProductQuery = {
-  getOrderProduct?:  {
-    __typename: "OrderProduct",
+export type GetCartItemQuery = {
+  getCartItem?:  {
+    __typename: "CartItem",
+    cartId?: string | null,
     createdAt: string,
     id: string,
-    orderId?: string | null,
-    price?: number | null,
     productId?: string | null,
     quantity?: number | null,
     updatedAt: string,
@@ -615,21 +585,20 @@ export type GetUserQuery = {
   } | null,
 };
 
-export type ListOrderProductsQueryVariables = {
-  filter?: ModelOrderProductFilterInput | null,
+export type ListCartItemsQueryVariables = {
+  filter?: ModelCartItemFilterInput | null,
   limit?: number | null,
   nextToken?: string | null,
 };
 
-export type ListOrderProductsQuery = {
-  listOrderProducts?:  {
-    __typename: "ModelOrderProductConnection",
+export type ListCartItemsQuery = {
+  listCartItems?:  {
+    __typename: "ModelCartItemConnection",
     items:  Array< {
-      __typename: "OrderProduct",
+      __typename: "CartItem",
+      cartId?: string | null,
       createdAt: string,
       id: string,
-      orderId?: string | null,
-      price?: number | null,
       productId?: string | null,
       quantity?: number | null,
       updatedAt: string,
@@ -638,22 +607,21 @@ export type ListOrderProductsQuery = {
   } | null,
 };
 
-export type ListOrdersQueryVariables = {
-  filter?: ModelOrderFilterInput | null,
+export type ListCartsQueryVariables = {
+  filter?: ModelCartFilterInput | null,
   id?: string | null,
   limit?: number | null,
   nextToken?: string | null,
   sortDirection?: ModelSortDirection | null,
 };
 
-export type ListOrdersQuery = {
-  listOrders?:  {
-    __typename: "ModelOrderConnection",
+export type ListCartsQuery = {
+  listCarts?:  {
+    __typename: "ModelCartConnection",
     items:  Array< {
-      __typename: "Order",
+      __typename: "Cart",
       createdAt?: number | null,
       id: string,
-      status?: OrderStatus | null,
       updatedAt?: number | null,
       userId?: string | null,
     } | null >,
@@ -736,34 +704,32 @@ export type ListUsersQuery = {
   } | null,
 };
 
-export type CreateOrderMutationVariables = {
-  condition?: ModelOrderConditionInput | null,
-  input: CreateOrderInput,
+export type CreateCartMutationVariables = {
+  condition?: ModelCartConditionInput | null,
+  input: CreateCartInput,
 };
 
-export type CreateOrderMutation = {
-  createOrder?:  {
-    __typename: "Order",
+export type CreateCartMutation = {
+  createCart?:  {
+    __typename: "Cart",
     createdAt?: number | null,
     id: string,
-    status?: OrderStatus | null,
     updatedAt?: number | null,
     userId?: string | null,
   } | null,
 };
 
-export type CreateOrderProductMutationVariables = {
-  condition?: ModelOrderProductConditionInput | null,
-  input: CreateOrderProductInput,
+export type CreateCartItemMutationVariables = {
+  condition?: ModelCartItemConditionInput | null,
+  input: CreateCartItemInput,
 };
 
-export type CreateOrderProductMutation = {
-  createOrderProduct?:  {
-    __typename: "OrderProduct",
+export type CreateCartItemMutation = {
+  createCartItem?:  {
+    __typename: "CartItem",
+    cartId?: string | null,
     createdAt: string,
     id: string,
-    orderId?: string | null,
-    price?: number | null,
     productId?: string | null,
     quantity?: number | null,
     updatedAt: string,
@@ -824,34 +790,32 @@ export type CreateUserMutation = {
   } | null,
 };
 
-export type DeleteOrderMutationVariables = {
-  condition?: ModelOrderConditionInput | null,
-  input: DeleteOrderInput,
+export type DeleteCartMutationVariables = {
+  condition?: ModelCartConditionInput | null,
+  input: DeleteCartInput,
 };
 
-export type DeleteOrderMutation = {
-  deleteOrder?:  {
-    __typename: "Order",
+export type DeleteCartMutation = {
+  deleteCart?:  {
+    __typename: "Cart",
     createdAt?: number | null,
     id: string,
-    status?: OrderStatus | null,
     updatedAt?: number | null,
     userId?: string | null,
   } | null,
 };
 
-export type DeleteOrderProductMutationVariables = {
-  condition?: ModelOrderProductConditionInput | null,
-  input: DeleteOrderProductInput,
+export type DeleteCartItemMutationVariables = {
+  condition?: ModelCartItemConditionInput | null,
+  input: DeleteCartItemInput,
 };
 
-export type DeleteOrderProductMutation = {
-  deleteOrderProduct?:  {
-    __typename: "OrderProduct",
+export type DeleteCartItemMutation = {
+  deleteCartItem?:  {
+    __typename: "CartItem",
+    cartId?: string | null,
     createdAt: string,
     id: string,
-    orderId?: string | null,
-    price?: number | null,
     productId?: string | null,
     quantity?: number | null,
     updatedAt: string,
@@ -912,34 +876,32 @@ export type DeleteUserMutation = {
   } | null,
 };
 
-export type UpdateOrderMutationVariables = {
-  condition?: ModelOrderConditionInput | null,
-  input: UpdateOrderInput,
+export type UpdateCartMutationVariables = {
+  condition?: ModelCartConditionInput | null,
+  input: UpdateCartInput,
 };
 
-export type UpdateOrderMutation = {
-  updateOrder?:  {
-    __typename: "Order",
+export type UpdateCartMutation = {
+  updateCart?:  {
+    __typename: "Cart",
     createdAt?: number | null,
     id: string,
-    status?: OrderStatus | null,
     updatedAt?: number | null,
     userId?: string | null,
   } | null,
 };
 
-export type UpdateOrderProductMutationVariables = {
-  condition?: ModelOrderProductConditionInput | null,
-  input: UpdateOrderProductInput,
+export type UpdateCartItemMutationVariables = {
+  condition?: ModelCartItemConditionInput | null,
+  input: UpdateCartItemInput,
 };
 
-export type UpdateOrderProductMutation = {
-  updateOrderProduct?:  {
-    __typename: "OrderProduct",
+export type UpdateCartItemMutation = {
+  updateCartItem?:  {
+    __typename: "CartItem",
+    cartId?: string | null,
     createdAt: string,
     id: string,
-    orderId?: string | null,
-    price?: number | null,
     productId?: string | null,
     quantity?: number | null,
     updatedAt: string,
@@ -1000,32 +962,30 @@ export type UpdateUserMutation = {
   } | null,
 };
 
-export type OnCreateOrderSubscriptionVariables = {
-  filter?: ModelSubscriptionOrderFilterInput | null,
+export type OnCreateCartSubscriptionVariables = {
+  filter?: ModelSubscriptionCartFilterInput | null,
 };
 
-export type OnCreateOrderSubscription = {
-  onCreateOrder?:  {
-    __typename: "Order",
+export type OnCreateCartSubscription = {
+  onCreateCart?:  {
+    __typename: "Cart",
     createdAt?: number | null,
     id: string,
-    status?: OrderStatus | null,
     updatedAt?: number | null,
     userId?: string | null,
   } | null,
 };
 
-export type OnCreateOrderProductSubscriptionVariables = {
-  filter?: ModelSubscriptionOrderProductFilterInput | null,
+export type OnCreateCartItemSubscriptionVariables = {
+  filter?: ModelSubscriptionCartItemFilterInput | null,
 };
 
-export type OnCreateOrderProductSubscription = {
-  onCreateOrderProduct?:  {
-    __typename: "OrderProduct",
+export type OnCreateCartItemSubscription = {
+  onCreateCartItem?:  {
+    __typename: "CartItem",
+    cartId?: string | null,
     createdAt: string,
     id: string,
-    orderId?: string | null,
-    price?: number | null,
     productId?: string | null,
     quantity?: number | null,
     updatedAt: string,
@@ -1083,32 +1043,30 @@ export type OnCreateUserSubscription = {
   } | null,
 };
 
-export type OnDeleteOrderSubscriptionVariables = {
-  filter?: ModelSubscriptionOrderFilterInput | null,
+export type OnDeleteCartSubscriptionVariables = {
+  filter?: ModelSubscriptionCartFilterInput | null,
 };
 
-export type OnDeleteOrderSubscription = {
-  onDeleteOrder?:  {
-    __typename: "Order",
+export type OnDeleteCartSubscription = {
+  onDeleteCart?:  {
+    __typename: "Cart",
     createdAt?: number | null,
     id: string,
-    status?: OrderStatus | null,
     updatedAt?: number | null,
     userId?: string | null,
   } | null,
 };
 
-export type OnDeleteOrderProductSubscriptionVariables = {
-  filter?: ModelSubscriptionOrderProductFilterInput | null,
+export type OnDeleteCartItemSubscriptionVariables = {
+  filter?: ModelSubscriptionCartItemFilterInput | null,
 };
 
-export type OnDeleteOrderProductSubscription = {
-  onDeleteOrderProduct?:  {
-    __typename: "OrderProduct",
+export type OnDeleteCartItemSubscription = {
+  onDeleteCartItem?:  {
+    __typename: "CartItem",
+    cartId?: string | null,
     createdAt: string,
     id: string,
-    orderId?: string | null,
-    price?: number | null,
     productId?: string | null,
     quantity?: number | null,
     updatedAt: string,
@@ -1166,32 +1124,30 @@ export type OnDeleteUserSubscription = {
   } | null,
 };
 
-export type OnUpdateOrderSubscriptionVariables = {
-  filter?: ModelSubscriptionOrderFilterInput | null,
+export type OnUpdateCartSubscriptionVariables = {
+  filter?: ModelSubscriptionCartFilterInput | null,
 };
 
-export type OnUpdateOrderSubscription = {
-  onUpdateOrder?:  {
-    __typename: "Order",
+export type OnUpdateCartSubscription = {
+  onUpdateCart?:  {
+    __typename: "Cart",
     createdAt?: number | null,
     id: string,
-    status?: OrderStatus | null,
     updatedAt?: number | null,
     userId?: string | null,
   } | null,
 };
 
-export type OnUpdateOrderProductSubscriptionVariables = {
-  filter?: ModelSubscriptionOrderProductFilterInput | null,
+export type OnUpdateCartItemSubscriptionVariables = {
+  filter?: ModelSubscriptionCartItemFilterInput | null,
 };
 
-export type OnUpdateOrderProductSubscription = {
-  onUpdateOrderProduct?:  {
-    __typename: "OrderProduct",
+export type OnUpdateCartItemSubscription = {
+  onUpdateCartItem?:  {
+    __typename: "CartItem",
+    cartId?: string | null,
     createdAt: string,
     id: string,
-    orderId?: string | null,
-    price?: number | null,
     productId?: string | null,
     quantity?: number | null,
     updatedAt: string,

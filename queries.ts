@@ -8,23 +8,21 @@ type GeneratedQuery<InputType, OutputType> = string & {
   __generatedQueryOutput: OutputType;
 };
 
-export const getOrder = /* GraphQL */ `query GetOrder($id: ID!) {
-  getOrder(id: $id) {
+export const getCart = /* GraphQL */ `query GetCart($id: ID!) {
+  getCart(id: $id) {
     createdAt
     id
-    status
     updatedAt
     userId
     __typename
   }
 }
-` as GeneratedQuery<APITypes.GetOrderQueryVariables, APITypes.GetOrderQuery>;
-export const getOrderProduct = /* GraphQL */ `query GetOrderProduct($id: ID!) {
-  getOrderProduct(id: $id) {
+` as GeneratedQuery<APITypes.GetCartQueryVariables, APITypes.GetCartQuery>;
+export const getCartItem = /* GraphQL */ `query GetCartItem($id: ID!) {
+  getCartItem(id: $id) {
+    cartId
     createdAt
     id
-    orderId
-    price
     productId
     quantity
     updatedAt
@@ -32,8 +30,8 @@ export const getOrderProduct = /* GraphQL */ `query GetOrderProduct($id: ID!) {
   }
 }
 ` as GeneratedQuery<
-  APITypes.GetOrderProductQueryVariables,
-  APITypes.GetOrderProductQuery
+  APITypes.GetCartItemQueryVariables,
+  APITypes.GetCartItemQuery
 >;
 export const getProduct = /* GraphQL */ `query GetProduct($id: ID!) {
   getProduct(id: $id) {
@@ -77,17 +75,16 @@ export const getUser = /* GraphQL */ `query GetUser($id: ID!) {
   }
 }
 ` as GeneratedQuery<APITypes.GetUserQueryVariables, APITypes.GetUserQuery>;
-export const listOrderProducts = /* GraphQL */ `query ListOrderProducts(
-  $filter: ModelOrderProductFilterInput
+export const listCartItems = /* GraphQL */ `query ListCartItems(
+  $filter: ModelCartItemFilterInput
   $limit: Int
   $nextToken: String
 ) {
-  listOrderProducts(filter: $filter, limit: $limit, nextToken: $nextToken) {
+  listCartItems(filter: $filter, limit: $limit, nextToken: $nextToken) {
     items {
+      cartId
       createdAt
       id
-      orderId
-      price
       productId
       quantity
       updatedAt
@@ -98,17 +95,17 @@ export const listOrderProducts = /* GraphQL */ `query ListOrderProducts(
   }
 }
 ` as GeneratedQuery<
-  APITypes.ListOrderProductsQueryVariables,
-  APITypes.ListOrderProductsQuery
+  APITypes.ListCartItemsQueryVariables,
+  APITypes.ListCartItemsQuery
 >;
-export const listOrders = /* GraphQL */ `query ListOrders(
-  $filter: ModelOrderFilterInput
+export const listCarts = /* GraphQL */ `query ListCarts(
+  $filter: ModelCartFilterInput
   $id: ID
   $limit: Int
   $nextToken: String
   $sortDirection: ModelSortDirection
 ) {
-  listOrders(
+  listCarts(
     filter: $filter
     id: $id
     limit: $limit
@@ -118,7 +115,6 @@ export const listOrders = /* GraphQL */ `query ListOrders(
     items {
       createdAt
       id
-      status
       updatedAt
       userId
       __typename
@@ -127,10 +123,7 @@ export const listOrders = /* GraphQL */ `query ListOrders(
     __typename
   }
 }
-` as GeneratedQuery<
-  APITypes.ListOrdersQueryVariables,
-  APITypes.ListOrdersQuery
->;
+` as GeneratedQuery<APITypes.ListCartsQueryVariables, APITypes.ListCartsQuery>;
 export const listProducts = /* GraphQL */ `query ListProducts(
   $filter: ModelProductFilterInput
   $id: ID

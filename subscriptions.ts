@@ -8,28 +8,24 @@ type GeneratedSubscription<InputType, OutputType> = string & {
   __generatedSubscriptionOutput: OutputType;
 };
 
-export const onCreateOrder = /* GraphQL */ `subscription OnCreateOrder($filter: ModelSubscriptionOrderFilterInput) {
-  onCreateOrder(filter: $filter) {
+export const onCreateCart = /* GraphQL */ `subscription OnCreateCart($filter: ModelSubscriptionCartFilterInput) {
+  onCreateCart(filter: $filter) {
     createdAt
     id
-    status
     updatedAt
     userId
     __typename
   }
 }
 ` as GeneratedSubscription<
-  APITypes.OnCreateOrderSubscriptionVariables,
-  APITypes.OnCreateOrderSubscription
+  APITypes.OnCreateCartSubscriptionVariables,
+  APITypes.OnCreateCartSubscription
 >;
-export const onCreateOrderProduct = /* GraphQL */ `subscription OnCreateOrderProduct(
-  $filter: ModelSubscriptionOrderProductFilterInput
-) {
-  onCreateOrderProduct(filter: $filter) {
+export const onCreateCartItem = /* GraphQL */ `subscription OnCreateCartItem($filter: ModelSubscriptionCartItemFilterInput) {
+  onCreateCartItem(filter: $filter) {
+    cartId
     createdAt
     id
-    orderId
-    price
     productId
     quantity
     updatedAt
@@ -37,8 +33,8 @@ export const onCreateOrderProduct = /* GraphQL */ `subscription OnCreateOrderPro
   }
 }
 ` as GeneratedSubscription<
-  APITypes.OnCreateOrderProductSubscriptionVariables,
-  APITypes.OnCreateOrderProductSubscription
+  APITypes.OnCreateCartItemSubscriptionVariables,
+  APITypes.OnCreateCartItemSubscription
 >;
 export const onCreateProduct = /* GraphQL */ `subscription OnCreateProduct($filter: ModelSubscriptionProductFilterInput) {
   onCreateProduct(filter: $filter) {
@@ -88,28 +84,24 @@ export const onCreateUser = /* GraphQL */ `subscription OnCreateUser($filter: Mo
   APITypes.OnCreateUserSubscriptionVariables,
   APITypes.OnCreateUserSubscription
 >;
-export const onDeleteOrder = /* GraphQL */ `subscription OnDeleteOrder($filter: ModelSubscriptionOrderFilterInput) {
-  onDeleteOrder(filter: $filter) {
+export const onDeleteCart = /* GraphQL */ `subscription OnDeleteCart($filter: ModelSubscriptionCartFilterInput) {
+  onDeleteCart(filter: $filter) {
     createdAt
     id
-    status
     updatedAt
     userId
     __typename
   }
 }
 ` as GeneratedSubscription<
-  APITypes.OnDeleteOrderSubscriptionVariables,
-  APITypes.OnDeleteOrderSubscription
+  APITypes.OnDeleteCartSubscriptionVariables,
+  APITypes.OnDeleteCartSubscription
 >;
-export const onDeleteOrderProduct = /* GraphQL */ `subscription OnDeleteOrderProduct(
-  $filter: ModelSubscriptionOrderProductFilterInput
-) {
-  onDeleteOrderProduct(filter: $filter) {
+export const onDeleteCartItem = /* GraphQL */ `subscription OnDeleteCartItem($filter: ModelSubscriptionCartItemFilterInput) {
+  onDeleteCartItem(filter: $filter) {
+    cartId
     createdAt
     id
-    orderId
-    price
     productId
     quantity
     updatedAt
@@ -117,8 +109,8 @@ export const onDeleteOrderProduct = /* GraphQL */ `subscription OnDeleteOrderPro
   }
 }
 ` as GeneratedSubscription<
-  APITypes.OnDeleteOrderProductSubscriptionVariables,
-  APITypes.OnDeleteOrderProductSubscription
+  APITypes.OnDeleteCartItemSubscriptionVariables,
+  APITypes.OnDeleteCartItemSubscription
 >;
 export const onDeleteProduct = /* GraphQL */ `subscription OnDeleteProduct($filter: ModelSubscriptionProductFilterInput) {
   onDeleteProduct(filter: $filter) {
@@ -168,28 +160,24 @@ export const onDeleteUser = /* GraphQL */ `subscription OnDeleteUser($filter: Mo
   APITypes.OnDeleteUserSubscriptionVariables,
   APITypes.OnDeleteUserSubscription
 >;
-export const onUpdateOrder = /* GraphQL */ `subscription OnUpdateOrder($filter: ModelSubscriptionOrderFilterInput) {
-  onUpdateOrder(filter: $filter) {
+export const onUpdateCart = /* GraphQL */ `subscription OnUpdateCart($filter: ModelSubscriptionCartFilterInput) {
+  onUpdateCart(filter: $filter) {
     createdAt
     id
-    status
     updatedAt
     userId
     __typename
   }
 }
 ` as GeneratedSubscription<
-  APITypes.OnUpdateOrderSubscriptionVariables,
-  APITypes.OnUpdateOrderSubscription
+  APITypes.OnUpdateCartSubscriptionVariables,
+  APITypes.OnUpdateCartSubscription
 >;
-export const onUpdateOrderProduct = /* GraphQL */ `subscription OnUpdateOrderProduct(
-  $filter: ModelSubscriptionOrderProductFilterInput
-) {
-  onUpdateOrderProduct(filter: $filter) {
+export const onUpdateCartItem = /* GraphQL */ `subscription OnUpdateCartItem($filter: ModelSubscriptionCartItemFilterInput) {
+  onUpdateCartItem(filter: $filter) {
+    cartId
     createdAt
     id
-    orderId
-    price
     productId
     quantity
     updatedAt
@@ -197,8 +185,8 @@ export const onUpdateOrderProduct = /* GraphQL */ `subscription OnUpdateOrderPro
   }
 }
 ` as GeneratedSubscription<
-  APITypes.OnUpdateOrderProductSubscriptionVariables,
-  APITypes.OnUpdateOrderProductSubscription
+  APITypes.OnUpdateCartItemSubscriptionVariables,
+  APITypes.OnUpdateCartItemSubscription
 >;
 export const onUpdateProduct = /* GraphQL */ `subscription OnUpdateProduct($filter: ModelSubscriptionProductFilterInput) {
   onUpdateProduct(filter: $filter) {
