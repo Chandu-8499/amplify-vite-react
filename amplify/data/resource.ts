@@ -39,8 +39,8 @@ const schema = a.schema({
   Cart: a
     .model({
       id: a.id(),
-      // userId: a.string(), // Links to User
-      userId: a.belongsTo('User', 'id'), // Links to User
+      userId: a.string(), // Links to User
+      // userId: a.belongsTo('User', 'id'), // Links to User
       createdAt: a.timestamp(),
       updatedAt: a.timestamp(),
       cartItems: a.hasMany('CartItem', 'cartId'), // Linking to CartItem
@@ -48,10 +48,10 @@ const schema = a.schema({
 
   CartItem: a
     .model({
-      // cartId: a.string(), // Links to Cart
-      // productId: a.string(), // Links to Product
-      cartId: a.belongsTo('Cart', 'id'), // Links to Cart
-      productId: a.belongsTo('Product', 'id'), // Links to Product
+      cartId: a.string(), // Links to Cart
+      productId: a.string(), // Links to Product
+      // cartId: a.belongsTo('Cart', 'id'), // Links to Cart
+      // productId: a.belongsTo('Product', 'id'), // Links to Product
       quantity: a.integer(),
     }).authorization(allow => [allow.publicApiKey()]),
 });
