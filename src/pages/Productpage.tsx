@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useQuery, useMutation } from '@apollo/client';
 import { GET_PRODUCTS, CREATE_PRODUCT, UPDATE_PRODUCT, DELETE_PRODUCT } from '../graphql';
 import { ADD_TO_CART } from '../graphql/cart';
-import { uploadData, downloadData } from '@aws-amplify/storage';
+import { uploadData, getUrl } from 'aws-amplify/storage';
 
 interface Product {
   id: string;
@@ -35,38 +35,32 @@ const ProductPage: React.FC = () => {
   if (loading) return <p>Loading products...</p>;
   if (error) return <p>Error: {error.message}</p>;
 
-  // Custom logic for uploading image using uploadData
-  const handleImageUpload = async (file: File): Promise<string | undefined> => {
+  // Upload the file to S3 using uploadData and get the URL using getUrl
+  const handleFileUpload = async (file: File): Promise<string | undefined> => {
     try {
-      const result = await uploadData({
-        path: `product-pictures/${file.name}`,
-        data: file,
-      });
+      const key = `product-pictures/${file.name}`;
+      const uploadTask = uploadData({ path: key, data: file });
+      await uploadTask.result; // Wait for the upload to complete
 
-      if (result && 'key' in result) {
-        const downloadResult = await downloadData({ path: result.key as string });
-        return typeof downloadResult === 'string' ? downloadResult : undefined;
-      }
-      return undefined;
+      // Get the URL of the uploaded file
+      const { url } = await getUrl({ key }); // Destructure to get the URL
+      return url.toString(); // Convert the URL object to a string
     } catch (error) {
-      console.error('Error uploading image:', error);
+      console.error('Error uploading file:', error);
       return undefined;
     }
   };
 
   const handleFormSubmit = async () => {
     let imageUrl: string | undefined = productForm.image;
-
     if (file) {
-      imageUrl = await handleImageUpload(file);
+      imageUrl = await handleFileUpload(file);
       if (!imageUrl) {
         alert('Error uploading image.');
         return;
       }
     }
-
     const input = { ...productForm, image: imageUrl };
-
     if (isEditMode && editingProductId) {
       await updateProduct({
         variables: { input: { id: editingProductId, ...input } },
@@ -80,7 +74,6 @@ const ProductPage: React.FC = () => {
         refetchQueries: [{ query: GET_PRODUCTS }],
       });
     }
-
     setProductForm({ name: '', description: '', price: 0, stock: 0, image: '' });
     setFile(null);
   };
@@ -150,7 +143,6 @@ const ProductPage: React.FC = () => {
           required
         />
 
-        {/* Image upload field */}
         <input
           type="file"
           accept="image/*"

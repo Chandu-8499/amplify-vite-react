@@ -5,7 +5,6 @@ const CheckoutPage: React.FC = () => {
     <div>
       <h1>Checkout</h1>
       <p>Please review your order and confirm the purchase.</p>
-      {/* Implement order summary and confirmation form here */}
     </div>
   );
 };
