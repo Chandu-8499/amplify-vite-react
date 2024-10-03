@@ -10,6 +10,11 @@
       "StackName": "amplify-amplifyvitereact-dev-8b231",
       "StackId": "arn:aws:cloudformation:ap-south-1:904233133953:stack/amplify-amplifyvitereact-dev-8b231/a1d51440-7fe1-11ef-8aab-02e0d68d07b5",
       "AmplifyAppId": "d2zyy82ammdyja"
+    },
+    "categories": {
+      "api": {
+        "ecommerceAPI": {}
+      }
     }
   }
 }
