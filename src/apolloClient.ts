@@ -1,11 +1,10 @@
 import { ApolloClient, InMemoryCache, createHttpLink } from '@apollo/client';
 import { createAuthLink } from 'aws-appsync-auth-link';
-import outputs from '../amplify_outputs.json';
 
-// If the API details are missing, you'll need to add them manually or retrieve them from AWS Amplify
-const GRAPHQL_API_URL = 'https://your-appsync-api-url/graphql'; // Replace this with your actual AppSync API URL
-const API_KEY = 'your-appsync-api-key'; // Replace with your actual API key
-const AWS_REGION = outputs.auth.aws_region; // Using region from auth section in amplify_outputs.json
+// Use the AppSync details you retrieved
+const GRAPHQL_API_URL = 'https://djnzkeo2mbchfnc3jiyk6ppana.appsync-api.ap-south-1.amazonaws.com/graphql';
+const API_KEY = 'da2-afcstriqwra4zfhzrypv75zbt4';
+const AWS_REGION = 'ap-south-1';
 
 const createApolloClient = () => {
   const httpLink = createHttpLink({

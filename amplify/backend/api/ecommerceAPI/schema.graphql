@@ -1,22 +1,108 @@
-# This "input" configures a global authorization rule to enable public access to
-# all models in this schema. Learn more about authorization rules here: https://docs.amplify.aws/cli/graphql/authorization-rules
-input AMPLIFY { globalAuthRule: AuthRule = { allow: public } } # FOR TESTING ONLY!
-
-type Blog @model {
+type Product {
   id: ID!
   name: String!
-  posts: [Post] @hasMany
+  description: String
+  price: Float!
+  stock: Int!
+  image: String
+  createdAt: AWSDateTime!
+  updatedAt: AWSDateTime!
 }
 
-type Post @model {
-  id: ID!
-  title: String!
-  blog: Blog @belongsTo
-  comments: [Comment] @hasMany
+input CreateProductInput {
+  id: ID
+  name: String!
+  description: String
+  price: Float!
+  stock: Int!
+  image: String
 }
 
-type Comment @model {
+input UpdateProductInput {
   id: ID!
-  post: Post @belongsTo
-  content: String!
+  name: String
+  description: String
+  price: Float
+  stock: Int
+  image: String
+}
+
+input DeleteProductInput {
+  id: ID!
+}
+
+# Define ModelIDInput for filtering by ID
+input ModelIDInput {
+  ne: ID
+  eq: ID
+  le: ID
+  lt: ID
+  ge: ID
+  gt: ID
+  contains: ID
+  notContains: ID
+  between: [ID]
+  beginsWith: ID
+}
+
+# Define ModelStringInput for filtering by String fields
+input ModelStringInput {
+  ne: String
+  eq: String
+  le: String
+  lt: String
+  ge: String
+  gt: String
+  contains: String
+  notContains: String
+  between: [String]
+  beginsWith: String
+}
+
+# Define ModelFloatInput for filtering by Float fields (e.g., price)
+input ModelFloatInput {
+  ne: Float
+  eq: Float
+  le: Float
+  lt: Float
+  ge: Float
+  gt: Float
+  between: [Float]
+}
+
+# Define ModelIntInput for filtering by Int fields (e.g., stock)
+input ModelIntInput {
+  ne: Int
+  eq: Int
+  le: Int
+  lt: Int
+  ge: Int
+  gt: Int
+  between: [Int]
+}
+
+input ModelProductFilterInput {
+  id: ModelIDInput
+  name: ModelStringInput
+  price: ModelFloatInput
+  stock: ModelIntInput
+  and: [ModelProductFilterInput]
+  or: [ModelProductFilterInput]
+  not: ModelProductFilterInput
+}
+
+type ModelProductConnection {
+  items: [Product]
+  nextToken: String
+}
+
+type Query {
+  getProduct(id: ID!): Product
+  listProducts(filter: ModelProductFilterInput, limit: Int, nextToken: String): ModelProductConnection
+}
+
+type Mutation {
+  createProduct(input: CreateProductInput!): Product
+  updateProduct(input: UpdateProductInput!): Product
+  deleteProduct(input: DeleteProductInput!): Product
 }
