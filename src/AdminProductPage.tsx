@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { useQuery, useMutation } from '@apollo/client';
-import { GET_PRODUCTS, CREATE_PRODUCT, UPDATE_PRODUCT, DELETE_PRODUCT } from '../graphql';
+import { GET_PRODUCTS, CREATE_PRODUCT, UPDATE_PRODUCT, DELETE_PRODUCT } from './graphql';
 import { uploadData, getUrl } from 'aws-amplify/storage';
-import './AdminProductPage.css'; 
+import './pages/AdminProductPage.css'; 
 
 interface Product {
   id: string;

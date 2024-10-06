@@ -53,7 +53,7 @@ import { BrowserRouter as Router, Route, Routes} from 'react-router-dom';
 // import Login from './pages/Login';
 // import Signup from './pages/Signup';
 // import ProductPage from './pages/Productpage';
-import AdminProductPage from './pages/AdminProductpage';
+import AdminProductPage from './AdminProductPage';
 // import ProductListing from './components/ProductListing';
 // import ProductDetail from './components/ProductDetail';
 // import ShoppingCart from './pages/ShoppingCart';

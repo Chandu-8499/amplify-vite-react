@@ -5,7 +5,7 @@
     "lib": ["es6", "DOM", "DOM.Iterable"],
     "module": "esnext",
     "skipLibCheck": true,
-    "moduleResolution": "node",  // Changed from 'bundler' to 'node'
+    "moduleResolution": "node",  // 'node' is fine for resolving modules
     "allowSyntheticDefaultImports": true,
     "resolveJsonModule": true,
     "isolatedModules": true,
@@ -17,7 +17,8 @@
     "noFallthroughCasesInSwitch": true,
     "esModuleInterop": true,
     "typeRoots": ["./src/types", "./node_modules/@types"],
-    "forceConsistentCasingInFileNames": true
+    "forceConsistentCasingInFileNames": true,
+    "baseUrl": "./src"  // This allows simpler imports like 'components/Header' instead of '../components/Header'
   },
   "include": ["src"],
   "references": [{ "path": "./tsconfig.node.json" }]
