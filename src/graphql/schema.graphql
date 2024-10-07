@@ -31,6 +31,7 @@ input DeleteProductInput {
 
 type Query {
   listProducts: [Product]
+  getProduct(id: ID!): Product
 }
 
 type Mutation {
