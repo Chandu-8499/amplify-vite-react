@@ -1,58 +1,25 @@
-import { type ClientSchema, a, defineData } from "@aws-amplify/backend";
+import { a, defineData, type ClientSchema } from '@aws-amplify/backend';
 
+// Define schema for Product model
 const schema = a.schema({
-
-  Product: a
-    .model({
-      id: a.id(),
-      name: a.string(),
-      description: a.string(), // Optional field
-      price: a.float(),
-      image: a.string(), // Optional field
-      createdAt: a.timestamp(), 
-      updatedAt: a.timestamp(),
-      stock: a.float(),
-    }).authorization(allow => [allow.publicApiKey()]),
-
-  // User: a
-  //   .model({
-  //     id: a.id(),
-  //     email: a.string(),
-  //     password: a.string(), // Consider hashing passwords
-  //     name: a.string(), // Optional field
-  //     createdAt: a.timestamp(),
-  //     updatedAt: a.timestamp(),
-  //     carts: a.hasMany('Cart', 'userId'), // Linking to the Cart
-  //   }).authorization(allow => [allow.publicApiKey()]),
-
-  // Cart: a
-  //   .model({
-  //     id: a.id(),
-  //     userId: a.string(), // Links to User
-  //     // userId: a.belongsTo('User', 'id'), // Links to User
-  //     createdAt: a.timestamp(),
-  //     updatedAt: a.timestamp(),
-  //     cartItems: a.hasMany('CartItem', 'cartId'), // Linking to CartItem
-  //   }).authorization(allow => [allow.publicApiKey()]),
-
-  // CartItem: a
-  //   .model({
-  //     cartId: a.string(), // Links to Cart
-  //     productId: a.string(), // Links to Product
-  //     // cartId: a.belongsTo('Cart', 'id'), // Links to Cart
-  //     // productId: a.belongsTo('Product', 'id'), // Links to Product
-  //     quantity: a.integer(),
-  //   }).authorization(allow => [allow.publicApiKey()]),
+  Product: a.model({
+    name: a.string().required(),          // Product name (required)
+    description: a.string().required(),   // Product description (required)
+    price: a.float().required(),          // Product price (required, floating-point number)
+    stock: a.integer().required(),            // Stock count (required, integer)
+    image: a.string()                     // URL for product image (optional)
+  })
+  .authorization(allow => [allow.publicApiKey()]) // Authorization: public API key
 });
 
+// Used for code completion / highlighting when making requests from frontend
 export type Schema = ClientSchema<typeof schema>;
 
+// Define data resource to be deployed
 export const data = defineData({
-  schema,
+  schema,  // Attach the schema
   authorizationModes: {
-    defaultAuthorizationMode: 'userPool',
-    apiKeyAuthorizationMode: {
-      expiresInDays: 30,
-    },
-  },
+    defaultAuthorizationMode: 'apiKey',  // Set default authorization mode to API key
+    apiKeyAuthorizationMode: { expiresInDays: 30 }  // API key expiration set to 30 days
+  }
 });
