@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useQuery, useMutation } from '@apollo/client';
-import { GET_PRODUCTS, CREATE_PRODUCT, UPDATE_PRODUCT, DELETE_PRODUCT } from './graphql';
+import { LIST_PRODUCTS, CREATE_PRODUCT, UPDATE_PRODUCT, DELETE_PRODUCT } from './graphql';
 import { uploadData, getUrl } from 'aws-amplify/storage';
 import './pages/AdminProductPage.css'; 
 
@@ -14,7 +14,7 @@ interface Product {
 }
 
 const AdminProductPage: React.FC = () => {
-  const { loading, error, data } = useQuery(GET_PRODUCTS);
+  const { loading, error, data } = useQuery(LIST_PRODUCTS);
   const [createProduct] = useMutation(CREATE_PRODUCT);
   const [updateProduct] = useMutation(UPDATE_PRODUCT);
   const [deleteProduct] = useMutation(DELETE_PRODUCT);
@@ -37,7 +37,7 @@ const AdminProductPage: React.FC = () => {
 
   const handleFileUpload = async (file: File): Promise<string | undefined> => {
     try {
-      const key = `product-pictures/${file.name}`;
+      const key = `product-images/${file.name}`;
       const uploadTask = uploadData({ path: key, data: file });
       await uploadTask.result;
       const { url } = await getUrl({ key });
@@ -59,11 +59,17 @@ const AdminProductPage: React.FC = () => {
     }
     const input = { ...productForm, image: imageUrl };
     if (isEditMode && editingProductId) {
-      await updateProduct({ variables: { input: { id: editingProductId, ...input } }, refetchQueries: [{ query: GET_PRODUCTS }] });
+      await updateProduct({ 
+        variables: { input: { id: editingProductId, ...input } }, 
+        refetchQueries: [{ query: LIST_PRODUCTS }] 
+      });
       setIsEditMode(false);
       setEditingProductId(null);
     } else {
-      await createProduct({ variables: { input }, refetchQueries: [{ query: GET_PRODUCTS }] });
+      await createProduct({ 
+        variables: { input }, 
+        refetchQueries: [{ query: LIST_PRODUCTS }] 
+      });
     }
     setProductForm({ name: '', description: '', price: 0, stock: 0, image: '' });
     setFile(null);
@@ -84,7 +90,7 @@ const AdminProductPage: React.FC = () => {
   };
 
   const handleDeleteProduct = async (id: string) => {
-    await deleteProduct({ variables: { id }, refetchQueries: [{ query: GET_PRODUCTS }] });
+    await deleteProduct({ variables: { input: { id } }, refetchQueries: [{ query: LIST_PRODUCTS }] });
   };
 
   const openCreateProductModal = () => {

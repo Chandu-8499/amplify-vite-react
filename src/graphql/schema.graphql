@@ -1,0 +1,40 @@
+# src/graphql/schema.graphql
+type Product {
+  id: ID!
+  name: String!
+  description: String
+  price: Float!
+  stock: Int!
+  image: String
+}
+
+input CreateProductInput {
+  name: String!
+  description: String
+  price: Float!
+  stock: Int!
+  image: String
+}
+
+input UpdateProductInput {
+  id: ID!
+  name: String
+  description: String
+  price: Float
+  stock: Int
+  image: String
+}
+
+input DeleteProductInput {
+  id: ID!
+}
+
+type Query {
+  listProducts: [Product]
+}
+
+type Mutation {
+  createProduct(input: CreateProductInput!): Product
+  updateProduct(input: UpdateProductInput!): Product
+  deleteProduct(input: DeleteProductInput!): Product
+}

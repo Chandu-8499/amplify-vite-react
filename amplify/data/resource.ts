@@ -12,18 +12,18 @@ const schema = a.schema({
       updatedAt: a.timestamp(),
     }).authorization(allow => [allow.publicApiKey()]),
 
-  // Product: a
-  //   .model({
-  //     id: a.id(),
-  //     name: a.string(),
-  //     description: a.string(), // Optional field
-  //     price: a.float(),
-  //     image: a.string(), // Optional field
-  //     createdAt: a.timestamp(), 
-  //     updatedAt: a.timestamp(),
-  //     stock: a.float(),
-  //     cartItems: a.hasMany('CartItem', 'productId'), // Linking to CartItem
-  //   }).authorization(allow => [allow.publicApiKey()]),
+  Product: a
+    .model({
+      id: a.id(),
+      name: a.string(),
+      description: a.string(), // Optional field
+      price: a.float(),
+      image: a.string(), // Optional field
+      createdAt: a.timestamp(), 
+      updatedAt: a.timestamp(),
+      stock: a.float(),
+      cartItems: a.hasMany('CartItem', 'productId'), // Linking to CartItem
+    }).authorization(allow => [allow.publicApiKey()]),
 
   User: a
     .model({
@@ -46,14 +46,14 @@ const schema = a.schema({
       cartItems: a.hasMany('CartItem', 'cartId'), // Linking to CartItem
     }).authorization(allow => [allow.publicApiKey()]),
 
-  // CartItem: a
-  //   .model({
-  //     cartId: a.string(), // Links to Cart
-  //     productId: a.string(), // Links to Product
-  //     // cartId: a.belongsTo('Cart', 'id'), // Links to Cart
-  //     // productId: a.belongsTo('Product', 'id'), // Links to Product
-  //     quantity: a.integer(),
-  //   }).authorization(allow => [allow.publicApiKey()]),
+  CartItem: a
+    .model({
+      cartId: a.string(), // Links to Cart
+      productId: a.string(), // Links to Product
+      // cartId: a.belongsTo('Cart', 'id'), // Links to Cart
+      // productId: a.belongsTo('Product', 'id'), // Links to Product
+      quantity: a.integer(),
+    }).authorization(allow => [allow.publicApiKey()]),
 });
 
 export type Schema = ClientSchema<typeof schema>;

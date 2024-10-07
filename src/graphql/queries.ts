@@ -1,127 +1,38 @@
-// /* tslint:disable */
-// /* eslint-disable */
-// // this is an auto generated file. This will be overwritten
+// src/graphql/queries.ts
 
-// import * as APITypes from "../API";
-// type GeneratedQuery<InputType, OutputType> = string & {
-//   __generatedQueryInput: InputType;
-//   __generatedQueryOutput: OutputType;
-// };
+import { gql } from '@apollo/client';
 
-// export const getBlog = /* GraphQL */ `query GetBlog($id: ID!) {
-//   getBlog(id: $id) {
-//     id
-//     name
-//     posts {
-//       nextToken
-//       __typename
-//     }
-//     createdAt
-//     updatedAt
-//     __typename
-//   }
-// }
-// ` as GeneratedQuery<APITypes.GetBlogQueryVariables, APITypes.GetBlogQuery>;
-// export const listBlogs = /* GraphQL */ `query ListBlogs(
-//   $filter: ModelBlogFilterInput
-//   $limit: Int
-//   $nextToken: String
-// ) {
-//   listBlogs(filter: $filter, limit: $limit, nextToken: $nextToken) {
-//     items {
-//       id
-//       name
-//       createdAt
-//       updatedAt
-//       __typename
-//     }
-//     nextToken
-//     __typename
-//   }
-// }
-// ` as GeneratedQuery<APITypes.ListBlogsQueryVariables, APITypes.ListBlogsQuery>;
-// export const getPost = /* GraphQL */ `query GetPost($id: ID!) {
-//   getPost(id: $id) {
-//     id
-//     title
-//     blog {
-//       id
-//       name
-//       createdAt
-//       updatedAt
-//       __typename
-//     }
-//     comments {
-//       nextToken
-//       __typename
-//     }
-//     createdAt
-//     updatedAt
-//     blogPostsId
-//     __typename
-//   }
-// }
-// ` as GeneratedQuery<APITypes.GetPostQueryVariables, APITypes.GetPostQuery>;
-// export const listPosts = /* GraphQL */ `query ListPosts(
-//   $filter: ModelPostFilterInput
-//   $limit: Int
-//   $nextToken: String
-// ) {
-//   listPosts(filter: $filter, limit: $limit, nextToken: $nextToken) {
-//     items {
-//       id
-//       title
-//       createdAt
-//       updatedAt
-//       blogPostsId
-//       __typename
-//     }
-//     nextToken
-//     __typename
-//   }
-// }
-// ` as GeneratedQuery<APITypes.ListPostsQueryVariables, APITypes.ListPostsQuery>;
-// export const getComment = /* GraphQL */ `query GetComment($id: ID!) {
-//   getComment(id: $id) {
-//     id
-//     post {
-//       id
-//       title
-//       createdAt
-//       updatedAt
-//       blogPostsId
-//       __typename
-//     }
-//     content
-//     createdAt
-//     updatedAt
-//     postCommentsId
-//     __typename
-//   }
-// }
-// ` as GeneratedQuery<
-//   APITypes.GetCommentQueryVariables,
-//   APITypes.GetCommentQuery
-// >;
-// export const listComments = /* GraphQL */ `query ListComments(
-//   $filter: ModelCommentFilterInput
-//   $limit: Int
-//   $nextToken: String
-// ) {
-//   listComments(filter: $filter, limit: $limit, nextToken: $nextToken) {
-//     items {
-//       id
-//       content
-//       createdAt
-//       updatedAt
-//       postCommentsId
-//       __typename
-//     }
-//     nextToken
-//     __typename
-//   }
-// }
-// ` as GeneratedQuery<
-//   APITypes.ListCommentsQueryVariables,
-//   APITypes.ListCommentsQuery
-// >;
+// Query to get a product by ID
+export const GET_PRODUCT = gql`
+  query GetProduct($id: ID!) {
+    getProduct(id: $id) {
+      id
+      name
+      description
+      price
+      stock
+      image
+      createdAt
+      updatedAt
+    }
+  }
+`;
+
+// Query to list all products with optional filtering
+export const LIST_PRODUCTS = gql`
+  query ListProducts($filter: ModelProductFilterInput, $limit: Int, $nextToken: String) {
+    listProducts(filter: $filter, limit: $limit, nextToken: $nextToken) {
+      items {
+        id
+        name
+        description
+        price
+        stock
+        image
+        createdAt
+        updatedAt
+      }
+      nextToken
+    }
+  }
+`;
