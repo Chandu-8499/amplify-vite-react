@@ -78,7 +78,7 @@ export default function App() {
         <Route path="/signup" element={<Signup />} />
         {/* Removed admin route if not needed */}
         {/* <Route path="/admin" element={<AdminDashboard />} /> */}
-        <Route path='/adminproductpage' element={<AdminProductPage />} />
+        <Route path='/' element={<AdminProductPage />} />
         {/* <Route path="/productpage" element={<ProductPage />} /> */}
         {/* <Route path="/user" element={<UserDashboard />} />
         <Route path="*" element={<Navigate to="/" />} /> Redirect to home instead of login */}
