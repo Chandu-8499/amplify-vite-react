@@ -38,10 +38,19 @@ const AdminProductPage: React.FC = () => {
   const handleFileUpload = async (file: File): Promise<string | undefined> => {
     try {
       const key = `product-images/${file.name}`;
-      const uploadTask = uploadData({ path: key, data: file });
-      await uploadTask.result;
-      const { url } = await getUrl({ key });
-      return url.toString();
+
+      // Upload the file
+      await uploadData({
+        path: key,
+        data: file,
+      });
+
+      // Retrieve the URL for the uploaded file
+      const result = await getUrl({ key });
+      const urlString = result.url.toString(); // Convert URL to string
+
+      // Return the URL string
+      return urlString;
     } catch (error) {
       console.error('Error uploading file:', error);
       return undefined;
