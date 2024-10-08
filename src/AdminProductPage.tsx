@@ -28,10 +28,25 @@ const AdminProductPage: React.FC = () => {
     e.preventDefault();
     if (formData.id) {
       // Update product
-      await updateProduct({ variables: { ...formData, price: parseFloat(formData.price.toString()), stock: parseInt(formData.stock.toString()) } });
+      await updateProduct({
+        variables: {
+          id: formData.id,
+          name: formData.name,
+          description: formData.description,
+          price: parseFloat(formData.price.toString()),
+          stock: parseInt(formData.stock.toString()),
+        },
+      });
     } else {
       // Add new product
-      await addProduct({ variables: { ...formData, price: parseFloat(formData.price.toString()), stock: parseInt(formData.stock.toString()) } });
+      await addProduct({
+        variables: {
+          name: formData.name,
+          description: formData.description,
+          price: parseFloat(formData.price.toString()),
+          stock: parseInt(formData.stock.toString()),
+        },
+      });
     }
     setFormData({ id: '', name: '', description: '', price: 0, stock: 0 });
   };
@@ -51,10 +66,38 @@ const AdminProductPage: React.FC = () => {
       <h1>Admin Product Page</h1>
       <form onSubmit={handleSubmit}>
         <input type="hidden" name="id" value={formData.id} />
-        <input type="text" name="name" placeholder="Product Name" value={formData.name} onChange={handleChange} required />
-        <input type="text" name="description" placeholder="Description" value={formData.description} onChange={handleChange} required />
-        <input type="number" name="price" placeholder="Price" value={formData.price} onChange={handleChange} required />
-        <input type="number" name="stock" placeholder="Stock" value={formData.stock} onChange={handleChange} required />
+        <input
+          type="text"
+          name="name"
+          placeholder="Product Name"
+          value={formData.name}
+          onChange={handleChange}
+          required
+        />
+        <input
+          type="text"
+          name="description"
+          placeholder="Description"
+          value={formData.description}
+          onChange={handleChange}
+          required
+        />
+        <input
+          type="number"
+          name="price"
+          placeholder="Price"
+          value={formData.price}
+          onChange={handleChange}
+          required
+        />
+        <input
+          type="number"
+          name="stock"
+          placeholder="Stock"
+          value={formData.stock}
+          onChange={handleChange}
+          required
+        />
         <button type="submit">{formData.id ? 'Update Product' : 'Add Product'}</button>
       </form>
 
