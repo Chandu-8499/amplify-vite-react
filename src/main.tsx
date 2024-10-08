@@ -31,21 +31,41 @@ import outputs from '../amplify_outputs.json';
 
 Amplify.configure(outputs);
 
-import React from "react";
-import ReactDOM from "react-dom/client";
-import App from "./App";
-import "./index.css";
-import { client } from './apolloClient';
-import { ApolloProvider } from '@apollo/client';
+// import React from "react";
+// import ReactDOM from "react-dom/client";
+// import App from "./App";
+// import "./index.css";
+// import { client } from './apolloClient';
+// import { ApolloProvider } from '@apollo/client';
 
 
-// Removed Authenticator import
-// import { Authenticator } from "@aws-amplify/ui-react"; 
+// // Removed Authenticator import
+// // import { Authenticator } from "@aws-amplify/ui-react"; 
 
-ReactDOM.createRoot(document.getElementById("root")!).render(
-  <React.StrictMode>
-    <ApolloProvider client={client}>
-      <App /> {/* Removed Authenticator.Provider */}
-    </ApolloProvider>
-  </React.StrictMode>
-);
+
+
+Amplify.configure({
+  API: {
+    GraphQL: {
+      endpoint: 'https://cjiaohomsbbmvf5h6opbvp5dra.appsync-api.ap-south-1.amazonaws.com/graphql',
+      region: 'ap-south-1',
+      defaultAuthMode: 'apiKey',
+      apiKey: 'da2-fykmbfddubeppptq4lsjahsz54'
+    }
+  }
+});
+
+// src/index.tsx or src/index.js
+// import React from 'react';
+import ReactDOM from 'react-dom';
+import App from './App';
+import './aws-config'; // Import the configuration file
+
+ReactDOM.render(<App />, document.getElementById('root'));
+// ReactDOM.createRoot(document.getElementById("root")!).render(
+//   <React.StrictMode>
+//     <ApolloProvider client={client}>
+//       <App /> {/* Removed Authenticator.Provider */}
+//     </ApolloProvider>
+//   </React.StrictMode>
+// );
