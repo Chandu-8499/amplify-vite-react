@@ -13,7 +13,7 @@ interface Product {
 }
 
 const AdminProductPage: React.FC = () => {
-  const { loading, error, data } = useQuery(GET_PRODUCTS);
+  const { loading, data } = useQuery(GET_PRODUCTS);
   const [addProduct] = useMutation(ADD_PRODUCT);
   const [updateProduct] = useMutation(UPDATE_PRODUCT);
   const [deleteProduct] = useMutation(DELETE_PRODUCT);
@@ -45,7 +45,6 @@ const AdminProductPage: React.FC = () => {
   };
 
   if (loading) return <p>Loading...</p>;
-  if (error) return <p>Error: {error.message}</p>;
 
   return (
     <div>
