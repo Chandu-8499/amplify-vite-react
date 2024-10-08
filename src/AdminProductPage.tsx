@@ -14,6 +14,7 @@ interface Product {
 }
 
 const AdminProductPage: React.FC = () => {
+  // Fetch the list of products
   const { loading, error, data } = useQuery(LIST_PRODUCTS);
   const [createProduct] = useMutation(CREATE_PRODUCT);
   const [updateProduct] = useMutation(UPDATE_PRODUCT);
@@ -32,9 +33,11 @@ const AdminProductPage: React.FC = () => {
   const [editingProductId, setEditingProductId] = useState<string | null>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
+  // Show loading/error states if applicable
   if (loading) return <p>Loading products...</p>;
   if (error) return <p>Error: {error.message}</p>;
 
+  // Function to handle file uploads to S3
   const handleFileUpload = async (file: File): Promise<string | undefined> => {
     try {
       const key = `product-images/${file.name}`;
@@ -49,7 +52,6 @@ const AdminProductPage: React.FC = () => {
       const result = await getUrl({ key });
       const urlString = result.url.toString(); // Convert URL to string
 
-      // Return the URL string
       return urlString;
     } catch (error) {
       console.error('Error uploading file:', error);
@@ -57,6 +59,7 @@ const AdminProductPage: React.FC = () => {
     }
   };
 
+  // Function to handle form submission (create or update)
   const handleFormSubmit = async () => {
     let imageUrl: string | undefined = productForm.image;
     if (file) {
@@ -66,6 +69,7 @@ const AdminProductPage: React.FC = () => {
         return;
       }
     }
+
     const input = { ...productForm, image: imageUrl };
     if (isEditMode && editingProductId) {
       await updateProduct({ 
@@ -85,6 +89,7 @@ const AdminProductPage: React.FC = () => {
     setIsModalOpen(false);
   };
 
+  // Handle editing a product
   const handleEditClick = (product: Product) => {
     setProductForm({
       name: product.name,
@@ -98,10 +103,15 @@ const AdminProductPage: React.FC = () => {
     setIsModalOpen(true);
   };
 
+  // Handle deleting a product
   const handleDeleteProduct = async (id: string) => {
-    await deleteProduct({ variables: { input: { id } }, refetchQueries: [{ query: LIST_PRODUCTS }] });
+    await deleteProduct({ 
+      variables: { input: { id } }, 
+      refetchQueries: [{ query: LIST_PRODUCTS }] 
+    });
   };
 
+  // Open the modal for adding a new product
   const openCreateProductModal = () => {
     setIsEditMode(false);
     setProductForm({ name: '', description: '', price: 0, stock: 0, image: '' });
