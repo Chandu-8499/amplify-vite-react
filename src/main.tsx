@@ -31,12 +31,12 @@ import outputs from '../amplify_outputs.json';
 
 Amplify.configure(outputs);
 
-// import React from "react";
+import React from "react";
 // import ReactDOM from "react-dom/client";
 // import App from "./App";
-// import "./index.css";
-// import { client } from './apolloClient';
-// import { ApolloProvider } from '@apollo/client';
+import "./index.css";
+import { client } from './apolloClient';
+import { ApolloProvider } from '@apollo/client';
 
 
 // // Removed Authenticator import
@@ -55,13 +55,13 @@ Amplify.configure({
   }
 });
 
-// src/index.tsx or src/index.js
-// import React from 'react';
-import ReactDOM from 'react-dom';
-import App from './App';
-import './aws-config'; // Import the configuration file
+// // src/index.tsx or src/index.js
+// // import React from 'react';
+// import ReactDOM from 'react-dom';
+// import App from './App';
+// import './aws-config'; // Import the configuration file
 
-ReactDOM.render(<App />, document.getElementById('root'));
+// // ReactDOM.render(<App />, document.getElementById('root'));
 // ReactDOM.createRoot(document.getElementById("root")!).render(
 //   <React.StrictMode>
 //     <ApolloProvider client={client}>
@@ -69,3 +69,19 @@ ReactDOM.render(<App />, document.getElementById('root'));
 //     </ApolloProvider>
 //   </React.StrictMode>
 // );
+
+// import React from "react";
+import ReactDOM from "react-dom/client";
+import App from "./App";
+import "./index.css";
+// import { client } from './apolloClient';
+// import { ApolloProvider } from '@apollo/client';
+// Removed Authenticator import
+// import { Authenticator } from "@aws-amplify/ui-react"; 
+ReactDOM.createRoot(document.getElementById("root")!).render(
+  <React.StrictMode>
+    <ApolloProvider client={client}>
+      <App /> {/* Removed Authenticator.Provider */}
+    </ApolloProvider>
+  </React.StrictMode>
+);
