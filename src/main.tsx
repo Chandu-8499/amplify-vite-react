@@ -50,7 +50,7 @@ Amplify.configure({
       endpoint: 'https://cjiaohomsbbmvf5h6opbvp5dra.appsync-api.ap-south-1.amazonaws.com/graphql',
       region: 'ap-south-1',
       defaultAuthMode: 'apiKey',
-      apiKey: 'da2-fykmbfddubeppptq4lsjahsz54'
+      apiKey: 'da2-f4ay6e4ztujcfjdqwlpxjgtm3oq'
     }
   }
 });
