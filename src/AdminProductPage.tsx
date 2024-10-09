@@ -1,8 +1,8 @@
-// src/components/AdminProductPage.tsx
 import React, { useState } from 'react';
 import { useQuery, useMutation } from '@apollo/client';
 import { GET_PRODUCTS, ADD_PRODUCT, UPDATE_PRODUCT, DELETE_PRODUCT } from './graphql/products';
 import { ChangeEvent, FormEvent } from 'react';
+import { uploadData } from '@aws-amplify/storage';
 
 interface Product {
   id: string;
@@ -10,6 +10,7 @@ interface Product {
   description: string;
   price: number;
   stock: number;
+  imageUrl?: string; // Added imageUrl field for the product
 }
 
 const AdminProductPage: React.FC = () => {
@@ -18,45 +19,59 @@ const AdminProductPage: React.FC = () => {
   const [updateProduct] = useMutation(UPDATE_PRODUCT);
   const [deleteProduct] = useMutation(DELETE_PRODUCT);
   const [formData, setFormData] = useState<Product>({ id: '', name: '', description: '', price: 0, stock: 0 });
+  const [imageFile, setImageFile] = useState<File | null>(null); // File selected for upload
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: name === 'price' || name === 'stock' ? parseInt(value) : value });
   };
 
+  const handleFileChange = (e: ChangeEvent<HTMLInputElement>) => {
+    if (e.target.files && e.target.files[0]) {
+      setImageFile(e.target.files[0]); // Store selected file
+    }
+  };
+
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    let imageUrl = '';
+
+    if (imageFile) {
+      // Upload the image to S3 using uploadData
+      await uploadData({
+        path: `products/${imageFile.name}`, // Specify the path in S3
+        data: imageFile, // The file to upload
+      });
+
+      // Construct the S3 URL after successful upload
+      imageUrl = `https://<your-bucket-name>.s3.<your-region>.amazonaws.com/products/${imageFile.name}`;
+    }
+
     if (formData.id) {
-      // Update product
       await updateProduct({
         variables: {
           id: formData.id,
           name: formData.name,
           description: formData.description,
-          price: parseFloat(formData.price.toString()),
-          stock: parseInt(formData.stock.toString()),
+          price: formData.price,
+          stock: formData.stock,
+          imageUrl, // Pass the image URL
         },
       });
     } else {
-      // Add new product
       await addProduct({
         variables: {
           name: formData.name,
           description: formData.description,
-          price: parseFloat(formData.price.toString()),
-          stock: parseInt(formData.stock.toString()),
+          price: formData.price,
+          stock: formData.stock,
+          imageUrl, // Pass the image URL
         },
       });
     }
+
     setFormData({ id: '', name: '', description: '', price: 0, stock: 0 });
-  };
-
-  const handleEdit = (product: Product) => {
-    setFormData(product);
-  };
-
-  const handleDelete = async (id: string) => {
-    await deleteProduct({ variables: { id } });
+    setImageFile(null); // Clear file input after submission
   };
 
   if (loading) return <p>Loading...</p>;
@@ -65,39 +80,14 @@ const AdminProductPage: React.FC = () => {
     <div>
       <h1>Admin Product Page</h1>
       <form onSubmit={handleSubmit}>
-        <input type="hidden" name="id" value={formData.id} />
-        <input
-          type="text"
-          name="name"
-          placeholder="Product Name"
-          value={formData.name}
-          onChange={handleChange}
-          required
-        />
-        <input
-          type="text"
-          name="description"
-          placeholder="Description"
-          value={formData.description}
-          onChange={handleChange}
-          required
-        />
-        <input
-          type="number"
-          name="price"
-          placeholder="Price"
-          value={formData.price}
-          onChange={handleChange}
-          required
-        />
-        <input
-          type="number"
-          name="stock"
-          placeholder="Stock"
-          value={formData.stock}
-          onChange={handleChange}
-          required
-        />
+        <input type="text" name="name" placeholder="Product Name" value={formData.name} onChange={handleChange} required />
+        <input type="text" name="description" placeholder="Description" value={formData.description} onChange={handleChange} required />
+        <input type="number" name="price" placeholder="Price" value={formData.price} onChange={handleChange} required />
+        <input type="number" name="stock" placeholder="Stock" value={formData.stock} onChange={handleChange} required />
+
+        {/* File input for uploading image */}
+        <input type="file" accept="image/*" onChange={handleFileChange} />
+
         <button type="submit">{formData.id ? 'Update Product' : 'Add Product'}</button>
       </form>
 
@@ -109,8 +99,9 @@ const AdminProductPage: React.FC = () => {
             <p>{product.description}</p>
             <p>Price: ${product.price}</p>
             <p>Stock: {product.stock}</p>
-            <button onClick={() => handleEdit(product)}>Edit</button>
-            <button onClick={() => handleDelete(product.id)}>Delete</button>
+            {product.imageUrl && <img src={product.imageUrl} alt={product.name} style={{ width: '100px' }} />}
+            <button onClick={() => setFormData(product)}>Edit</button>
+            <button onClick={() => deleteProduct({ variables: { id: product.id } })}>Delete</button>
           </li>
         ))}
       </ul>
