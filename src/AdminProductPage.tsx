@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useQuery, useMutation } from '@apollo/client';
 import { GET_PRODUCTS, ADD_PRODUCT, UPDATE_PRODUCT, DELETE_PRODUCT } from './graphql/products';
 import { ChangeEvent, FormEvent } from 'react';
-import { uploadData } from '@aws-amplify/storage';
+import { uploadData } from 'aws-amplify/storage';
 
 interface Product {
   id: string;
@@ -10,7 +10,7 @@ interface Product {
   description: string;
   price: number;
   stock: number;
-  imageUrl?: string; // Added imageUrl field for the product
+  imageUrl?: string; // Optional field for the image URL
 }
 
 const AdminProductPage: React.FC = () => {
@@ -37,14 +37,23 @@ const AdminProductPage: React.FC = () => {
     let imageUrl = '';
 
     if (imageFile) {
-      // Upload the image to S3 using uploadData
-      await uploadData({
-        path: `products/${imageFile.name}`, // Specify the path in S3
-        data: imageFile, // The file to upload
-      });
+      try {
+        // Upload the image to S3 using uploadData
+        const result = await uploadData({
+          path: `product-pictures/${formData.name}/${imageFile.name}`, // Use product name to create a unique path
+          data: imageFile, // The file to upload
+        });
 
-      // Construct the S3 URL after successful upload
-      imageUrl = `https://<your-bucket-name>.s3.<your-region>.amazonaws.com/products/${imageFile.name}`;
+        // Log the result to see its structure
+        console.log(result);
+
+        // Construct the S3 URL using the correct key
+        const bucketName = '<your-bucket-name>'; // Replace with your bucket name
+        const region = '<your-region>'; // Replace with your region
+        imageUrl = `https://${bucketName}.s3.${region}.amazonaws.com/${result}`; // Update to use the correct property
+      } catch (error) {
+        console.error('Error uploading file: ', error);
+      }
     }
 
     if (formData.id) {
