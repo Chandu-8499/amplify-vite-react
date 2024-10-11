@@ -58,7 +58,10 @@ const AdminProductPage: React.FC = () => {
     }
 
     const file = files[0]; // Get the selected file
-    const path = `product-images/${file.name}`; // Define the path for S3
+    
+    const path = `product-pictures/${file.name}`; // Path for S3
+
+    console.log(file, path);
 
     try {
       const uploadTask = uploadData({
