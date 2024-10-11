@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { FileUploader } from '@aws-amplify/ui-react-storage';
-import { getUrl } from 'aws-amplify/storage';
+import { uploadData, getUrl } from 'aws-amplify/storage';
 import '@aws-amplify/ui-react/styles.css';
 
 interface Product {
@@ -51,17 +51,31 @@ const AdminProductPage: React.FC = () => {
     setProductImageURL(undefined);
   };
 
-  const handleUploadSuccess = async (event: { key?: string }) => {
-    if (!event.key) {
-      console.error('Upload success event missing key');
+  const handleUploadSuccess = async (files: FileList) => {
+    if (!files || files.length === 0) {
+      console.error('No file selected for upload');
       return;
     }
-    
+
+    const file = files[0]; // Get the selected file
+    const path = `product-images/${file.name}`; // Define the path for S3
+
     try {
+      const uploadTask = uploadData({
+        path,
+        data: file, // Upload the file
+        options: {
+          contentType: file.type, // Specify the content type
+        },
+      });
+
+      // Await the result of the upload
+      await uploadTask.result;
+
       // Set the product image key after successful upload
-      setProductImageKey(event.key);
+      setProductImageKey(path);
     } catch (error) {
-      console.error('Error handling upload success:', error);
+      console.error('Error uploading image:', error);
     }
   };
 
@@ -87,11 +101,11 @@ const AdminProductPage: React.FC = () => {
       <div>
         <h3>Upload Product Image</h3>
         <FileUploader
+          path="product-images/" // Specify the path where the file will be uploaded
           acceptedFileTypes={['image/*']}
-          path="product-pictures/"
           maxFileCount={1}
           isResumable
-          onUploadSuccess={handleUploadSuccess} // Passes the event object with 'key'
+          onUploadSuccess={(files) => handleUploadSuccess(files as FileList)} // Cast to FileList
           onUploadError={(error) => {
             console.error('Upload error:', error);
           }}
