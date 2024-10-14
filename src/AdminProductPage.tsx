@@ -70,6 +70,7 @@ const AdminProductPage: React.FC = () => {
         data: file, // Upload the file
         options: {
           contentType: file.type, // Specify the content type
+          // accessLevel: 'guest',
         },
       });
 
