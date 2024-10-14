@@ -48,7 +48,7 @@
 
 
 import { BrowserRouter as Router, Route, Routes} from 'react-router-dom';
-// import AdminDashboard from './AdminDashboard';
+import AdminDashboard from './AdminDashboard';
 // import UserDashboard from './UserDashboard';
 // import Login from './pages/Login';
 import Signup from './pages/Signup';
@@ -77,7 +77,7 @@ export default function App() {
         <Route path="/login" element={<Login />} />
        
         {/* Removed admin route if not needed */}
-        {/* <Route path="/admin" element={<AdminDashboard />} /> */}
+        <Route path="/admin" element={<AdminDashboard />} />
         <Route path='/' element={<AdminProductPage />} />
         <Route path="/signup" element={<Signup />} />
         {/* <Route path="/productpage" element={<ProductPage />} /> */}

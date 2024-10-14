@@ -2,7 +2,7 @@
 // import ReactDOM from "react-dom/client";
 // import App from "./App";
 // import "./index.css";
-// import { Authenticator } from "@aws-amplify/ui-react";
+import { Authenticator } from "@aws-amplify/ui-react";
 // import {client} from './apolloClient';
 // import { ApolloProvider } from '@apollo/client';
 
@@ -44,16 +44,16 @@ import { ApolloProvider } from '@apollo/client';
 
 
 
-Amplify.configure({
-  API: {
-    GraphQL: {
-      endpoint: 'https://cjiaohomsbbmvf5h6opbvp5dra.appsync-api.ap-south-1.amazonaws.com/graphql',
-      region: 'ap-south-1',
-      defaultAuthMode: 'apiKey',
-      apiKey: 'da2-f4ay6e4ztujcfjdqwlpxjgtm3oq'
-    }
-  }
-});
+// Amplify.configure({
+//   API: {
+//     GraphQL: {
+//       endpoint: 'https://cjiaohomsbbmvf5h6opbvp5dra.appsync-api.ap-south-1.amazonaws.com/graphql',
+//       region: 'ap-south-1',
+//       defaultAuthMode: 'apiKey',
+//       apiKey: 'da2-f4ay6e4ztujcfjdqwlpxjgtm3oq'
+//     }
+//   }
+// });
 
 // // src/index.tsx or src/index.js
 // // import React from 'react';
@@ -81,7 +81,9 @@ import "./index.css";
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
     <ApolloProvider client={client}>
-      <App /> {/* Removed Authenticator.Provider */}
+      <Authenticator.Provider>
+      <App /> 
+      </Authenticator.Provider>
     </ApolloProvider>
   </React.StrictMode>
 );
