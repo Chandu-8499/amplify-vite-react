@@ -104,7 +104,7 @@ const AdminProductPage: React.FC = () => {
       <div>
         <h3>Upload Product Image</h3>
         <FileUploader
-          path="product-images/" // Specify the path where the file will be uploaded
+          path="product-pictures/" // Specify the path where the file will be uploaded
           acceptedFileTypes={['image/*']}
           maxFileCount={1}
           isResumable
