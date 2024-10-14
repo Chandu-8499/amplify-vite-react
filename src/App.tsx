@@ -51,7 +51,7 @@ import { BrowserRouter as Router, Route, Routes} from 'react-router-dom';
 // import AdminDashboard from './AdminDashboard';
 // import UserDashboard from './UserDashboard';
 // import Login from './pages/Login';
-// import Signup from './pages/Signup';
+import Signup from './pages/Signup';
 // import ProductPage from './pages/Productpage';
 import AdminProductPage from './AdminProductPage';
 // import ProductListing from './components/ProductListing';
@@ -75,10 +75,11 @@ export default function App() {
         <Route path="/checkout" element={<CheckoutPage />} />
         <Route path="/products/:id" element={<ProductDetail />} />
         <Route path="/login" element={<Login />} />
-        <Route path="/signup" element={<Signup />} />
+       
         {/* Removed admin route if not needed */}
         {/* <Route path="/admin" element={<AdminDashboard />} /> */}
         <Route path='/' element={<AdminProductPage />} />
+        <Route path="/signup" element={<Signup />} />
         {/* <Route path="/productpage" element={<ProductPage />} /> */}
         {/* <Route path="/user" element={<UserDashboard />} />
         <Route path="*" element={<Navigate to="/" />} /> Redirect to home instead of login */}
