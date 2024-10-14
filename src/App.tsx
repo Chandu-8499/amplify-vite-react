@@ -52,8 +52,8 @@ import AdminDashboard from './AdminDashboard';
 // import UserDashboard from './UserDashboard';
 // import Login from './pages/Login';
 import Signup from './pages/Signup';
-// import ProductPage from './pages/Productpage';
-import AdminProductPage from './AdminProductPage';
+// // import ProductPage from './pages/Productpage';
+// import AdminProductPage from './AdminProductPage';
 // import ProductListing from './components/ProductListing';
 // import ProductDetail from './components/ProductDetail';
 // import ShoppingCart from './pages/ShoppingCart';
@@ -78,7 +78,7 @@ export default function App() {
        
         {/* Removed admin route if not needed */}
         <Route path="/admin" element={<AdminDashboard />} />
-        <Route path='/' element={<AdminProductPage />} />
+        {/* <Route path='/' element={<AdminProductPage />} /> */}
         <Route path="/signup" element={<Signup />} />
         {/* <Route path="/productpage" element={<ProductPage />} /> */}
         {/* <Route path="/user" element={<UserDashboard />} />
