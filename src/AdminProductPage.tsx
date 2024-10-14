@@ -24,8 +24,11 @@ const AdminProductPage: React.FC = () => {
     if (productImageKey) {
       const fetchImageUrl = async () => {
         try {
-          const { url } = await getUrl({ path: productImageKey });
-          setProductImageURL(url.toString()); // Convert URL object to string
+          // Pass the key as part of the object
+          const urlResponse = await getUrl({ path: productImageKey });
+          
+          // Assuming `urlResponse.url` is the actual URL string or object
+          setProductImageURL(urlResponse.url.toString()); // Convert URL to string
         } catch (error) {
           console.error('Error fetching image URL:', error);
         }
@@ -58,12 +61,10 @@ const AdminProductPage: React.FC = () => {
     }
 
     const file = files[0]; // Get the selected file
-    
     const path = `product-pictures/${file.name}`; // Path for S3
 
-    console.log(file, path);
-
     try {
+      // No level option, just pass the path and file
       const uploadTask = uploadData({
         path,
         data: file, // Upload the file
