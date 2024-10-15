@@ -1,5 +1,4 @@
 import { a, defineData, type ClientSchema } from '@aws-amplify/backend';
-import { postConfirmation } from '../auth/post-confirmation/resource';
 
 // Define the combined schema
 const schema = a.schema({
@@ -17,13 +16,13 @@ const schema = a.schema({
   // User model (attributes managed by Cognito)
   User: a.model({
     email: a.string(),                    // User's email (optional)
-    profileOwner: a.string(),             // Owner of the profile
+    name: a.string(),             // Owner of the profile
   }).authorization(allow => [
-    allow.ownerDefinedIn('profileOwner'), // Authorization: Owner-based on 'profileOwner'
+    allow.publicApiKey(), // Authorization: Owner-based on 'profileOwner'
   ]),
 })
 .authorization(allow => [
-  allow.resource(postConfirmation)        // Resource-based authorization for 'UserProfile'
+  allow.publicApiKey()        // Resource-based authorization for 'UserProfile'
 ]);
 
 // Type definition for frontend requests

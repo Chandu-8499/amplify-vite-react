@@ -1,5 +1,5 @@
 import { defineAuth } from '@aws-amplify/backend';
-import { postConfirmation as postConfirmationFunction } from './post-confirmation/resource';
+// import { postConfirmation as postConfirmationFunction } from '../functions/post-confirmation/resource';
 
 /**
  * Define and configure your auth resource
@@ -9,10 +9,10 @@ export const auth = defineAuth({
   loginWith: {
     email: true,
   },
-  access: (allow) => [
-    allow.resource(postConfirmationFunction).to(["createUser"])
-  ],
-  triggers: {
-    postConfirmation: postConfirmationFunction,
-  },
+  // access: (allow) => [
+  //   allow.resource(postConfirmationFunction).to(["createUser"])
+  // ],
+  // triggers: {
+  //   postConfirmation: postConfirmationFunction,
+  // },
 });
