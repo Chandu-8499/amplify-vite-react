@@ -14,12 +14,12 @@ const schema = a.schema({
     allow.publicApiKey()                  // Authorization: public API key
   ]),
 
-  // UserProfile model
-  UserProfile: a.model({
+  // User model (attributes managed by Cognito)
+  User: a.model({
     email: a.string(),                    // User's email (optional)
-    profileOwner: a.string()              // Owner of the profile (optional)
+    profileOwner: a.string(),             // Owner of the profile
   }).authorization(allow => [
-    allow.ownerDefinedIn('profileOwner'), // Authorization: Owner based on 'profileOwner'
+    allow.ownerDefinedIn('profileOwner'), // Authorization: Owner-based on 'profileOwner'
   ]),
 })
 .authorization(allow => [

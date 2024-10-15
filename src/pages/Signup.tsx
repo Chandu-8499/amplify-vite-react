@@ -1,24 +1,24 @@
+import { Amplify } from 'aws-amplify';
 import { Authenticator } from '@aws-amplify/ui-react';
-import '@aws-amplify/ui-react/styles.css';
-import { useNavigate } from 'react-router-dom';
+import outputs from '../amplify_outputs.json';
+
+Amplify.configure(outputs);
 
 function Signup() {
-  const navigate = useNavigate();
-
   return (
-    <Authenticator initialState="signUp" loginMechanisms={['email']}>
-      {({ user }) => {
-        if (user) {
-          // Navigate to admin page after signup
-          navigate('/admin');
-        }
-        return (
-          <div>
-            <h1>Sign Up Page</h1>
-            <p>Create a new account.</p>
-          </div>
-        );
-      }}
+    <Authenticator>
+      {({ signOut, user }) => (
+        <div>
+          {user ? (
+            <>
+              <h1>Welcome {user.username}</h1>
+              <button onClick={signOut}>Sign out</button>
+            </>
+          ) : (
+            <h1>Loading...</h1>
+          )}
+        </div>
+      )}
     </Authenticator>
   );
 }
