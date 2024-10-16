@@ -33,3 +33,14 @@ export const DELETE_PRODUCT = gql`
     }
   }
 `;
+
+
+export const createUserProfile = gql `
+  mutation CreateUserProfile($input: CreateUserProfileInput!) {
+    createUserProfile(input: $input) {
+      id
+      email
+      profileOwner
+    }
+  }
+`;
