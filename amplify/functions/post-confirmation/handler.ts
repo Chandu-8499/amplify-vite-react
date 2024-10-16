@@ -1,4 +1,5 @@
-import type { PostConfirmationTriggerHandler } from "aws-lambda";
+// import type { PostConfirmationTriggerHandler } from "aws-lambda";
+import type { Handler } from "aws-lambda";
 // import { type Schema } from "../../data/resource";
 // import { Amplify } from "aws-amplify";
 // import { generateClient } from "aws-amplify/data";
@@ -37,7 +38,7 @@ import type { PostConfirmationTriggerHandler } from "aws-lambda";
 //   authMode: "iam",
 // });
 
-export const handler: PostConfirmationTriggerHandler = async (event) => {
+export const handler: Handler = async (event) => {
     console.log('sample log event',event);
-  return event;
+  return 'hello';
 };
